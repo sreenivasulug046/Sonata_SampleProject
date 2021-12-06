@@ -1,6 +1,9 @@
+using DoctorConsultApp.Models;
+using DoctorConsultApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +30,9 @@ namespace DoctorConsultApp
         {
 
             services.AddControllers();
+            services.AddScoped<IHomeServices, HomeServices>();
+            var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
+            services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoctorConsultApp", Version = "v1" });

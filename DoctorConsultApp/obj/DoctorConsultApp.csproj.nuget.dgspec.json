@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\Practice projects\\DoctorConsultApp\\DoctorConsultApp.csproj": {}
+    "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultApp\\DoctorConsultApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\Practice projects\\DoctorConsultApp\\DoctorConsultApp.csproj": {
+    "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultApp\\DoctorConsultApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\Practice projects\\DoctorConsultApp\\DoctorConsultApp.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultApp\\DoctorConsultApp.csproj",
         "projectName": "DoctorConsultApp",
-        "projectPath": "C:\\Users\\admin\\Desktop\\Practice projects\\DoctorConsultApp\\DoctorConsultApp.csproj",
+        "projectPath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultApp\\DoctorConsultApp.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\Practice projects\\DoctorConsultApp\\obj\\",
+        "outputPath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
@@ -45,6 +45,22 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
