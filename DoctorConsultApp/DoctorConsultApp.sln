@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorConsultApp", "DoctorConsultApp.csproj", "{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorConsultApp", "DoctorConsultApp.csproj", "{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorConsultDBContext", "..\DoctorConsultDBContext\DoctorConsultDBContext.csproj", "{2295855A-EDF7-4956-8734-0D47A4261FB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2295855A-EDF7-4956-8734-0D47A4261FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2295855A-EDF7-4956-8734-0D47A4261FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2295855A-EDF7-4956-8734-0D47A4261FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2295855A-EDF7-4956-8734-0D47A4261FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DoctorConsultApp.Models
+namespace DoctorConsultDBContext.Models
 {
     public partial class DoctorConsultAppDBContext : DbContext
     {
@@ -19,6 +19,7 @@ namespace DoctorConsultApp.Models
 
         public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
+
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<Slot> Slots { get; set; }
         public virtual DbSet<User> Users { get; set; }

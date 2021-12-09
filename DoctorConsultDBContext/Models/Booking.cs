@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DoctorConsultApp.Models
+namespace DoctorConsultDBContext.Models
 {
     public partial class Booking
     {

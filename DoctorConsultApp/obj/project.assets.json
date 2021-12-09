@@ -1593,6 +1593,24 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "DoctorConsultDBContext/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
+          "Swashbuckle.AspNetCore": "5.6.3"
+        },
+        "compile": {
+          "bin/placeholder/DoctorConsultDBContext.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DoctorConsultDBContext.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5959,10 +5977,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "DoctorConsultDBContext/1.0.0": {
+      "type": "project",
+      "path": "../DoctorConsultDBContext/DoctorConsultDBContext.csproj",
+      "msbuildProject": "../DoctorConsultDBContext/DoctorConsultDBContext.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "DoctorConsultDBContext >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
@@ -6002,7 +6026,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultDBContext.csproj": {
+              "projectPath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultDBContext.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

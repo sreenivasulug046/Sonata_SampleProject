@@ -56,3 +56,10 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\ref\DoctorConsultApp.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\DoctorConsultApp.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\DoctorConsultApp.genruntimeconfig.cache
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\DoctorConsultApp.csprojAssemblyReference.cache
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.deps.json
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.runtimeconfig.json
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.runtimeconfig.dev.json
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.exe
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.dll
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\DoctorConsultDBContext.pdb

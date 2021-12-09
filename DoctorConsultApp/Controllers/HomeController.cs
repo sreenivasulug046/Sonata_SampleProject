@@ -1,5 +1,5 @@
-﻿using DoctorConsultApp.Models;
-using DoctorConsultApp.Services;
+﻿using DoctorConsultApp.Services;
+using DoctorConsultDBContext.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
