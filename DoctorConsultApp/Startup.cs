@@ -35,7 +35,7 @@ namespace DoctorConsultApp
             services.AddControllers();
             services.AddMvc();
             //MvcOptions.EnableEndpointRouting = false;
-            services.AddTransient<IHomeServices, HomeServices>();
+            services.AddTransient<IDoctorConsultAppServices, DoctorConsultAppServices>();
             services.AddScoped<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
             //var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
             //services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));

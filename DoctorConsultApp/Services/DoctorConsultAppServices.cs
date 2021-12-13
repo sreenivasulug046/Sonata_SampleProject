@@ -1,74 +1,76 @@
-﻿using DoctorConsultDBContext.Models;
+﻿using DoctorConsultApp.Models;
+using DoctorConsultDBContext.Models;
 using DoctorConsultDBContext.Services;
 using System.Collections.Generic;
 using System.Linq;
 namespace DoctorConsultApp.Services
 {
-    public class HomeServices : IHomeServices
+    public class DoctorConsultAppServices : IDoctorConsultAppServices
     {
         private IDoctorConsultAppDBServices _DbContext;
-        public HomeServices(IDoctorConsultAppDBServices DbContext)
+        public DoctorConsultAppServices(IDoctorConsultAppDBServices DbContext)
         {
-            _DbContext = DbContext;    
+            _DbContext = DbContext;
         }
 
         //for geting list of doctors
-        public List<Doctor> GetAll()
+        public List<DoctorModel> GetAll()
         {
-            var data = _DbContext.GetAll();
-            return data;
-            //var data = _DbContext.Doctors
-            //    .Select(f => new Doctor
-            //    {
-            //        DoctorName = f.DoctorName,
-            //        Specilization = f.Specilization,
-            //        PhNo = f.PhNo,
+            //var data = _DbContext.GetAll();
 
-            //    })
-            //    .ToList();
+            var data = _DbContext.GetAll()
+                .Select(f => new DoctorModel
+                {
+                    DoctorId = f.DoctorId,
+                    DoctorName = f.DoctorName,
+                    Specilization = f.Specilization
+
+
+                })
+                .ToList();
             //return data;
+            return data;
         }
 
         //for getting perticular doctor detailes
-        public Doctor GetDoctor(int id)
+        public DoctorDetailsModel GetDoctor(int id)
         {
 
-            var result = _DbContext.GetDoctor(id);
+            //var result = _DbContext.GetDoctor(id);
 
-            //var result = _DbContext.Doctors
-            //     .Where(f => f.DoctorId == id)
-            //     .Select(f => new Doctor
-            //     {
-            //         DoctorId = f.DoctorId,
-            //         DoctorName = f.DoctorName,
-            //         Gender=f.Gender,
-            //         Specilization = f.Specilization,
-            //         PhNo = f.PhNo,
-            //         Email = f.Email
-            //     }).FirstOrDefault();
+            var result = _DbContext.GetDoctor()
+                 .Where(f => f.DoctorId == id)
+                 .Select(f => new DoctorDetailsModel
+                 {
+                     DoctorId = f.DoctorId,
+                     DoctorName = f.DoctorName,
+                     Gender = f.Gender,
+                     Specilization = f.Specilization,
+                     PhNo = f.PhNo,
+                     Email = f.Email
+                 }).FirstOrDefault();
 
             return result;
         }
 
-        public Doctor AddDoctor(Doctor doctor)
+        public DoctorAddModel AddDoctor(DoctorAddModel doctor)
         {
             //_Dbconext.Doctor.Add(doctor);
-            //return doctor;
+            // return doctor;
 
-            _DbContext.AddDoctor(doctor);
-            //_DbContext.Doctors.Add(new Doctor()
-            //{
-            //    DoctorId = doctor.DoctorId,
-            //    DoctorName = doctor.DoctorName,
-            //    Gender=doctor.Gender,
-            //    Specilization=doctor.Specilization,
-            //    PhNo = doctor.PhNo,
-            //    Email = doctor.Email,
-            //    Password = doctor.Password
-            //});
-            //_DbContext.SaveChanges();
-            return doctor;
+            var doctordetails = new DoctorAddModel()
+            {
+                DoctorName = doctor.DoctorName,
+                Gender = doctor.Gender,
+                Specilization = doctor.Specilization,
+                PhNo = doctor.PhNo,
+                Email = doctor.Email,
+                Password = doctor.Password
 
+
+            };
+            return doctordetails;
+            
         }
         public User AddUser(User user)
         {
@@ -144,7 +146,7 @@ namespace DoctorConsultApp.Services
         }
 
         //for getting perticular user booking details to doctor
-        public Booking GetBookedPatientDetails(int Uid, int Did )
+        public Booking GetBookedPatientDetails(int Uid, int Did)
         {
             var result = _DbContext.GetBookedPatientDetails(Uid, Did);
             //var result = _DbContext.Bookings
@@ -197,25 +199,13 @@ namespace DoctorConsultApp.Services
             //         PrescriptionId=f.PrescriptionId,
             //         PrescriptionImage=f.PrescriptionImage,
             //         AdditionalSuggestion=f.AdditionalSuggestion
-                    
+
             //     }).FirstOrDefault();
 
             return result;
         }
-        //// for User adding a review to the doctor
-        //public Booking AddReview(Booking review)
-        //{
-        //    _DbContext.Bookings.Add(new Booking()
-        //    {
-        //        UserId=review.UserId,
-        //        DoctorId = review.DoctorId,
-        //        DoctorReview=review.DoctorReview
-               
-        //    });
-        //    _DbContext.SaveChanges();
-        //    return review;
 
-        //}
+
 
     }
 }

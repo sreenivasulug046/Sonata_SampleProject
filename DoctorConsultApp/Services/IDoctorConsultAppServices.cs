@@ -1,4 +1,5 @@
-﻿using DoctorConsultDBContext.Models;
+﻿using DoctorConsultApp.Models;
+using DoctorConsultDBContext.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DoctorConsultApp.Services
 {
-    public interface IHomeServices
+    public interface IDoctorConsultAppServices
     {
-        public List<Doctor> GetAll();
-        public Doctor GetDoctor(int id);
-        public Doctor AddDoctor(Doctor doctor);
+        public List<DoctorModel> GetAll();
+        public DoctorDetailsModel GetDoctor(int id);
+        public DoctorAddModel AddDoctor(DoctorAddModel doctor);
         public User AddUser(User user);
         public Booking AddBooking(Booking booking);
         public Slot AddTimeSlots(Slot slot);

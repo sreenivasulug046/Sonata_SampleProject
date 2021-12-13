@@ -1,4 +1,5 @@
-﻿using DoctorConsultApp.Services;
+﻿using DoctorConsultApp.Models;
+using DoctorConsultApp.Services;
 using DoctorConsultDBContext.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,10 @@ namespace DoctorConsultApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class DoctorConsultAppController : ControllerBase
     {
-        private IHomeServices _database;
-        public HomeController(IHomeServices database)
+        private IDoctorConsultAppServices _database;
+        public DoctorConsultAppController(IDoctorConsultAppServices database)
         {
             _database = database;
         }
@@ -22,7 +23,7 @@ namespace DoctorConsultApp.Controllers
         //API for List of Doctors With Specilization
         [HttpGet]
         [Route("ListOfDoctors")]
-        public IActionResult GetAllDoctorsLis()
+        public IActionResult GetAllDoctorsList()
         {
             var doctors = _database.GetAll();
             if (doctors.Count == 0)
@@ -46,7 +47,7 @@ namespace DoctorConsultApp.Controllers
         //API for Register a doctor
         [HttpPost]
         [Route("RegisterDoctor")]
-        public IActionResult AddDoctor(Doctor doctor)
+        public IActionResult AddDoctor(Models.DoctorAddModel doctor)
         {
             if (!ModelState.IsValid)
             {

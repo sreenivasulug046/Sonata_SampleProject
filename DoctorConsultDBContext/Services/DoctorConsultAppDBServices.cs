@@ -21,9 +21,10 @@ namespace DoctorConsultDBContext.Services
             var data = _DbContext.Doctors
                 .Select(f => new Doctor
                 {
+                    DoctorId=f.DoctorId,
                     DoctorName = f.DoctorName,
-                    Specilization = f.Specilization,
-                    PhNo = f.PhNo,
+                    Specilization = f.Specilization
+                    //PhNo = f.PhNo,
 
                 })
                 .ToList();
@@ -31,11 +32,10 @@ namespace DoctorConsultDBContext.Services
         }
 
         //for getting perticular doctor detailes
-        public Doctor GetDoctor(int id)
+        public List<Doctor> GetDoctor()
         {
 
-            var result = _DbContext.Doctors
-                 .Where(f => f.DoctorId == id)
+            var result = _DbContext.Doctors 
                  .Select(f => new Doctor
                  {
                      DoctorId = f.DoctorId,
@@ -44,7 +44,7 @@ namespace DoctorConsultDBContext.Services
                      Specilization = f.Specilization,
                      PhNo = f.PhNo,
                      Email = f.Email
-                 }).FirstOrDefault();
+                 }).ToList();
 
             return result;
         }
