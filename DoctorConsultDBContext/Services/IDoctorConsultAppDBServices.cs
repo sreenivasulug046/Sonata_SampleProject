@@ -17,6 +17,6 @@ namespace DoctorConsultDBContext.Services
         public List<Slot> GetTimeSlot(int id);
         public Booking GetBookedPatientDetails(int Uid, int Did);
         public Prescription AddPrescription(Prescription prescription);
-        public Prescription GetPrescription(int Uid, int Did);
+        public List<Prescription> GetPrescription(int Uid, int Did);
     }
 }

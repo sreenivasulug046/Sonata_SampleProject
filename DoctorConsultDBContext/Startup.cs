@@ -30,13 +30,13 @@ namespace DoctorConsultDBContext
         {
 
             services.AddControllers();
-            services.AddScoped<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
+            services.AddTransient<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
             var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
             services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoctorConsultApp", Version = "v1" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoctorConsultApp", Version = "v1" });
+            //});
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoctorConsultDBContext", Version = "v1" });

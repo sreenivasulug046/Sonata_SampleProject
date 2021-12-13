@@ -1,6 +1,7 @@
 using DoctorConsultApp.Services;
 using DoctorConsultDBContext.Models;
 using DoctorConsultDBContext.Services;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -31,10 +33,19 @@ namespace DoctorConsultApp
         {
 
             services.AddControllers();
-            services.AddScoped<IHomeServices, HomeServices>();
+            services.AddMvc();
+            //MvcOptions.EnableEndpointRouting = false;
+            services.AddTransient<IHomeServices, HomeServices>();
+            services.AddScoped<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
+            //var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
+            //services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
+            var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
+            services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
+            //services.AddOData();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoctorConsultApp", Version = "v1" });
+                
             });
         }
 
@@ -51,10 +62,17 @@ namespace DoctorConsultApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseHttpsRedirection();
+            //app.UseMvc(routeBuilder =>
+            //{
+            //      routeBuilder.EnableDependencyInjection();
+            //      routeBuilder.Select().OrderBy().Filter();
+            //});
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+               // endpoints.Select().OrderBy().Filter();
             });
         }
     }

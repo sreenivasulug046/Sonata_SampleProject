@@ -93,12 +93,13 @@ namespace DoctorConsultDBContext.Services
                 DoctorId = booking.DoctorId,
                 PatientName = booking.PatientName,
                 Gender = booking.Gender,
+                Age = booking.Age,
                 Height = booking.Height,
                 Weight = booking.Weight,
                 Problem = booking.Problem,
-                Date = booking.Date,
-                StartTime = booking.StartTime,
-                EndTime = booking.EndTime
+                Date = booking.Date
+                //StartTime = booking.StartTime,
+                //EndTime = booking.EndTime
 
             });
             _DbContext.SaveChanges();
@@ -112,9 +113,11 @@ namespace DoctorConsultDBContext.Services
             {
                 SlotId = slot.SlotId,
                 DoctorId = slot.DoctorId,
-                Date = slot.Date,
+                SDate = slot.SDate,
                 StartTime = slot.StartTime,
-                EndTime = slot.EndTime
+                EndTime = slot.EndTime,
+                SlotAvailability=slot.SlotAvailability
+                
             });
             _DbContext.SaveChanges();
             return slot;
@@ -129,10 +132,11 @@ namespace DoctorConsultDBContext.Services
                  .Select(f => new Slot
                  {
                      SlotId = f.SlotId,
-                     Date = f.Date,
-                     StartTime = f.StartTime,
-                     EndTime = f.EndTime
-
+                     SDate = f.SDate,
+                     StartTime = f.StartTime.ToString(),  //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
+                     EndTime = f.EndTime.ToString(),
+                     SlotAvailability=f.SlotAvailability
+                     
                  }).ToList();
 
             return result;
@@ -178,7 +182,7 @@ namespace DoctorConsultDBContext.Services
 
         }
         //for getting Prescription details 
-        public Prescription GetPrescription(int Uid, int Did)
+        public List<Prescription> GetPrescription(int Uid, int Did)
         {
 
             var result = _DbContext.Prescriptions
@@ -189,7 +193,7 @@ namespace DoctorConsultDBContext.Services
                      PrescriptionImage = f.PrescriptionImage,
                      AdditionalSuggestion = f.AdditionalSuggestion
 
-                 }).FirstOrDefault();
+                 }).ToList();
 
             return result;
         }

@@ -37,18 +37,13 @@ namespace DoctorConsultDBContext.Models
         {
             modelBuilder.Entity<Booking>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Booking");
 
                 entity.Property(e => e.BookingId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Date).HasColumnType("date");
-
-                entity.Property(e => e.DoctorReview)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("Doctor_Review");
 
                 entity.Property(e => e.EndTime).HasColumnName("End_Time");
 
@@ -69,18 +64,21 @@ namespace DoctorConsultDBContext.Models
                 entity.Property(e => e.StartTime).HasColumnName("Start_Time");
 
                 entity.Property(e => e.Weight).HasMaxLength(1);
+                entity.Property(e => e.DoctorId).HasColumnName("DoctorId");
+                entity.Property(e => e.UserId).HasColumnName("UserId");
+                entity.Property(e => e.Age).HasColumnName("Age");
 
-                entity.HasOne(d => d.Doctor)
-                    .WithMany()
-                    .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Booking__DoctorI__1B0907CE");
+                //entity.HasOne(d => d.Doctor)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.DoctorId)
+                //    .OnDelete(DeleteBehavior.Cascade)
+                //    .HasConstraintName("FK__Booking__DoctorI__1B0907CE");
 
-                entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Booking__UserId__1A14E395");
+                //entity.HasOne(d => d.User)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.Cascade)
+                //    .HasConstraintName("FK__Booking__UserId__1A14E395");
             });
 
             modelBuilder.Entity<Doctor>(entity =>
@@ -115,7 +113,7 @@ namespace DoctorConsultDBContext.Models
 
             modelBuilder.Entity<Prescription>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Prescription");
 
@@ -128,30 +126,30 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.PrescriptionImage).HasColumnName("Prescription_Image");
 
-                entity.HasOne(d => d.Doctor)
-                    .WithMany()
-                    .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Prescript__Docto__1ED998B2");
+                //entity.HasOne(d => d.Doctor)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.DoctorId)
+                //    .OnDelete(DeleteBehavior.Cascade)
+                //    .HasConstraintName("FK__Prescript__Docto__1ED998B2");      //[FK__Booking__DoctorI__267ABA7A]
 
-                entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Prescript__UserI__1FCDBCEB");
+                //entity.HasOne(d => d.User)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.Cascade)
+                //    .HasConstraintName("FK__Prescript__UserI__1FCDBCEB");
             });
 
             modelBuilder.Entity<Slot>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Slot");
 
-                entity.Property(e => e.Availability)
+                entity.Property(e => e.SlotAvailability)
                     .HasMaxLength(5)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Date).HasColumnType("date");
+                entity.Property(e => e.SDate).HasColumnType("SDate");
 
                 entity.Property(e => e.EndTime).HasColumnName("End_Time");
 
@@ -159,11 +157,11 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.StartTime).HasColumnName("Start_Time");
 
-                entity.HasOne(d => d.Doctor)
-                    .WithMany()
-                    .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Slot__DoctorId__1CF15040");
+                //entity.HasOne(d => d.Doctor)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.DoctorId)
+                //    .OnDelete(DeleteBehavior.Cascade)
+                //    .HasConstraintName("FK__Slot__DoctorId__1CF15040");
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -185,7 +185,7 @@ namespace DoctorConsultApp.Services
 
         }
         //for getting Prescription details 
-        public Prescription GetPrescription(int Uid, int Did)
+        public List<Prescription> GetPrescription(int Uid, int Did)
         {
 
             var result = _DbContext.GetPrescription(Uid, Did);

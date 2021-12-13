@@ -17,6 +17,6 @@ namespace DoctorConsultApp.Services
         public Booking GetBookedPatientDetails(int Uid, int Did);
         public List<Slot> GetTimeSlot(int id);
         public Prescription AddPrescription(Prescription prescription);
-        public Prescription GetPrescription(int Uid, int Did);
+        public List<Prescription> GetPrescription(int Uid, int Did);
     }
 }
