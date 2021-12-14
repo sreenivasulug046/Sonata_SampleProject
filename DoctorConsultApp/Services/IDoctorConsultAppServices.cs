@@ -12,12 +12,15 @@ namespace DoctorConsultApp.Services
         public List<DoctorModel> GetAll();
         public DoctorDetailsModel GetDoctor(int id);
         public DoctorAddModel AddDoctor(DoctorAddModel doctor);
-        public User AddUser(User user);
-        public Booking AddBooking(Booking booking);
-        public Slot AddTimeSlots(Slot slot);
-        public Booking GetBookedPatientDetails(int Uid, int Did);
+        public UserAddModel AddUser(UserAddModel user);
+        public BookingModel AddBooking(BookingModel booking);
+        public TimeSlotAddModel AddTimeSlots(TimeSlotAddModel slot);
+        public List<BookedPatientsList> GetBookedPatientList();
+        public BookedPatientDetails GetBookedPatientDetails(int id);
         public List<Slot> GetTimeSlot(int id);
         public Prescription AddPrescription(Prescription prescription);
-        public List<Prescription> GetPrescription(int Uid, int Did);
+        public PrescriptionModel GetPrescription(int id);
+        public List<PatientPastConsultList> GetPatientPastConsults(int id);
+        public PatientPastConsulationModel PatientPastConsultation(int id);
     }
 }

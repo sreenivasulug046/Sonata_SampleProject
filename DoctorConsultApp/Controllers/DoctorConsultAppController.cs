@@ -47,7 +47,7 @@ namespace DoctorConsultApp.Controllers
         //API for Register a doctor
         [HttpPost]
         [Route("RegisterDoctor")]
-        public IActionResult AddDoctor(Models.DoctorAddModel doctor)
+        public IActionResult AddDoctor(DoctorAddModel doctor)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +55,9 @@ namespace DoctorConsultApp.Controllers
             }
 
 
-            _database.AddDoctor(doctor);
+            var item=_database.AddDoctor(doctor);
+            if (item == null)
+                return NoContent();
 
             return Ok(doctor);
 
@@ -63,7 +65,7 @@ namespace DoctorConsultApp.Controllers
         //API for Register user
         [HttpPost]
         [Route("RegisterUser")]
-        public IActionResult AddUser(User user)
+        public IActionResult AddUser(UserAddModel user)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +81,7 @@ namespace DoctorConsultApp.Controllers
         //API for booking a doctor
         [HttpPost]
         [Route("Booking")]
-        public IActionResult AddBooking(Booking booking)
+        public IActionResult AddBooking(BookingModel booking)
         {
             if (!ModelState.IsValid)
             {
@@ -95,7 +97,7 @@ namespace DoctorConsultApp.Controllers
         //API for Adding Time slot for Doctor
         [HttpPost]
         [Route("Add TimeSlots")]
-        public IActionResult AddTimeSlot(Slot slot)
+        public IActionResult AddTimeSlot(TimeSlotAddModel slot)
         {
             if (!ModelState.IsValid)
             {
@@ -144,25 +146,66 @@ namespace DoctorConsultApp.Controllers
         //API for getting perticular booked detailes
         [HttpGet]
         [Route("Booked Details")]
-        public IActionResult GetBookedDetails(int Uid,int Did)
+        public IActionResult GetBookedDetails(int id)
         {
-            var bookeddetails = _database.GetBookedPatientDetails(Uid,Did);
+            var bookeddetails = _database.GetBookedPatientDetails(id);
             if (bookeddetails == null)
             {
                 return NotFound();
             }
             return Ok(bookeddetails);
         }
+        // API for Getting the patient prescription by Booking Id 
         [HttpGet]
         [Route("Patient Prescriptions")]
-        public IActionResult GetPrescription(int Uid, int Did)
+        public IActionResult GetPrescription(int id)
         {
-            var prescrition = _database.GetPrescription(Uid, Did);
+            var prescrition = _database.GetPrescription(id);
             if (prescrition == null)
             {
                 return NotFound();
             }
             return Ok(prescrition);
+        }
+
+        //API for Getting List Of Booked Patients by Today Date
+        [HttpGet]
+        [Route("List of Booked patients")]
+        public IActionResult GetBookedPatientList()
+        {
+            var results = _database.GetBookedPatientList();
+            if (results == null)
+            {
+                return NoContent();
+            }
+            return Ok(results);
+        }
+
+        //API for Getting List of Past consultations by UserId
+        [HttpGet]
+        [Route("List of Past Consults")]
+        public IActionResult GetPastConsultations(int id)
+        {
+            var pastconsults = _database.GetPatientPastConsults(id);
+            if (pastconsults == null)
+            {
+                return NoContent();
+            }
+            return Ok(pastconsults);
+        }
+
+        //API for Getting Perticulat Consultation by Booking Id
+        [HttpGet]
+        [Route("Past Consultation")]
+        public IActionResult GetPastConsultation(int id)
+        {
+            var pastconsult = _database.PatientPastConsultation(id);
+            if (pastconsult == null)
+            {
+                return NoContent();
+            }
+            return Ok(pastconsult);
+
         }
     }
 }

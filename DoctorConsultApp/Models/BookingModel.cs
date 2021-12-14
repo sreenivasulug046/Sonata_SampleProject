@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace DoctorConsultDBContext.Models
+namespace DoctorConsultApp.Models
 {
-    public partial class Booking
+    public class BookingModel
     {
-        [Key]
-        public int BookingId { get; set; }
         public int UserId { get; set; }
         public int DoctorId { get; set; }
         public string PatientName { get; set; }
@@ -21,9 +18,5 @@ namespace DoctorConsultDBContext.Models
         public DateTime Date { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
-
-        public virtual Doctor Doctor { get; set; }
-        public virtual User User { get; set; }
-
     }
 }

@@ -95,11 +95,11 @@ namespace DoctorConsultDBContext.Services
                 Gender = booking.Gender,
                 Age = booking.Age,
                 Height = booking.Height,
-                Weight = booking.Weight,
+                PWeight = booking.PWeight,
                 Problem = booking.Problem,
-                Date = booking.Date
-                //StartTime = booking.StartTime,
-                //EndTime = booking.EndTime
+                Date = booking.Date,
+                StartTime = booking.StartTime,
+                EndTime = booking.EndTime
 
             });
             _DbContext.SaveChanges();
@@ -133,8 +133,8 @@ namespace DoctorConsultDBContext.Services
                  {
                      SlotId = f.SlotId,
                      SDate = f.SDate,
-                     StartTime = f.StartTime.ToString(),  //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
-                     EndTime = f.EndTime.ToString(),
+                     StartTime = f.StartTime,  //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
+                     EndTime = f.EndTime,
                      SlotAvailability=f.SlotAvailability
                      
                  }).ToList();
@@ -143,11 +143,10 @@ namespace DoctorConsultDBContext.Services
         }
 
         //for getting perticular user booking details to doctor
-        public Booking GetBookedPatientDetails(int Uid, int Did)
+        public List<Booking> GetBookedPatientDetails()
         {
 
             var result = _DbContext.Bookings
-                 .Where(f => f.DoctorId == Did && f.UserId == Uid)
                  .Select(f => new Booking
                  {
                      BookingId = f.BookingId,
@@ -156,12 +155,12 @@ namespace DoctorConsultDBContext.Services
                      PatientName = f.PatientName,
                      Gender = f.Gender,
                      Height = f.Height,
-                     Weight = f.Weight,
+                     PWeight = f.PWeight,
                      Problem = f.Problem,
                      Date = f.Date,
                      StartTime = f.StartTime,
                      EndTime = f.EndTime
-                 }).FirstOrDefault();
+                 }).ToList();
 
             return result;
         }
@@ -182,13 +181,14 @@ namespace DoctorConsultDBContext.Services
 
         }
         //for getting Prescription details 
-        public List<Prescription> GetPrescription(int Uid, int Did)
+        public List<Prescription> GetPrescription()
         {
 
             var result = _DbContext.Prescriptions
-                 .Where(f => f.DoctorId == Did && f.UserId == Uid)
+                 
                  .Select(f => new Prescription
                  {
+                     BookingId=f.BookingId,
                      PrescriptionId = f.PrescriptionId,
                      PrescriptionImage = f.PrescriptionImage,
                      AdditionalSuggestion = f.AdditionalSuggestion
@@ -209,6 +209,32 @@ namespace DoctorConsultDBContext.Services
         //    });
         //    _DbContext.SaveChanges();
         //    return review;
+
+        //}
+
+        //Service for Getting all list of Booked patients according to timeslot
+        public List<Booking> GetPatientList()
+        {
+            var patientlist = _DbContext.Bookings
+                   .Select(f => new Booking
+                   {
+                       BookingId = f.BookingId,
+                       UserId = f.UserId,
+                       DoctorId = f.DoctorId,
+                       PatientName = f.PatientName,
+                       Gender = f.Gender,
+                       Age = f.Age,
+                       StartTime = f.StartTime,
+                       EndTime = f.EndTime,
+                       Doctor=f.Doctor
+
+                   }).ToList();
+            return patientlist;
+        }
+
+        // Service for Getting all Past consultations
+        //public List<Booking> GetPatientPastConsulList()
+        //{
 
         //}
     }

@@ -1,6 +1,7 @@
 ﻿using DoctorConsultApp.Models;
 using DoctorConsultDBContext.Models;
 using DoctorConsultDBContext.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace DoctorConsultApp.Services
@@ -58,7 +59,7 @@ namespace DoctorConsultApp.Services
             //_Dbconext.Doctor.Add(doctor);
             // return doctor;
 
-            var doctordetails = new DoctorAddModel()
+            _DbContext.AddDoctor( new Doctor()
             {
                 DoctorName = doctor.DoctorName,
                 Gender = doctor.Gender,
@@ -68,61 +69,58 @@ namespace DoctorConsultApp.Services
                 Password = doctor.Password
 
 
-            };
-            return doctordetails;
+            });
+            return doctor;
             
         }
-        public User AddUser(User user)
+        public UserAddModel AddUser(UserAddModel user)
         {
-            _DbContext.AddUser(user);
-            //_DbContext.Users.Add(new User()
-            //{
-            //    UserId = user.UserId,
-            //    UserName = user.UserName,
-            //    PhNo = user.PhNo,
-            //    Email = user.Email,
-            //    Password = user.Password
-            //});
-            //_DbContext.SaveChanges();
+            _DbContext.AddUser(new User
+            {
+                UserName = user.UserName,
+                PhNo = user.PhNo,
+                Email = user.Email,
+                Password = user.Password
+            });
             return user;
 
         }
         // for Booking a doctor 
-        public Booking AddBooking(Booking booking)
+        public BookingModel AddBooking(BookingModel booking)
         {
-            _DbContext.AddBooking(booking);
-            //_DbContext.Bookings.Add(new Booking()
-            //{
-            //    BookingId=booking.BookingId,
-            //    UserId=booking.UserId,
-            //    DoctorId = booking.DoctorId,
-            //    PatientName = booking.PatientName,
-            //    Gender = booking.Gender,
-            //    Height=booking.Height,
-            //    Weight=booking.Weight,
-            //    Problem=booking.Problem,
-            //    Date=booking.Date,
-            //    StartTime=booking.StartTime,
-            //    EndTime=booking.EndTime
 
-            //});
+            _DbContext.AddBooking(new Booking
+            {
+                UserId = booking.UserId,
+                DoctorId = booking.DoctorId,
+                PatientName = booking.PatientName,
+                Gender = booking.Gender,
+                Age=booking.Age,
+                Height = booking.Height,
+                PWeight = booking.PWeight,
+                Problem = booking.Problem,
+                Date = booking.Date,
+                StartTime = booking.StartTime,
+                EndTime = booking.EndTime
+
+            });
             //_DbContext.SaveChanges();
             return booking;
 
         }
         //for add time slots(doctor)
-        public Slot AddTimeSlots(Slot slot)
+        public TimeSlotAddModel AddTimeSlots(TimeSlotAddModel slot)
         {
-            _DbContext.AddTimeSlots(slot);
-            //_DbContext.Slots.Add(new Slot()
-            //{
-            //    SlotId = slot.SlotId,
-            //    DoctorId = slot.DoctorId,
-            //    Date = slot.Date,
-            //    StartTime = slot.StartTime,
-            //    EndTime = slot.EndTime
-            //});
-            //_DbContext.SaveChanges();
+            _DbContext.AddTimeSlots(new Slot
+            {
+                DoctorId = slot.DoctorId,
+                SDate = slot.SDate,
+                StartTime = slot.StartTime,
+                EndTime = slot.EndTime,
+                SlotAvailability=slot.SlotAvailability
+                
+            });
+
             return slot;
 
         }
@@ -146,25 +144,24 @@ namespace DoctorConsultApp.Services
         }
 
         //for getting perticular user booking details to doctor
-        public Booking GetBookedPatientDetails(int Uid, int Did)
+        public BookedPatientDetails GetBookedPatientDetails(int id)
         {
-            var result = _DbContext.GetBookedPatientDetails(Uid, Did);
-            //var result = _DbContext.Bookings
-            //     .Where(f => f.DoctorId == Did && f.UserId==Uid)
-            //     .Select(f => new Booking
-            //     {
-            //         BookingId = f.BookingId,
-            //         UserId = f.UserId,
-            //         DoctorId = f.DoctorId,
-            //         PatientName = f.PatientName,
-            //         Gender = f.Gender,
-            //         Height = f.Height,
-            //         Weight = f.Weight,
-            //         Problem = f.Problem,
-            //         Date = f.Date,
-            //         StartTime = f.StartTime,
-            //         EndTime = f.EndTime
-            //     }).FirstOrDefault();
+            var result = _DbContext.GetBookedPatientDetails()
+                 .Where(f => f.BookingId == id)
+                 .Select(f => new BookedPatientDetails
+                 {
+                     BookingId = f.BookingId,
+                     UserId = f.UserId,
+                     DoctorId = f.DoctorId,
+                     PatientName = f.PatientName,
+                     Gender = f.Gender,
+                     Height = f.Height,
+                     PWeight = f.PWeight,
+                     Problem = f.Problem,
+                     Date = f.Date,
+                     StartTime = f.StartTime,
+                     EndTime = f.EndTime
+                 }).FirstOrDefault();
 
             return result;
         }
@@ -187,24 +184,73 @@ namespace DoctorConsultApp.Services
 
         }
         //for getting Prescription details 
-        public List<Prescription> GetPrescription(int Uid, int Did)
+        public PrescriptionModel GetPrescription(int id)
         {
 
-            var result = _DbContext.GetPrescription(Uid, Did);
+            var result = _DbContext.GetPrescription()
+                 .Where(f => f.BookingId==id)
+                 .Select(f => new PrescriptionModel
+                 {
+                     PrescriptionId = f.PrescriptionId,
+                     PrescriptionImage = f.PrescriptionImage,
+                     AdditionalSuggestion = f.AdditionalSuggestion
 
-            //var result = _DbContext.Prescriptions
-            //     .Where(f => f.DoctorId == Did && f.UserId == Uid)
-            //     .Select(f => new Prescription
-            //     {
-            //         PrescriptionId=f.PrescriptionId,
-            //         PrescriptionImage=f.PrescriptionImage,
-            //         AdditionalSuggestion=f.AdditionalSuggestion
-
-            //     }).FirstOrDefault();
+                 }).FirstOrDefault();
 
             return result;
         }
+        public List<BookedPatientsList> GetBookedPatientList()
+        {
+            var result = _DbContext.GetPatientList()
+                    .Where(f => f.Date == DateTime.Today)
+                    .Select(f => new BookedPatientsList
+                    {
+                        BookingId = f.BookingId,
+                        PatientName = f.PatientName,
+                        StartTime = f.StartTime,
+                        EndTime = f.EndTime
+                    })
+                    .ToList();
+            return result;
+            
+        }
 
+        //Service List of Past Consultations
+        public List<PatientPastConsultList> GetPatientPastConsults(int id)
+        {
+            var result = _DbContext.GetPatientList()
+                    .Where(f => f.UserId==id)
+                    .Select(f => new PatientPastConsultList
+                    {
+                        BookingId = f.BookingId,
+                        DoctorId=f.DoctorId,
+                        PatientName = f.PatientName,
+                        Date=f.Date
+                    })
+                    .ToList();
+            return result;
+
+        }
+
+        //Service for Perticular Past Consultation
+
+        public PatientPastConsulationModel PatientPastConsultation(int id)
+        {
+            var result = _DbContext.GetPatientList()
+                    .Where(f => f.BookingId==id)
+                    .Select(f => new PatientPastConsulationModel
+                    {
+                        BookingId = f.BookingId,
+                        PatientName = f.PatientName,
+                        Date = f.Date,
+                        StartTime=f.StartTime,
+                        EndTime=f.EndTime,
+                        Doctor=f.Doctor
+                    })
+                    .FirstOrDefault();
+            return result;
+
+        }
 
 
     }

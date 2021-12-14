@@ -37,8 +37,6 @@ namespace DoctorConsultApp
             //MvcOptions.EnableEndpointRouting = false;
             services.AddTransient<IDoctorConsultAppServices, DoctorConsultAppServices>();
             services.AddScoped<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
-            //var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
-            //services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
             var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
             services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
             //services.AddOData();
@@ -62,7 +60,7 @@ namespace DoctorConsultApp
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             //app.UseMvc(routeBuilder =>
             //{
             //      routeBuilder.EnableDependencyInjection();
