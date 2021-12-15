@@ -124,11 +124,10 @@ namespace DoctorConsultDBContext.Services
 
         }
         //for getting the timeslot availability in Doctor details
-        public List<Slot> GetTimeSlot(int id)
+        public List<Slot> GetTimeSlot()
         {
 
             var result = _DbContext.Slots
-                 .Where(f => f.DoctorId == id)
                  .Select(f => new Slot
                  {
                      SlotId = f.SlotId,

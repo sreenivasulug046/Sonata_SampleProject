@@ -125,20 +125,21 @@ namespace DoctorConsultApp.Services
 
         }
         //for getting the timeslot availability in Doctor details
-        public List<Slot> GetTimeSlot(int id)
+        public List<SlotGetModel> GetTimeSlot(int id)
         {
-            var result = _DbContext.GetTimeSlot(id);
+            var result = _DbContext.GetTimeSlot()
+                 .Where(f => f.DoctorId == id)
+                 .Select(f => new SlotGetModel
+                 {
 
-            //var result = _DbContext.Slots
-            //     .Where(f => f.DoctorId == id)
-            //     .Select(f => new Slot
-            //     {
-            //         SlotId = f.SlotId,
-            //         Date = f.Date,
-            //         StartTime = f.StartTime,
-            //         EndTime = f.EndTime
+                     SlotId = f.SlotId,
+                     DoctorId=f.DoctorId,
+                     SDate = f.SDate,
+                     StartTime = f.StartTime,
+                     EndTime = f.EndTime,
+                     SlotAvailability=f.SlotAvailability
 
-            //     }).ToList();
+                 }).ToList();
 
             return result;
         }
@@ -167,19 +168,17 @@ namespace DoctorConsultApp.Services
         }
 
         //Doctor Add prescription for patient
-        public Prescription AddPrescription(Prescription prescription)
+        public PrescriptionAddModel AddPrescription(PrescriptionAddModel prescription)
         {
 
-            _DbContext.AddPrescription(prescription);
-            //_DbContext.Prescriptions.Add(new Prescription()
-            //{
-            //    PrescriptionId=prescription.PrescriptionId,
-            //    DoctorId = prescription.DoctorId,
-            //    UserId = prescription.UserId,
-            //    PrescriptionImage=prescription.PrescriptionImage,
-            //    AdditionalSuggestion=prescription.AdditionalSuggestion
-            //});
-            //_DbContext.SaveChanges();
+            _DbContext.AddPrescription( new Prescription()
+            {
+                PrescriptionId = prescription.PrescriptionId,
+                DoctorId = prescription.DoctorId,
+                UserId = prescription.UserId,
+                PrescriptionImage = prescription.PrescriptionImage,
+                AdditionalSuggestion = prescription.AdditionalSuggestion
+            });
             return prescription;
 
         }
