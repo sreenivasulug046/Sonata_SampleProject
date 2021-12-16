@@ -93,7 +93,7 @@ namespace DoctorConsultApp.Services
             {
                 UserId = booking.UserId,
                 DoctorId = booking.DoctorId,
-                PatientName = booking.PatientName,
+                PName = booking.PName,
                 Gender = booking.Gender,
                 Age=booking.Age,
                 Height = booking.Height,
@@ -154,7 +154,7 @@ namespace DoctorConsultApp.Services
                      BookingId = f.BookingId,
                      UserId = f.UserId,
                      DoctorId = f.DoctorId,
-                     PatientName = f.PatientName,
+                     PatientName = f.PName,
                      Gender = f.Gender,
                      Height = f.Height,
                      PWeight = f.PWeight,
@@ -205,7 +205,7 @@ namespace DoctorConsultApp.Services
                     .Select(f => new BookedPatientsList
                     {
                         BookingId = f.BookingId,
-                        PatientName = f.PatientName,
+                        PatientName = f.PName,
                         StartTime = f.StartTime,
                         EndTime = f.EndTime
                     })
@@ -223,7 +223,7 @@ namespace DoctorConsultApp.Services
                     {
                         BookingId = f.BookingId,
                         DoctorId=f.DoctorId,
-                        PatientName = f.PatientName,
+                        PatientName = f.PName,
                         Date=f.Date
                     })
                     .ToList();
@@ -240,11 +240,10 @@ namespace DoctorConsultApp.Services
                     .Select(f => new PatientPastConsulationModel
                     {
                         BookingId = f.BookingId,
-                        PatientName = f.PatientName,
+                        PatientName = f.PName,
                         Date = f.Date,
                         StartTime=f.StartTime,
-                        EndTime=f.EndTime,
-                        Doctor=f.Doctor
+                        EndTime=f.EndTime
                     })
                     .FirstOrDefault();
             return result;

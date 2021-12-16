@@ -11,9 +11,9 @@ namespace DoctorConsultApp.Models
         public int BookingId { get; set; }
         public string PatientName { get; set; }
         public DateTime Date { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public virtual Doctor Doctor { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        //public virtual Doctor Doctor { get; set; }
 
 
     }

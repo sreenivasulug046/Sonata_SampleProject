@@ -91,15 +91,16 @@ namespace DoctorConsultDBContext.Services
                 BookingId = booking.BookingId,
                 UserId = booking.UserId,
                 DoctorId = booking.DoctorId,
-                PatientName = booking.PatientName,
+                PName = booking.PName,
                 Gender = booking.Gender,
-                Age = booking.Age,
+                //Age = booking.Age,
                 Height = booking.Height,
                 PWeight = booking.PWeight,
                 Problem = booking.Problem,
                 Date = booking.Date,
                 StartTime = booking.StartTime,
-                EndTime = booking.EndTime
+                EndTime = booking.EndTime,
+                
 
             });
             _DbContext.SaveChanges();
@@ -151,7 +152,7 @@ namespace DoctorConsultDBContext.Services
                      BookingId = f.BookingId,
                      UserId = f.UserId,
                      DoctorId = f.DoctorId,
-                     PatientName = f.PatientName,
+                     PName = f.PName,
                      Gender = f.Gender,
                      Height = f.Height,
                      PWeight = f.PWeight,
@@ -220,12 +221,11 @@ namespace DoctorConsultDBContext.Services
                        BookingId = f.BookingId,
                        UserId = f.UserId,
                        DoctorId = f.DoctorId,
-                       PatientName = f.PatientName,
+                       PName = f.PName,
                        Gender = f.Gender,
                        Age = f.Age,
                        StartTime = f.StartTime,
-                       EndTime = f.EndTime,
-                       Doctor=f.Doctor
+                       EndTime = f.EndTime
 
                    }).ToList();
             return patientlist;

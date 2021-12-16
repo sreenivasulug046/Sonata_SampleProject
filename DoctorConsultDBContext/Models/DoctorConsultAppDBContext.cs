@@ -53,7 +53,7 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.Height).HasMaxLength(1);
 
-                entity.Property(e => e.PatientName)
+                entity.Property(e => e.PName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -72,13 +72,13 @@ namespace DoctorConsultDBContext.Models
                 //    .WithMany()
                 //    .HasForeignKey(d => d.DoctorId)
                 //    .OnDelete(DeleteBehavior.Cascade)
-                //    .HasConstraintName("FK__Booking__DoctorI__1B0907CE");
+                //    .HasConstraintName("FK__Booking__DoctorI__00200768");
 
                 //entity.HasOne(d => d.User)
                 //    .WithMany()
                 //    .HasForeignKey(d => d.UserId)
                 //    .OnDelete(DeleteBehavior.Cascade)
-                //    .HasConstraintName("FK__Booking__UserId__1A14E395");
+                //    .HasConstraintName("FK__Booking__UserId__7F2BE32F");
             });
 
             modelBuilder.Entity<Doctor>(entity =>

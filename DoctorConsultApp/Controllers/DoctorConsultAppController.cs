@@ -19,6 +19,11 @@ namespace DoctorConsultApp.Controllers
         {
             _database = database;
         }
+        //private DoctorConsultAppDBContext _database;
+        //public DoctorConsultAppController(DoctorConsultAppDBContext database)
+        //{
+        //    _database = database;
+        //}
 
         //API for List of Doctors With Specilization
         [HttpGet]
@@ -55,7 +60,7 @@ namespace DoctorConsultApp.Controllers
             }
 
 
-            var item=_database.AddDoctor(doctor);
+            var item = _database.AddDoctor(doctor);
             if (item == null)
                 return NoContent();
 
@@ -83,15 +88,15 @@ namespace DoctorConsultApp.Controllers
         [Route("Booking")]
         public IActionResult AddBooking(BookingModel booking)
         {
+            _database.AddBooking(booking);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-
-
-            _database.AddBooking(booking);
-
+            
             return Ok(booking);
+
 
         }
         //API for Adding Time slot for Doctor
