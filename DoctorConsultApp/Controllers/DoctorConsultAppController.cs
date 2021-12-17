@@ -176,9 +176,9 @@ namespace DoctorConsultApp.Controllers
         //API for Getting List Of Booked Patients by Today Date
         [HttpGet]
         [Route("List of Booked patients")]
-        public IActionResult GetBookedPatientList()
+        public IActionResult GetBookedPatientList(int id)
         {
-            var results = _database.GetBookedPatientList();
+            var results = _database.GetBookedPatientList(id);
             if (results == null)
             {
                 return NoContent();

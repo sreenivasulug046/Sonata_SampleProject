@@ -15,7 +15,7 @@ namespace DoctorConsultApp.Services
         public UserAddModel AddUser(UserAddModel user);
         public BookingModel AddBooking(BookingModel booking);
         public TimeSlotAddModel AddTimeSlots(TimeSlotAddModel slot);
-        public List<BookedPatientsList> GetBookedPatientList();
+        public List<BookedPatientsList> GetBookedPatientList(int id);
         public BookedPatientDetails GetBookedPatientDetails(int id);
         public List<SlotGetModel> GetTimeSlot(int id);
         public PrescriptionAddModel AddPrescription(PrescriptionAddModel prescription);

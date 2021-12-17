@@ -41,7 +41,6 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\n
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.csprojAssemblyReference.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.AssemblyInfoInputs.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.AssemblyInfo.cs
@@ -57,3 +56,4 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\n
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\ref\DoctorConsultDBContext.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.genruntimeconfig.cache
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultDBContext.csprojAssemblyReference.cache

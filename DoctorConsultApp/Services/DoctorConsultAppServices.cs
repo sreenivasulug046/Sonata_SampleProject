@@ -190,6 +190,7 @@ namespace DoctorConsultApp.Services
                  .Where(f => f.BookingId==id)
                  .Select(f => new PrescriptionModel
                  {
+                     BookingId=f.BookingId,
                      PrescriptionId = f.PrescriptionId,
                      PrescriptionImage = f.PrescriptionImage,
                      AdditionalSuggestion = f.AdditionalSuggestion
@@ -198,12 +199,14 @@ namespace DoctorConsultApp.Services
 
             return result;
         }
-        public List<BookedPatientsList> GetBookedPatientList()
+        public List<BookedPatientsList> GetBookedPatientList(int id)
         {
             var result = _DbContext.GetPatientList()
-                    .Where(f => f.Date == DateTime.Today)
+                    .Where(f => f.DoctorId==id)
                     .Select(f => new BookedPatientsList
                     {
+                        DoctorId=f.DoctorId,
+                        UserId=f.UserId,
                         BookingId = f.BookingId,
                         PatientName = f.PName,
                         StartTime = f.StartTime,

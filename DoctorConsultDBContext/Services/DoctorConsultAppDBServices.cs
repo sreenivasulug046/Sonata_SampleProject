@@ -93,7 +93,7 @@ namespace DoctorConsultDBContext.Services
                 DoctorId = booking.DoctorId,
                 PName = booking.PName,
                 Gender = booking.Gender,
-                //Age = booking.Age,
+                Age = booking.Age,
                 Height = booking.Height,
                 PWeight = booking.PWeight,
                 Problem = booking.Problem,
@@ -132,6 +132,7 @@ namespace DoctorConsultDBContext.Services
                  .Select(f => new Slot
                  {
                      SlotId = f.SlotId,
+                     DoctorId=f.DoctorId,
                      SDate = f.SDate,
                      StartTime = f.StartTime,  //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
                      EndTime = f.EndTime,
@@ -172,6 +173,7 @@ namespace DoctorConsultDBContext.Services
             {
                 PrescriptionId = prescription.PrescriptionId,
                 DoctorId = prescription.DoctorId,
+                BookingId=prescription.BookingId,
                 UserId = prescription.UserId,
                 PrescriptionImage = prescription.PrescriptionImage,
                 AdditionalSuggestion = prescription.AdditionalSuggestion
@@ -190,6 +192,8 @@ namespace DoctorConsultDBContext.Services
                  {
                      BookingId=f.BookingId,
                      PrescriptionId = f.PrescriptionId,
+                     DoctorId = f.DoctorId,
+                     UserId = f.UserId,
                      PrescriptionImage = f.PrescriptionImage,
                      AdditionalSuggestion = f.AdditionalSuggestion
 
