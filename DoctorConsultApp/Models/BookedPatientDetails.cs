@@ -13,8 +13,6 @@ namespace DoctorConsultApp.Models
         public string PatientName { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
-        public float Height { get; set; }
-        public float PWeight { get; set; }
         public string Problem { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan StartTime { get; set; }

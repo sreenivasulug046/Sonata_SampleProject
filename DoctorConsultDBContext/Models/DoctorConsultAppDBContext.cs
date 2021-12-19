@@ -51,8 +51,6 @@ namespace DoctorConsultDBContext.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Height).HasMaxLength(1);
-
                 entity.Property(e => e.PName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -63,7 +61,6 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.StartTime).HasColumnName("Start_Time");
 
-                entity.Property(e => e.PWeight).HasMaxLength(1);
                 entity.Property(e => e.DoctorId).HasColumnName("DoctorId");
                 entity.Property(e => e.UserId).HasColumnName("UserId");
                 entity.Property(e => e.Age).HasColumnName("Age");

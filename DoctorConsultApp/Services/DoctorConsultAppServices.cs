@@ -96,8 +96,6 @@ namespace DoctorConsultApp.Services
                 PName = booking.PName,
                 Gender = booking.Gender,
                 Age=booking.Age,
-                Height = booking.Height,
-                PWeight = booking.PWeight,
                 Problem = booking.Problem,
                 Date = booking.Date,
                 StartTime = booking.StartTime,
@@ -156,8 +154,6 @@ namespace DoctorConsultApp.Services
                      DoctorId = f.DoctorId,
                      PatientName = f.PName,
                      Gender = f.Gender,
-                     Height = f.Height,
-                     PWeight = f.PWeight,
                      Problem = f.Problem,
                      Date = f.Date,
                      StartTime = f.StartTime,
@@ -208,7 +204,7 @@ namespace DoctorConsultApp.Services
                         DoctorId=f.DoctorId,
                         UserId=f.UserId,
                         BookingId = f.BookingId,
-                        PatientName = f.PName,
+                        PName = f.PName,
                         StartTime = f.StartTime,
                         EndTime = f.EndTime
                     })
