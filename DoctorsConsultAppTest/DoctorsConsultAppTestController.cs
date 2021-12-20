@@ -43,7 +43,7 @@ namespace DoctorsConsultAppTest
 
         //Get All Doctor List
         [Fact]
-        public void GetAll_WhenCalled_ReturnsOkResult()
+        public void GetAllDoctorsList_WhenCalled_ReturnsOkResult()
         {
             // Act
             IActionResult okResult = controller.GetAllDoctorsList();
@@ -90,6 +90,118 @@ namespace DoctorsConsultAppTest
             Assert.Equal(testid, (okResult.Value as DoctorDetailsModel).DoctorId);
         }
 
-       
+        //Get Slot
+        [Fact]
+        public void GetSlot_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetSlotAvalability(101);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+
+        [Fact]
+        public void Getslot_Passed_ReturnsNotFoundResult()
+        {
+            // Act
+            IActionResult notFoundResult = controller.GetSlotAvalability(106);
+            // Assert
+            Assert.IsType<NotFoundResult>(notFoundResult);
+        }
+        //Get Booked Patient List
+        [Fact]
+        public void GetBookedPatientList_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetBookedPatientList(101);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+
+        //Get Booked Patient
+
+        [Fact]
+        public void GetBookedPatient_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetBookedDetails(10001);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+
+        //Get Prescription
+
+        [Fact]
+        public void GetPrescription_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetPrescription(10001);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+
+        //Get Past Consultations
+        [Fact]
+        public void GetPastConsults_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetPastConsultations(1001);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+        //Get Past Consultation
+
+        [Fact]
+        public void GetPastConsultation_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = controller.GetPastConsultation(10001);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }
+        //Add
+
+        [Fact]
+        public void Add_ValidObjectPassed_ReturnsCreatedResponse()
+        {
+            // Arrange
+            DoctorAddModel testItem = new DoctorAddModel()
+            {
+                DoctorName = "Ravi",
+                Gender="male",
+                Specilization="cardialagist",
+                PhNo="9009887881",
+                Email="ravi@gmail.com",
+                Password="ravi123"
+
+            };
+            // Act
+            IActionResult createdResponse = controller.AddDoctor(testItem);
+            // Assert
+            Assert.IsType<CreatedAtActionResult>(createdResponse);
+        }
+
+        [Fact]
+        public void Add_ValidObjectPassed_ReturnedResponseHasCreatedItem()
+        {
+            // Arrange
+            var testItem = new DoctorAddModel()
+            {
+                DoctorName = "Ravi",
+                Gender = "male",
+                Specilization = "cardialagist",
+                PhNo = "9009887881",
+                Email = "ravi@gmail.com",
+                Password = "ravi123"
+            };
+            // Act
+            CreatedAtActionResult createdResponse = controller.AddDoctor(testItem) as CreatedAtActionResult;
+            DoctorAddModel item = createdResponse.Value as DoctorAddModel;
+            // Assert
+            Assert.IsType<DoctorAddModel>(item);
+            Assert.Equal("Ravi", item.DoctorName);
+        }
+
+
     }
 }
