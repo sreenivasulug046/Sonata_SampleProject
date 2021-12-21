@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorConsultApp", "DoctorConsultApp.csproj", "{A0779ADA-C2DE-43A6-9749-5570B96CF0C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorConsultDBContext", "..\DoctorConsultDBContext\DoctorConsultDBContext.csproj", "{2295855A-EDF7-4956-8734-0D47A4261FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorConsultationAppDBContext", "..\DoctorConsultDBContext\DoctorConsultationAppDBContext.csproj", "{2295855A-EDF7-4956-8734-0D47A4261FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorsConsultAppTest", "..\DoctorsConsultAppTest\DoctorsConsultAppTest.csproj", "{281AADEE-B4D5-48BE-8361-84BE390C3E79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsConsultAppTest", "..\DoctorsConsultAppTest\DoctorsConsultAppTest.csproj", "{281AADEE-B4D5-48BE-8361-84BE390C3E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

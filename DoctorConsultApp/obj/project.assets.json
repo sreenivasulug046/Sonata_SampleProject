@@ -2184,7 +2184,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "DoctorConsultDBContext/1.0.0": {
+      "DoctorConsultationAppDBContext/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
@@ -2193,10 +2193,10 @@
           "Swashbuckle.AspNetCore": "5.6.3"
         },
         "compile": {
-          "bin/placeholder/DoctorConsultDBContext.dll": {}
+          "bin/placeholder/DoctorConsultationAppDBContext.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DoctorConsultDBContext.dll": {}
+          "bin/placeholder/DoctorConsultationAppDBContext.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -7474,15 +7474,15 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "DoctorConsultDBContext/1.0.0": {
+    "DoctorConsultationAppDBContext/1.0.0": {
       "type": "project",
-      "path": "../DoctorConsultDBContext/DoctorConsultDBContext.csproj",
-      "msbuildProject": "../DoctorConsultDBContext/DoctorConsultDBContext.csproj"
+      "path": "../DoctorConsultDBContext/DoctorConsultationAppDBContext.csproj",
+      "msbuildProject": "../DoctorConsultDBContext/DoctorConsultationAppDBContext.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "DoctorConsultDBContext >= 1.0.0",
+      "DoctorConsultationAppDBContext >= 1.0.0",
       "Microsoft.AspNetCore.OData >= 7.3.0-beta",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
@@ -7525,8 +7525,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultDBContext.csproj": {
-              "projectPath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultDBContext.csproj"
+            "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultationAppDBContext.csproj": {
+              "projectPath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultationAppDBContext.csproj"
             }
           }
         }

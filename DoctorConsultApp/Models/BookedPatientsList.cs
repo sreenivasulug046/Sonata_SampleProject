@@ -11,8 +11,8 @@ namespace DoctorConsultApp.Models
         public int DoctorId { get; set; }
         public int UserId { get; set; }
         public string PName { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public string BookingDate { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
     }
 }

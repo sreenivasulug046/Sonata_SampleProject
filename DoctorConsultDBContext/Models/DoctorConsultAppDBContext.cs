@@ -6,13 +6,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DoctorConsultDBContext.Models
 {
-    public partial class DoctorConsultAppDBContext : DbContext
+    public partial class DoctorConsultationAppDBContext : DbContext
     {
-        public DoctorConsultAppDBContext()
+        public DoctorConsultationAppDBContext()
         {
         }
+        
 
-        public DoctorConsultAppDBContext(DbContextOptions<DoctorConsultAppDBContext> options)
+        public DoctorConsultationAppDBContext(DbContextOptions<DoctorConsultationAppDBContext> options)
             : base(options)
         {
         }
@@ -43,7 +44,7 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.BookingId).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.Date).HasColumnType("date");
+                entity.Property(e => e.BookingDate).HasColumnType("BookingDate");
 
                 entity.Property(e => e.EndTime).HasColumnName("End_Time");
 
@@ -142,7 +143,7 @@ namespace DoctorConsultDBContext.Models
 
                 entity.ToTable("Slot");
 
-                entity.Property(e => e.SlotAvailability)
+                entity.Property(e => e.Availability)
                     .HasMaxLength(5)
                     .IsUnicode(false);
 

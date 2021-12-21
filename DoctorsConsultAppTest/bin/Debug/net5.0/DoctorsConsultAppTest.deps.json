@@ -1681,7 +1681,7 @@
       "xunit.runner.visualstudio/2.4.3": {},
       "DoctorConsultApp/1.0.0": {
         "dependencies": {
-          "DoctorConsultDBContext": "1.0.0",
+          "DoctorConsultationAppDBContext": "1.0.0",
           "Microsoft.AspNetCore.OData": "7.3.0-beta",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Swashbuckle.AspNetCore": "5.6.3"
@@ -1690,14 +1690,14 @@
           "DoctorConsultApp.dll": {}
         }
       },
-      "DoctorConsultDBContext/1.0.0": {
+      "DoctorConsultationAppDBContext/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Swashbuckle.AspNetCore": "5.6.3"
         },
         "runtime": {
-          "DoctorConsultDBContext.dll": {}
+          "DoctorConsultationAppDBContext.dll": {}
         }
       }
     }
@@ -2784,7 +2784,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DoctorConsultDBContext/1.0.0": {
+    "DoctorConsultationAppDBContext/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

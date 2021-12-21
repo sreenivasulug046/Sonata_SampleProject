@@ -38,7 +38,7 @@ namespace DoctorConsultApp
             services.AddTransient<IDoctorConsultAppServices, DoctorConsultAppServices>();
             services.AddScoped<IDoctorConsultAppDBServices, DoctorConsultAppDBServices>();
             var connectionstring = Configuration.GetConnectionString("DefaultConnectionString");
-            services.AddDbContext<DoctorConsultAppDBContext>(options => options.UseSqlServer(connectionstring));
+            services.AddDbContext<DoctorConsultationAppDBContext>(options => options.UseSqlServer(connectionstring));
             //services.AddOData();
             services.AddSwaggerGen(c =>
             {

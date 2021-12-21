@@ -9,8 +9,8 @@ namespace DoctorConsultDBContext.Services
     public class DoctorConsultAppDBServices : IDoctorConsultAppDBServices
     {
 
-        private DoctorConsultAppDBContext _DbContext;
-        public DoctorConsultAppDBServices(DoctorConsultAppDBContext DbContext)
+        private DoctorConsultationAppDBContext _DbContext;
+        public DoctorConsultAppDBServices(DoctorConsultationAppDBContext DbContext)
         {
             _DbContext = DbContext;
         }
@@ -95,7 +95,7 @@ namespace DoctorConsultDBContext.Services
                 Gender = booking.Gender,
                 Age = booking.Age,
                 Problem = booking.Problem,
-                Date = booking.Date,
+                BookingDate = booking.BookingDate,
                 StartTime = booking.StartTime,
                 EndTime = booking.EndTime,
                 
@@ -115,7 +115,7 @@ namespace DoctorConsultDBContext.Services
                 SDate = slot.SDate,
                 StartTime = slot.StartTime,
                 EndTime = slot.EndTime,
-                SlotAvailability=slot.SlotAvailability
+                Availability=slot.Availability
                 
             });
             _DbContext.SaveChanges();
@@ -134,8 +134,8 @@ namespace DoctorConsultDBContext.Services
                      SDate = f.SDate,
                      StartTime = f.StartTime,  //DateTime.ParseExact(Eval("aeStart").ToString(), "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).ToShortTimeString()
                      EndTime = f.EndTime,
-                     SlotAvailability=f.SlotAvailability
-                     
+                     Availability = f.Availability
+
                  }).ToList();
 
             return result;
@@ -154,7 +154,7 @@ namespace DoctorConsultDBContext.Services
                      PName = f.PName,
                      Gender = f.Gender,
                      Problem = f.Problem,
-                     Date = f.Date,
+                     BookingDate = f.BookingDate,
                      StartTime = f.StartTime,
                      EndTime = f.EndTime
                  }).ToList();

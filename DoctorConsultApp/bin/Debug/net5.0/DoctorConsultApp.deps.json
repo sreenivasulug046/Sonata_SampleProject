@@ -33,7 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "DoctorConsultApp/1.0.0": {
         "dependencies": {
-          "DoctorConsultDBContext": "1.0.0",
+          "DoctorConsultationAppDBContext": "1.0.0",
           "Microsoft.AspNetCore.OData": "7.3.0-beta",
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
@@ -1687,17 +1687,17 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "DoctorConsultDBContext/1.0.0": {
+      "DoctorConsultationAppDBContext/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Swashbuckle.AspNetCore": "5.6.3"
         },
         "runtime": {
-          "DoctorConsultDBContext.dll": {}
+          "DoctorConsultationAppDBContext.dll": {}
         },
         "compile": {
-          "DoctorConsultDBContext.dll": {}
+          "DoctorConsultationAppDBContext.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4372,7 +4372,7 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "DoctorConsultDBContext/1.0.0": {
+    "DoctorConsultationAppDBContext/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

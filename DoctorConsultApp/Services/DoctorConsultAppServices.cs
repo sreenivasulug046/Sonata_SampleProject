@@ -95,9 +95,9 @@ namespace DoctorConsultApp.Services
                 DoctorId = booking.DoctorId,
                 PName = booking.PName,
                 Gender = booking.Gender,
-                Age=booking.Age,
+                Age = booking.Age,
                 Problem = booking.Problem,
-                Date = booking.Date,
+                BookingDate = booking.BookingDate,
                 StartTime = booking.StartTime,
                 EndTime = booking.EndTime
 
@@ -115,8 +115,8 @@ namespace DoctorConsultApp.Services
                 SDate = slot.SDate,
                 StartTime = slot.StartTime,
                 EndTime = slot.EndTime,
-                SlotAvailability=slot.SlotAvailability
-                
+                Availability = slot.Availability
+
             });
 
             return slot;
@@ -135,7 +135,7 @@ namespace DoctorConsultApp.Services
                      SDate = f.SDate,
                      StartTime = f.StartTime,
                      EndTime = f.EndTime,
-                     SlotAvailability=f.SlotAvailability
+                     Availability = f.Availability
 
                  }).ToList();
 
@@ -155,7 +155,7 @@ namespace DoctorConsultApp.Services
                      PatientName = f.PName,
                      Gender = f.Gender,
                      Problem = f.Problem,
-                     Date = f.Date,
+                     BookingDate = f.BookingDate,
                      StartTime = f.StartTime,
                      EndTime = f.EndTime
                  }).FirstOrDefault();
@@ -223,7 +223,7 @@ namespace DoctorConsultApp.Services
                         BookingId = f.BookingId,
                         DoctorId=f.DoctorId,
                         PatientName = f.PName,
-                        Date=f.Date
+                        BookingDate = f.BookingDate
                     })
                     .ToList();
             return result;
@@ -240,7 +240,7 @@ namespace DoctorConsultApp.Services
                     {
                         BookingId = f.BookingId,
                         PatientName = f.PName,
-                        Date = f.Date,
+                        BookingDate = f.BookingDate,
                         StartTime=f.StartTime,
                         EndTime=f.EndTime
                     })

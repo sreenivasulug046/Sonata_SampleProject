@@ -9,9 +9,9 @@ namespace DoctorConsultApp.Models
     {
         public int SlotId { get; set; }
         public int DoctorId { get; set; }
-        public DateTime SDate { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
-        public string SlotAvailability { get; set; }
+        public string SDate { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public string Availability { get; set; }
     }
 }

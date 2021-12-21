@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "DoctorConsultDBContext/1.0.0": {
+      "DoctorConsultationAppDBContext/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
@@ -323,10 +323,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "DoctorConsultDBContext.dll": {}
+          "DoctorConsultationAppDBContext.dll": {}
         },
         "compile": {
-          "DoctorConsultDBContext.dll": {}
+          "DoctorConsultationAppDBContext.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3058,7 +3058,7 @@
     }
   },
   "libraries": {
-    "DoctorConsultDBContext/1.0.0": {
+    "DoctorConsultationAppDBContext/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

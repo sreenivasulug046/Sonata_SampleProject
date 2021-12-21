@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kP2Xe1tPUCBTr9JNR4BnNTLqqFzQPWYp5EfmLBsRcLWie3WqVJzcxsknYPu2tUIGDa0Tk8RfaMW9c3A6CVyD7w==",
+  "dgSpecHash": "G+oOnYMfQ4xTUStPJ9yggUDTvGqj5e4Fb2G+wJAj9+R4nfmVTa71pg4tkJOKJAHpvz1IMcyaKk8rg0RSTsMZKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultDBContext.csproj",
+  "projectFilePath": "C:\\Users\\admin\\Documents\\Sonata_SampleProject\\DoctorConsultDBContext\\DoctorConsultationAppDBContext.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
