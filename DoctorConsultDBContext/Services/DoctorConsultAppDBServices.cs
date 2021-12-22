@@ -18,17 +18,28 @@ namespace DoctorConsultDBContext.Services
         //for geting list of doctors
         public List<Doctor> GetAll()
         {
-            var data = _DbContext.Doctors
-                .Select(f => new Doctor
-                {
-                    DoctorId=f.DoctorId,
-                    DoctorName = f.DoctorName,
-                    Specilization = f.Specilization
+            try
+            {
+                var data = _DbContext.Doctors
+               .Select(f => new Doctor
+               {
+                   DoctorId = f.DoctorId,
+                   DoctorName = f.DoctorName,
+                   Specilization = f.Specilization
                     //PhNo = f.PhNo,
 
                 })
-                .ToList();
-            return data;
+               .ToList();
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+   
+            }
+           
         }
 
         //for getting perticular doctor detailes
@@ -53,7 +64,6 @@ namespace DoctorConsultDBContext.Services
         {
             //_Dbconext.Doctor.Add(doctor);
             //return doctor;
-
 
             _DbContext.Doctors.Add(new Doctor()
             {

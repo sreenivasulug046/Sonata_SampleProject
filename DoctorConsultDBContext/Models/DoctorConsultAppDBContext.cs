@@ -122,15 +122,23 @@ namespace DoctorConsultDBContext.Models
 
                 entity.Property(e => e.PrescriptionId).ValueGeneratedOnAdd();
 
+                
+
                 entity.Property(e => e.PrescriptionImage).HasColumnName("Prescription_Image");
+
+                //entity.HasOne(d => d.Booking)
+                //      .WithMany()
+                //      .HasForeignKey(d=>d.BookingId)
+                //      .OnDelete(DeleteBehavior.Cascade)
+                //      .HasConstraintName("FK__Prescript__Booki__1CF15040");
 
                 //entity.HasOne(d => d.Doctor)
                 //    .WithMany()
                 //    .HasForeignKey(d => d.DoctorId)
                 //    .OnDelete(DeleteBehavior.Cascade)
-                //    .HasConstraintName("FK__Prescript__Docto__1ED998B2");      //[FK__Booking__DoctorI__267ABA7A]
+                //    .HasConstraintName("FK__Prescript__Docto__1ED998B2");      //[FK__Booking__DoctorI__267ABA7A]FK__Prescript__Booki__1CF15040
 
-                //entity.HasOne(d => d.User)
+                //entity.HasOne(d => d.User)     //FK__Prescript__Booki__1CF15040
                 //    .WithMany()
                 //    .HasForeignKey(d => d.UserId)
                 //    .OnDelete(DeleteBehavior.Cascade)
