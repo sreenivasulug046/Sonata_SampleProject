@@ -24,6 +24,8 @@ namespace DoctorConsultDBContext.Services
                .Select(f => new Doctor
                {
                    DoctorId = f.DoctorId,
+                   Email=f.Email,
+                   Password=f.Password,
                    DoctorName = f.DoctorName,
                    Specilization = f.Specilization
                     //PhNo = f.PhNo,
@@ -40,6 +42,31 @@ namespace DoctorConsultDBContext.Services
    
             }
            
+        }
+        public List<User> GetUsersAll()
+        {
+            try
+            {
+                var data = _DbContext.Users
+               .Select(f => new User
+               {
+                   UserId = f.UserId,
+                   Email = f.Email,
+                   Password = f.Password,
+                   UserName = f.UserName
+
+               })
+               .ToList();
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+
+            }
+
         }
 
         //for getting perticular doctor detailes

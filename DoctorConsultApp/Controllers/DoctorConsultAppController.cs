@@ -25,7 +25,41 @@ namespace DoctorConsultApp.Controllers
         //    _database = database;
         //}
 
+       
+        
+
+        [Route("DoctorLogin")]
+        [HttpPost]
+        public string DoctorLogin(DoctorLogin login)
+        {
+            var log = _database.GetAll().Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
+
+            if (log == null)
+
+            {
+                return "Login Failed";
+            }
+            else
+                return "Login succesfully";
+        }
+        [Route("UserLogin")]
+        [HttpPost]
+        public string userLogin(UserLogin login)
+        {
+            var log = _database.UsersLogin().Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
+
+            if (log == null)
+
+            {
+                return "Login Failed";
+            }
+            else
+                return "Login succesfully";
+        }
+
         //API for List of Doctors With Specilization
+
+
         [HttpGet]
         [Route("ListOfDoctors")]
         public IActionResult GetAllDoctorsList()

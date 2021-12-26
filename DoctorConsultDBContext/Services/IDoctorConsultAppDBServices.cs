@@ -9,6 +9,7 @@ namespace DoctorConsultDBContext.Services
     public interface IDoctorConsultAppDBServices
     {
         public List<Doctor> GetAll();
+        public List<User> GetUsersAll();
         public List<Doctor> GetDoctor();
         public Doctor AddDoctor(Doctor doctor);
         public User AddUser(User user);

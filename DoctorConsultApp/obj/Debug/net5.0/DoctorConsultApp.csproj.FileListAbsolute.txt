@@ -67,3 +67,10 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\ref\DoctorConsultApp.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\DoctorConsultApp.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\obj\Debug\net5.0\DoctorConsultApp.genruntimeconfig.cache
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\vbc.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\VBCSCompiler.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csc.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csi.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe.config
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultApp\bin\Debug\net5.0\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe.config

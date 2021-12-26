@@ -14,6 +14,13 @@ namespace DoctorConsultApp.Services
             _DbContext = DbContext;
         }
 
+        
+
+        //public Doctor DoctorLogin(Doctor Login)
+        //{
+
+
+        //}
         //for geting list of doctors
         public List<DoctorModel> GetAll()
         {
@@ -23,10 +30,26 @@ namespace DoctorConsultApp.Services
                 .Select(f => new DoctorModel
                 {
                     DoctorId = f.DoctorId,
+                    Email=f.Email,
+                    Password=f.Password,
                     DoctorName = f.DoctorName,
                     Specilization = f.Specilization
 
 
+                })
+                .ToList();
+            //return data;
+            return data;
+        }
+        public List<UserLogin> UsersLogin()
+        {
+            //var data = _DbContext.GetAll();
+
+            var data = _DbContext.GetUsersAll()
+                .Select(f => new UserLogin
+                {
+                    Email = f.Email,
+                    Password = f.Password
                 })
                 .ToList();
             //return data;

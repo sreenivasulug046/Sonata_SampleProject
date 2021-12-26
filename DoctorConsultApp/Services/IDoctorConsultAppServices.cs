@@ -10,6 +10,7 @@ namespace DoctorConsultApp.Services
     public interface IDoctorConsultAppServices
     {
         public List<DoctorModel> GetAll();
+        public List<UserLogin> UsersLogin();
         public DoctorDetailsModel GetDoctor(int id);
         public DoctorAddModel AddDoctor(DoctorAddModel doctor);
         public UserAddModel AddUser(UserAddModel user);
