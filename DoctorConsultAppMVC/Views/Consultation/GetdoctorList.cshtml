@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoctorConsultAppMVC.Models.DoctorModel>
+
+@{
+    ViewBag.Title = "GetdoctorList";
+}
+
+<h2>Available Doctors</h2>
+
+               @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
+                             .Name("grid")
+                             .TableHtmlAttributes(new { @class = "table table-striped" })
+                             .Columns(column=>
+                             {
+                                 column.Bound(p => p.DoctorId);
+                                 column.Bound(p => p.DoctorName);
+                                 column.Bound(p => p.Email);
+                                 column.Bound(p => p.Specilization);
+                             })
+                             .Pageable()
+                             .Navigatable()
+                             .Sortable().Filterable(filterable => filterable
+                             .Extra(true)
+                             .Operators(n => n
+                             .ForString(str => str.Clear()
+                             .Contains("Contains")
+                             .StartsWith("Starts with")
+                             .EndsWith("Ends with")
+                             .IsNotEqualTo("Is not equal to")
+                             .DoesNotContain("Does not contain")
+                             )))
+                             .DataSource(dataSource => dataSource
+                             .Ajax()
+                             .PageSize(20)
+                             .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
+
+                   )

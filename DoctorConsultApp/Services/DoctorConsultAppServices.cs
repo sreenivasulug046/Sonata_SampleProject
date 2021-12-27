@@ -30,10 +30,10 @@ namespace DoctorConsultApp.Services
                 .Select(f => new DoctorModel
                 {
                     DoctorId = f.DoctorId,
-                    Email=f.Email,
-                    Password=f.Password,
                     DoctorName = f.DoctorName,
-                    Specilization = f.Specilization
+                    Specilization = f.Specilization,
+                    Email =f.Email
+                    
 
 
                 })

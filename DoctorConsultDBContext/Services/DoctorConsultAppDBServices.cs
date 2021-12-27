@@ -45,8 +45,7 @@ namespace DoctorConsultDBContext.Services
         }
         public List<User> GetUsersAll()
         {
-            try
-            {
+          
                 var data = _DbContext.Users
                .Select(f => new User
                {
@@ -59,13 +58,7 @@ namespace DoctorConsultDBContext.Services
                .ToList();
                 return data;
 
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-
-            }
+            
 
         }
 
@@ -239,9 +232,9 @@ namespace DoctorConsultDBContext.Services
         //{
         //    _DbContext.Bookings.Add(new Booking()
         //    {
-        //        UserId=review.UserId,
+        //        UserId = review.UserId,
         //        DoctorId = review.DoctorId,
-        //        DoctorReview=review.DoctorReview
+        //        DoctorReview = review.DoctorReview
 
         //    });
         //    _DbContext.SaveChanges();

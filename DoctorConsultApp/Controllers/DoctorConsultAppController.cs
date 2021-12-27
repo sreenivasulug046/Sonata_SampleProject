@@ -15,9 +15,11 @@ namespace DoctorConsultApp.Controllers
     public class DoctorConsultAppController : ControllerBase
     {
         private IDoctorConsultAppServices _database;
-        public DoctorConsultAppController(IDoctorConsultAppServices database)
+        private DoctorConsultationAppDBContext _dbContext;
+        public DoctorConsultAppController(IDoctorConsultAppServices database , DoctorConsultationAppDBContext dBContext)
         {
             _database = database;
+            _dbContext = dBContext;
         }
         //private DoctorConsultAppDBContext _database;
         //public DoctorConsultAppController(DoctorConsultAppDBContext database)
@@ -32,7 +34,7 @@ namespace DoctorConsultApp.Controllers
         [HttpPost]
         public string DoctorLogin(DoctorLogin login)
         {
-            var log = _database.GetAll().Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = _dbContext.Doctors.Where(x => x.Email==login.Email && x.Password==login.Password).FirstOrDefault();
 
             if (log == null)
 
@@ -42,11 +44,16 @@ namespace DoctorConsultApp.Controllers
             else
                 return "Login succesfully";
         }
+        /// <summary>
+        /// To UserLogin
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [Route("UserLogin")]
         [HttpPost]
         public string userLogin(UserLogin login)
         {
-            var log = _database.UsersLogin().Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
+            var log = _dbContext.Users.Where(x => x.Email==login.Email && x.Password==login.Password).FirstOrDefault();
 
             if (log == null)
 

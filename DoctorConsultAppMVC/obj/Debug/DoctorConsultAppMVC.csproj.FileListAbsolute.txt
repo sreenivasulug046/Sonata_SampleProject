@@ -55,6 +55,7 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\Kendo.Mvc.
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Net.Http.Formatting.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Helpers.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Mvc.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Optimization.dll
@@ -64,6 +65,7 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.WebPages.Razor.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\WebGrease.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\Kendo.Mvc.xml
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Net.Http.Formatting.xml
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Helpers.xml
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Mvc.xml
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\System.Web.Optimization.xml
