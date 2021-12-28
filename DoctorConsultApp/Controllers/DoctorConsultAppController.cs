@@ -55,13 +55,14 @@ namespace DoctorConsultApp.Controllers
         {
             var log = _dbContext.Users.Where(x => x.Email==login.Email && x.Password==login.Password).FirstOrDefault();
 
-            if (log == null)
+            if (log != null)
 
             {
-                return "Login Failed";
+                return "Login succesfully";
             }
             else
-                return "Login succesfully";
+                return "Login Failed";
+            
         }
 
         //API for List of Doctors With Specilization
