@@ -44,7 +44,7 @@ namespace DoctorConsultAppMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDoctor(DoctorRegistration doctor)
+        public ActionResult RegisterDoctor(DoctorRegistration doctor)
         {
             HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/RegisterDoctor", doctor).Result;
 
@@ -69,7 +69,27 @@ namespace DoctorConsultAppMVC.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+                Session["User"] = login.Email.ToString();
                 return RedirectToAction("GetdoctorList");
+            }
+
+            return View();
+
+        }
+
+        public ActionResult RegisterUser()
+        {
+            return View(new UserRegistration());
+        }
+
+        [HttpPost]
+        public ActionResult RegisterUser(UserRegistration doctor)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/RegisterUser", doctor).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("UserLogin");
             }
 
             return View();
@@ -80,15 +100,24 @@ namespace DoctorConsultAppMVC.Controllers
 
         public ActionResult GetdoctorList()
         {
-            List<DoctorModel> doctorlst = new List<DoctorModel>();
-            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/ListOfDoctors").Result;
-            if (response.IsSuccessStatusCode)
+            if (Session["User"] != null)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                doctorlst = JsonConvert.DeserializeObject<List<DoctorModel>>(data);
+                List<DoctorModel> doctorlst = new List<DoctorModel>();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/ListOfDoctors").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<List<DoctorModel>>(data);
+
+                }
+                return View(doctorlst);
 
             }
-            return View(doctorlst);
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+           
         }
         public ActionResult GetBookedPatient()
         {
@@ -115,6 +144,25 @@ namespace DoctorConsultAppMVC.Controllers
 
             }
             return View(doctorlst);
+        }
+
+        public ActionResult UploadPrescription()
+        {
+            return View(new UploadPrescription());
+        }
+
+        [HttpPost]
+        public ActionResult UploadPrescription(UploadPrescription prescription)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/AddPrescripion", prescription).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+            return View();
+
         }
 
 

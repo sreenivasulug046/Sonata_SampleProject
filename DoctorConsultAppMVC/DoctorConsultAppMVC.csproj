@@ -135,7 +135,9 @@
     <Compile Include="Models\DoctorLogin.cs" />
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\DoctorRegistration.cs" />
+    <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2857,6 +2859,8 @@
     <Content Include="Views\Consultation\GetBookedPatient.cshtml" />
     <Content Include="Views\Consultation\UserLogin.cshtml" />
     <Content Include="Views\Consultation\RegisterDoctor.cshtml" />
+    <Content Include="Views\Consultation\RegisterUser.cshtml" />
+    <Content Include="Views\Consultation\UploadPrescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

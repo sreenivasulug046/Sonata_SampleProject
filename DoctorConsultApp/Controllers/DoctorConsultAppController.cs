@@ -21,28 +21,39 @@ namespace DoctorConsultApp.Controllers
             _database = database;
             _dbContext = dBContext;
         }
-        //private DoctorConsultAppDBContext _database;
-        //public DoctorConsultAppController(DoctorConsultAppDBContext database)
-        //{
-        //    _database = database;
-        //}
-
-       
-        
-
+       //Doctor Login
         [Route("DoctorLogin")]
         [HttpPost]
-        public string DoctorLogin(DoctorLogin login)
+        public IActionResult DoctorLogin(DoctorLogin login)
         {
-            var log = _dbContext.Doctors.Where(x => x.Email==login.Email && x.Password==login.Password).FirstOrDefault();
-
-            if (log == null)
-
+            if (login == null)
             {
-                return "Login Failed";
+                return BadRequest();
+
             }
             else
-                return "Login succesfully";
+            {
+                var log = _dbContext.Doctors.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
+
+                if (log != null)
+                {
+                    return Ok(new
+                    {
+                        StatusCode = "200",
+                        message = "Login succesfull"
+                    });
+
+                }
+                else
+                    return NotFound(new
+                    {
+                        StatusCode = "200",
+                        message = "Login succesfull"
+
+                    }); 
+
+            }
+            
         }
         /// <summary>
         /// To UserLogin
@@ -51,17 +62,36 @@ namespace DoctorConsultApp.Controllers
         /// <returns></returns>
         [Route("UserLogin")]
         [HttpPost]
-        public string userLogin(UserLogin login)
+        public IActionResult userLogin(UserLogin login)
         {
-            var log = _dbContext.Users.Where(x => x.Email==login.Email && x.Password==login.Password).FirstOrDefault();
-
-            if (log != null)
-
+            if (login == null)
             {
-                return "Login succesfully";
+                return BadRequest();
             }
             else
-                return "Login Failed";
+            {
+                var log = _dbContext.Users.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
+                if (log!= null)
+
+                {
+                    return Ok(new
+                    {
+                        StatusCode = "200",
+                        message = "Login succesfull"
+
+                    });
+                }
+                else
+                    return NotFound(new
+                    {
+                        StatusCode = "200",
+                        message = "Login succesfull"
+
+                    });
+            }
+            
+
+            
             
         }
 
@@ -160,7 +190,7 @@ namespace DoctorConsultApp.Controllers
 
         //API for Doctors adds a prescription for patient
         [HttpPost]
-        [Route("Add Prescripion")]
+        [Route("AddPrescripion")]
         public IActionResult AddPrescription(PrescriptionAddModel prescription)
         {
             if (!ModelState.IsValid)

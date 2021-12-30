@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "GetdoctorList";
 }
+<div class="k-fab-dark" style="color:blue; align-content:center baseline ">
+    <h5>Hello.. @Session["User"]</h5>
+</div>
+    <h2>Available Doctors</h2>
 
-<h2>Available Doctors</h2>
-
-               @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
+    @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
                              .Name("grid")
                              .TableHtmlAttributes(new { @class = "table table-striped" })
                              .Columns(column=>
