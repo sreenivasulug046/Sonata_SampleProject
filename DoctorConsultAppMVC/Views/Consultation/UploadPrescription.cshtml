@@ -14,6 +14,13 @@
     <div class="form-horizontal">
         <h4>UploadPrescription</h4>
         <hr />
+
+        <input type="file" id="file">
+        @*<a href=""download="">
+            <input type="button" name="button" value="Download" />
+
+        </a>*@
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.AdditionalSuggestion, htmlAttributes: new { @class = "control-label col-md-2" })

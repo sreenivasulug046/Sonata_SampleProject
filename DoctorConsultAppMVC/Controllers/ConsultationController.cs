@@ -33,7 +33,10 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("GetdoctorList");
             }
-            
+            else
+            {
+                ViewData["Message"] = "Login Failed";
+            }
             return View();
 
         }
