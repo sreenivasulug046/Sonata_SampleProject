@@ -8,31 +8,49 @@
 </div>
     <h2>Available Doctors</h2>
 
-    @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
+
+    <div class="row">
+        <div class="col-12">
+
+            @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
                              .Name("grid")
                              .TableHtmlAttributes(new { @class = "table table-striped" })
                              .Columns(column=>
                              {
-                                 column.Bound(p => p.DoctorId);
+                                 column.Bound(p => p.DoctorId).Filterable(p=>p.Multi(true));
                                  column.Bound(p => p.DoctorName);
                                  column.Bound(p => p.Email);
                                  column.Bound(p => p.Specilization);
                              })
+                             .ToolBar(toolbar =>
+                             {
+                                 toolbar.Excel();
+                                 toolbar.Pdf();
+                                 toolbar.Search();
+                             })
                              .Pageable()
+                             .Sortable()
                              .Navigatable()
-                             .Sortable().Filterable(filterable => filterable
-                             .Extra(true)
-                             .Operators(n => n
-                             .ForString(str => str.Clear()
-                             .Contains("Contains")
-                             .StartsWith("Starts with")
-                             .EndsWith("Ends with")
-                             .IsNotEqualTo("Is not equal to")
-                             .DoesNotContain("Does not contain")
-                             )))
+                             .Resizable(r => r.Columns(true))
+                             .Filterable()
+                             .Scrollable()
                              .DataSource(dataSource => dataSource
-                             .Ajax()
-                             .PageSize(20)
-                             .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
+                                      .Ajax()
+                                      .PageSize(20)
+                                      .Model(model =>
+                                      {
+                                          model.Id(p => p.DoctorId);
+                                          model.Field(p => p.DoctorName).Editable(false);
+                                          model.Field(p => p.Email).Editable(false);
+                                          model.Field(p => p.Specilization).Editable(false);
+                                          
+                                      })
+                                      .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
 
                    )
+
+        </div>
+
+    </div>
+
+    

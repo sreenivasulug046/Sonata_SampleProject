@@ -5,54 +5,62 @@
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="k-form-horizontal">
-        <div class="k-fab-dark" style="color:blue; align-content:center baseline "><h4>DoctorLogin</h4></div>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="k-form-horizontal">
+    <div class="k-fab-dark" style="text-align: center; color: blue; "><h4>DoctorLogin</h4></div>
+    <hr />
+    <div style=" text-align:center; background-color:aliceblue; margin:0 0 0 5px; border:groove;">
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Email)
                       .Name("Email")
-                      .Label(label=>label.Content("Email"))
-                      .HtmlAttributes(new { placeholder = " Email", @class = "form-control", required = "required", style = "width: 20%;border-radius: 8px;border-color: #3480eb ;" })
+                      .Label(label=>label.Content("Email").Floating(true))
+                      .HtmlAttributes(new { placeholder = " Email", @class = "form-control", required = "required", style = "width: 120%;border-radius: 8px;border-color: #3480eb ;" })
            )
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Password)
                       .Name("Password")
-                      .Label(label=>label.Content("Password"))
-                      .HtmlAttributes(new { placeholder = " Password", @class = "form-control", type="Password",required = "required", style = "width: 20%;border-radius: 8px;border-color: ##3480eb;" })
+                      .Label(label=>label.Content("Password").Floating(true))
+                      .HtmlAttributes(new { placeholder = " Password", @class = "form-control", type="Password",required = "required", style = "width: 120%;border-radius: 8px;border-color: ##3480eb;" })
            )
             </div>
-        </div >
+        </div>
         <div class="form-group">
             <div class="k-col-md-10" style="color:red">
-                <label>
+                <div id="alertmsg">
                     @ViewData["Message"]
-                    
-                </label>
+
+                </div>
             </div>
         </div>
 
-            <div class="k-form-group">
-                <div class="k-col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-                <div>
-                    @Html.ActionLink("Register", "RegisterDoctor")
-                </div>
+        <div class="k-form-group">
+            <div class="k-col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div>
+                @Html.ActionLink("Register Here", "RegisterDoctor")
             </div>
         </div>
+    </div>
+</div>
 }
+
+
+<script>
+
+    $('#alertmsg'){
+        alert("Login Filed !");
+    }
+   
+</script>
 
 
 

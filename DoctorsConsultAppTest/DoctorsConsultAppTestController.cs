@@ -1,6 +1,7 @@
 using DoctorConsultApp.Controllers;
 using DoctorConsultApp.Models;
 using DoctorConsultApp.Services;
+using DoctorConsultDBContext.Models;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,12 +17,13 @@ namespace DoctorsConsultAppTest
     {
 
         private readonly IDoctorConsultAppServices _services;
+        private readonly DoctorConsultationAppDBContext dbcntext;
         private readonly DoctorConsultAppController controller;
 
         public DoctorsConsultAppTestController()
         {
             _services = A.Fake<IDoctorConsultAppServices>();
-            controller = new DoctorConsultAppController(_services);
+            controller = new DoctorConsultAppController(_services , dbcntext);
         }
         //[Fact]
         //public  void GetDoctors_Returns_the_Correct_number_of_Doctors()

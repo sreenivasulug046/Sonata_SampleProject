@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DoctorConsultAppMVC.Controllers
 {
@@ -166,6 +167,12 @@ namespace DoctorConsultAppMVC.Controllers
 
             return View();
 
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Home","Home");
         }
 
 
