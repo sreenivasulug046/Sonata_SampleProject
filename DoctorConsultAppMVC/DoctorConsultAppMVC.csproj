@@ -132,6 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BookedModel.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\DoctorLogin.cs" />
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\DoctorRegistration.cs" />
@@ -1622,6 +1623,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\basic-rgb-145615384.jpg" />
+    <Content Include="images\doctor.png" />
+    <Content Include="images\mobile-doctor.jpg" />
+    <Content Include="images\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Kendo\js\cultures\kendo.culture.aa-DJ.min.js.map" />
@@ -2861,6 +2866,8 @@
     <Content Include="Views\Consultation\RegisterDoctor.cshtml" />
     <Content Include="Views\Consultation\RegisterUser.cshtml" />
     <Content Include="Views\Consultation\UploadPrescription.cshtml" />
+    <Content Include="Views\Consultation\Booking.cshtml" />
+    <Content Include="Views\Consultation\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

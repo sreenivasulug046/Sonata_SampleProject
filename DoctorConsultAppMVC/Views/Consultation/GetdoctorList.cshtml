@@ -14,19 +14,14 @@
 
             @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.DoctorModel>(Model)
                              .Name("grid")
-                             .TableHtmlAttributes(new { @class = "table table-striped" })
                              .Columns(column=>
                              {
-                                 column.Bound(p => p.DoctorId).Filterable(p=>p.Multi(true));
-                                 column.Bound(p => p.DoctorName);
-                                 column.Bound(p => p.Email);
-                                 column.Bound(p => p.Specilization);
-                             })
-                             .ToolBar(toolbar =>
-                             {
-                                 toolbar.Excel();
-                                 toolbar.Pdf();
-                                 toolbar.Search();
+                             column.Bound(p => p.DoctorId);
+                             column.Bound(p => p.DoctorName);
+                             column.Bound(p => p.Email);
+                             column.Bound(p => p.Specilization);
+                             column.Template(@<text>@Html.ActionLink(@item.DoctorName, "DoctorDetails", "Consultation", new { @item.DoctorId }, null)</text>);
+
                              })
                              .Pageable()
                              .Sortable()
@@ -37,14 +32,6 @@
                              .DataSource(dataSource => dataSource
                                       .Ajax()
                                       .PageSize(20)
-                                      .Model(model =>
-                                      {
-                                          model.Id(p => p.DoctorId);
-                                          model.Field(p => p.DoctorName).Editable(false);
-                                          model.Field(p => p.Email).Editable(false);
-                                          model.Field(p => p.Specilization).Editable(false);
-                                          
-                                      })
                                       .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
 
                    )
@@ -52,5 +39,8 @@
         </div>
 
     </div>
+
+
+
 
     

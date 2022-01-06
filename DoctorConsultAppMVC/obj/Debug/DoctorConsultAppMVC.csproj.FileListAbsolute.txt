@@ -98,8 +98,8 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\sv-SE\Kend
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\tr-TR\Kendo.Mvc.resources.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csprojAssemblyReference.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csproj.CoreCompileInputs.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csproj.CopyComplete
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.pdb
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csprojAssemblyReference.cache

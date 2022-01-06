@@ -10,10 +10,16 @@
     @Html.AntiForgeryToken()
 
 <div class="k-form-horizontal">
-    <div class="k-fab-dark" style="text-align: center; color: blue; "><h4>DoctorLogin</h4></div>
-    <hr />
+    <div class="k-fab-dark" style="text-align: center; color: blue; ">
+    <h4>DoctorLogin</h4>
+         <div>
+        <img src="~/images/doctor.png" alt="Smiley face" width="55" height="45" style="border:1px solid black" />
+        </div>
+    </div>
+    <br />
+    
     <div style=" text-align:center; background-color:aliceblue; margin:0 0 0 5px; border:groove;">
-        <div class="form-group">
+        <div class="k-form-group">
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Email)
                       .Name("Email")
@@ -22,8 +28,7 @@
            )
             </div>
         </div>
-
-        <div class="form-group">
+        <div class="k-form-group">
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Password)
                       .Name("Password")

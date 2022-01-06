@@ -1,0 +1,55 @@
+﻿@model DoctorConsultAppMVC.Models.DoctorModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Search", "Consultation"))
+{
+    <div>
+        <h4>DoctorModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DoctorId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DoctorName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Specilization)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Specilization)
+            </dd>
+
+        </dl>
+    </div>
+
+}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

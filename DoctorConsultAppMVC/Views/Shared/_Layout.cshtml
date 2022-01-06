@@ -27,16 +27,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <img src="~/images/basic-rgb-145615384.jpg" alt="Smiley face" width="50" height="50" style="border:1px; border-radius:16px;"/>
                 @Html.ActionLink("Doctor Consultation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse" style="float:right">
                 <ul class="nav navbar-nav">
-                   
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                  
+                    <li>@Html.ActionLink("LogOut", "LogOut", "Consultation")</li>
+
+
+
 
                 </ul>
             </div>

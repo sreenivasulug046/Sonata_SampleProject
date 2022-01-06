@@ -32,11 +32,12 @@ namespace DoctorConsultAppMVC.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+                Session["Doctor"] = login.Email.ToString();
                 return RedirectToAction("GetdoctorList");
             }
             else
             {
-                ViewData["Message"] = "Login Failed";
+                ViewData["Message"] = "Invalid Credentials.. Login Failed";
             }
             return View();
 
@@ -75,6 +76,10 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 Session["User"] = login.Email.ToString();
                 return RedirectToAction("GetdoctorList");
+            }
+            else
+            {
+                ViewData["Message"] = "Invalid Credentials.. Login Failed";
             }
 
             return View();
@@ -120,9 +125,33 @@ namespace DoctorConsultAppMVC.Controllers
             else
             {
                 return RedirectToAction("UserLogin");
-            }
-           
+            }          
         }
+
+        //Get doctor detailes by id
+        public ActionResult Search(int id)
+        {
+            if (Session["User"] != null)
+            {
+                var doctorlst = new DoctorModel();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetails?id=" + id).Result;
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
+
+                }
+                return View(doctorlst);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+        }
+
+
         public ActionResult GetBookedPatient()
         {
             List<BookedModel> doctorlst = new List<BookedModel>();
@@ -168,11 +197,30 @@ namespace DoctorConsultAppMVC.Controllers
             return View();
 
         }
+        // Action Method for booking Appointment
+        public ActionResult Booking()
+        {
+            return View(new Booking());
+        }
+
+        [HttpPost]
+        public ActionResult Booking(Booking bookig)
+        {
+            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/Booking", bookig).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("GetdoctorList");
+            }
+
+            return View();
+
+        }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Home","Home");
+            return RedirectToAction("Index","Home");
         }
 
 

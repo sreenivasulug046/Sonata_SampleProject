@@ -2,19 +2,34 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<br /><br />
-    <div class="k-animation-container"style="text-align:center; background-color:#E5E7E9 ;color:blueviolet;">
+<br />
+<div>
+    <div class="k-animation-container" style="text-align:center; background-color:#E5E7E9 ;color:blueviolet; border:groove">
         <div class="k-pivotgrid-row">
             <div class="k-col-end-2" style="font-size:xx-large;">
-                <div >
+                <div>
+                    <img src="~/images/doctor.png" alt="Smiley face" width="35" height="35" style="border:1px solid black;border-radius: 8px;" />
                     @Html.ActionLink("Doctors", "DoctorLogin", "Consultation")
                 </div>
+                <hr />
                 <div>
+                    <img src="~/images/user.png" alt="Smiley face" width="32" height="32" style="border:1px solid black;border-radius: 8px;"  />
                     @Html.ActionLink("Users", "UserLogin", "Consultation")
                 </div>
             </div>
         </div>
     </div>
+    <div style="background-color: aquamarine; background-image: url('~/images/mobile-doctor.jpg')">
+        <br />
+        <h1 style="font-size:30px; margin:0 0 0 50px; color:#00ace6;" >
+            Welcome..! to Doctor Consutation Application
+        </h1>
+        <br />
+        <h2 style="font-size:30px; margin:0 50px 0 0; text-align:right; color:#73e600;" >
+            Stay Home..  Stay Safe.!
+        </h2>
+        <img src="~/images/mobile-doctor.jpg" />
 
+    </div>
+</div>
 

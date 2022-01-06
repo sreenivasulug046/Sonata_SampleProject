@@ -12,9 +12,14 @@
     @Html.AntiForgeryToken()
     
 <div class="k-form-horizontal">
-    <div class="k-fab-dark" style="color:blue; text-align:center;"><h4>UserLogin</h4></div>
-    <hr />
-    <div style="text-align:center; background-color:aliceblue; border:groove;">
+    <div class="k-fab-dark" style="color:blue; text-align:center;">
+    <h4>UserLogin</h4>
+    <div>
+        <img src="~/images/user.png" alt="Smiley face" width="45" height="45" style="border:1px solid black; border-radius: 8px;" />
+    </div>
+    <br />
+    </div>
+    <div style="text-align:center; background-color:aliceblue; border:groove;border-radius: 8px;">
         <div class="k-form-group">
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Email)
@@ -27,7 +32,7 @@
         </div>
 
 
-        <div class="k-form-group" >
+        <div class="k-form-group">
             <div class="k-col-md-10">
                 @(Html.Kendo().TextBoxFor(model => model.Password)
                       .Name("Password")
@@ -35,7 +40,14 @@
                       .HtmlAttributes(new { placeholder = " Password", @class = "form-control", type="Password", required = "required", style = "width: 120%;border-radius: 8px;border-color: ##3480eb;" })
            )
             </div>
+        </div>
+        <div class="form-group">
+            <div class="k-col-md-10" style="color:red">
+                <div id="alertmsg">
+                    @ViewData["Message"]
 
+                </div>
+            </div>
         </div>
         <br />
 

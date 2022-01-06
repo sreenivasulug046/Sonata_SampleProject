@@ -111,7 +111,7 @@ namespace DoctorConsultApp.Controllers
         }
         //API for Getting All Details of pertcular doctor
         [HttpGet]
-        [Route("Doctor Details")]
+        [Route("DoctorDetails")]
         public IActionResult GetDoctorDetails(int id)
         {
             var doctor = _database.GetDoctor(id);
