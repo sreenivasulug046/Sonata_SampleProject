@@ -1,103 +1,124 @@
-﻿@model DoctorConsultAppMVC.Models.Booking
+﻿@using DoctorConsultAppMVC.Models
+@model Booking
 
 @{
     ViewBag.Title = "Booking";
 }
+<br />
 
-<h2>Booing</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Booking</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+
+ <div class="k-form-horizontal">
+    <div style="background-color:aliceblue; border:groove;border-radius: 8px;">
+        <div class="k-fab-dark" style="color:blue; text-align:center;">
+            <h4>Booking Form</h4>
+        </div>
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.UserId)
+                      .Name("UserId")
+                      .Label(label=>label.Content("UserId").Floating(true))
+                      .HtmlAttributes(new { placeholder = " UserId", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+               )
+
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DoctorId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DoctorId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.DoctorId)
+                      .Name("DoctorId")
+                      .Label(label=>label.Content("DoctorId").Floating(true))
+                      .HtmlAttributes(new { placeholder = " DoctorId", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PName, "", new { @class = "text-danger" })
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.PName)
+                      .Name("PName")
+                      .Label(label=>label.Content("PName").Floating(true))
+                      .HtmlAttributes(new { placeholder = " Name", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
+            </div>
+        </div>
+        <br />
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.DropDownListFor(m => m.Gender,
+            new SelectList(Enum.GetValues(typeof(Gender))),
+            "Select Gender", new { @class = "form-control", style = "width: 120%;border-radius: 8px;border-color: #3480eb ;" })
+        )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.Age)
+                      .Name("Age")
+                      .Label(label=>label.Content("Age").Floating(true))
+                      .HtmlAttributes(new { placeholder = " Age", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        <div class="k-form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.Problem)
+                      .Name("Problem")
+                      .Label(label=>label.Content("Problem").Floating(true))
+                      .HtmlAttributes(new { placeholder = " Problem", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Problem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Problem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Problem, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.BookingDate)
+                      .Name("BookingDate")
+                      .Label(label=>label.Content("BookingDate").Floating(true))
+                      .HtmlAttributes(new { placeholder = " BookingDate", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.StartTime)
+                      .Name("StartTime")
+                      .Label(label=>label.Content("StartTime").Floating(true))
+                      .HtmlAttributes(new { placeholder = " StartTime", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin:0 0 0 10px;">
+            <div class="k-col-md-10">
+                @(Html.Kendo().TextBoxFor(model => model.EndTime)
+                      .Name("EndTime")
+                      .Label(label=>label.Content("EndTime").Floating(true))
+                      .HtmlAttributes(new { placeholder = " EndTime", @class = "form-control", required = "required", style = "width: 162%;border-radius: 8px;border-color: #3480eb ;" })
+           )
             </div>
         </div>
+        <br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+        <div class="k-form-group">
+            <div class="k-col-md-offset-2 col-md-10">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+            <div>
+                @Html.ActionLink("Back to Doctor List", "GetdoctorList")
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    </div>    
+ </div>
 }
 
-<div>
-    @Html.ActionLink("Back to Doctor List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

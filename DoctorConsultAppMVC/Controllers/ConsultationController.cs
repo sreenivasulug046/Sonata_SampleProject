@@ -1,9 +1,13 @@
 ﻿using DoctorConsultAppMVC.Models;
+using Kendo.Mvc.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -28,12 +32,19 @@ namespace DoctorConsultAppMVC.Controllers
         [HttpPost]
         public ActionResult DoctorLogin(DoctorLogin login)
         {
+            var log = new DoctorLogin();
             HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/DoctorLogin", login).Result;
+            HttpResponseMessage response1 = client.GetAsync("DoctorConsultApp/DoctorLogin").Result;
+
 
             if (response.IsSuccessStatusCode)
             {
                 Session["Doctor"] = login.Email.ToString();
-                return RedirectToAction("GetdoctorList");
+                //var data = response1.Content.ReadAsStringAsync().Result;
+                //var log = JsonConvert.DeserializeObject<DoctorLogin>(data);
+                Session["DoctorId"] = login.DoctorId;
+                return RedirectToAction("BookedApointments");
+
             }
             else
             {
@@ -42,6 +53,28 @@ namespace DoctorConsultAppMVC.Controllers
             return View();
 
         }
+        public ActionResult BookedApointments()
+        {
+            if (Session["Doctor"] != null)
+            {
+                List<BookedModel> doctorlst = new List<BookedModel>();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/List of Booked patients?id=" + Session["DoctorId"]).Result;
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
+
+                }
+                return View(doctorlst);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+        }
+
 
         public ActionResult RegisterDoctor()
         {
@@ -74,7 +107,10 @@ namespace DoctorConsultAppMVC.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                Session["User"] = login.Email.ToString();
+                Session["User"] = login.Email;
+               var data= response.Content.ReadAsStringAsync().Result;
+               
+
                 return RedirectToAction("GetdoctorList");
             }
             else
@@ -195,8 +231,26 @@ namespace DoctorConsultAppMVC.Controllers
             }
 
             return View();
+        
+        }
+        public ActionResult Slots(int id)
+        {
+            List<CheckSlot> slots = new List<CheckSlot>();
+            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Slot Availability?id=" + id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                var data = response.Content.ReadAsStringAsync().Result;
+                slots = JsonConvert.DeserializeObject<List<CheckSlot>>(data);
+
+            }
+            return View(slots);
 
         }
+
+
+
+
         // Action Method for booking Appointment
         public ActionResult Booking()
         {
@@ -206,10 +260,19 @@ namespace DoctorConsultAppMVC.Controllers
         [HttpPost]
         public ActionResult Booking(Booking bookig)
         {
+            bool isMailSent = false;
             HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/Booking", bookig).Result;
 
             if (response.IsSuccessStatusCode)
             {
+                var DoctorName = bookig.DoctorId;
+                var starttime = bookig.StartTime;
+                var Endtime = bookig.EndTime;
+                string message = "Your Appointment has been confirmed. Please see below." + Environment.NewLine;
+                message = message + "DoctorId :" + DoctorName + Environment.NewLine;
+                message = message + "Start time :" + starttime.ToString() + "End time :" + Endtime.ToString() + Environment.NewLine;
+                isMailSent = SendEMail("sreenivasulu.g046@gmail.com", "Hello User",message);
+
                 return RedirectToAction("GetdoctorList");
             }
 
@@ -222,6 +285,80 @@ namespace DoctorConsultAppMVC.Controllers
             Session.Abandon();
             return RedirectToAction("Index","Home");
         }
+        public bool SendEMail(string toAddress,string subject, string mailBody)
+        {
+            // string senderEmail = System.Configuration.ConfigurationManager.AppSettings["senderEmail"].ToString();
+            //string senderPassword = System.Configuration.ConfigurationManager.AppSettings["senderPassword"].ToString();
+            try
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("gounolla.s0205@gmail.com");
+                    mail.To.Add(toAddress);
+                    mail.Subject = subject;
+                    mail.Body = mailBody;
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("gounolla.s0205@gmail.com", "Sseenu143@");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+
+                        return true;
+                    }
+                    
+                }
+
+            }
+            catch(Exception ex)
+            {
+                var msg=ex.Message;
+                return false;
+
+            }
+            
+
+
+
+
+
+            //try
+            //{
+            //    string senderEmail = System.Configuration.ConfigurationManager.AppSettings["senderEmail"].ToString();
+            //    string senderPassword = System.Configuration.ConfigurationManager.AppSettings["senderPassword"].ToString();
+            //    //MailMessage mail = new MailMessage();
+            //    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
+            //    SmtpServer.EnableSsl = true;
+            //    SmtpServer.Timeout = 20000;
+            //    SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    SmtpServer.UseDefaultCredentials = false;
+            //    SmtpServer.Credentials = new NetworkCredential(senderEmail, senderPassword);
+
+            //    MailMessage mail = new MailMessage(senderEmail, toAddress, subject, mailBody);
+            //    mail.IsBodyHtml = true;
+            //    mail.BodyEncoding = UTF8Encoding.UTF8;
+            //    SmtpServer.Send(mail);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    //_logger.LogError($"There was an {ex.Message}");
+            //    return false;
+            //}
+
+        }
+
+        public List<Genders> Gender()
+        {
+            List<Genders> data = new List<Genders>() { new Genders{ Id=1,Gender="Male"},
+            new Genders { Id = 2, Gender = "female" } };
+            return data;
+        }
+
+        
 
 
 

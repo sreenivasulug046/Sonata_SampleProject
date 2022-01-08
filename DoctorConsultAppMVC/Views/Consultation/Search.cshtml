@@ -4,52 +4,100 @@
     ViewBag.Title = "Search";
 }
 
-<h2>Search</h2>
-@using (Html.BeginForm("Search", "Consultation"))
-{
-    <div>
-        <h4>DoctorModel</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.DoctorId)
-            </dt>
+<div>
+    <h4>Doctor Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.DoctorId)
-            </dd>
+            @Html.DisplayNameFor(model => model.DoctorId)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DoctorName)
-            </dt>
+        <dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.DoctorName)
-            </dd>
+            @Html.Kendo().MaskedTextBoxFor(model => model.DoctorId)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.DoctorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Specilization)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Specilization)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-        </dl>
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhNo)
+        </dt>
 
-}
+        <dd>
+            @Html.DisplayFor(model => model.PhNo)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Specilization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specilization)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    @(Html.Kendo().Button()
+        .Name("primaryTextButton")
+        .HtmlAttributes(new { type = "button", @class = "k-primary" })
+        .Content("Primary Button")
+        )
+    <button class="k-button">
+        @Html.ActionLink("Book an Appointment", "Booking", new {  id = Model.DoctorId })
+    </button>
+</div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Book an Appointment", "Booking", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to  Doctors List", "GetdoctorList")
+
+    @Html.ActionLink("Checkslots", "Slots", new {  id = Model.DoctorId })
 </p>
+
+<button>Create and open popup</button>
+<div id="windowForAssign"></div>
+<script>
+       $('button').click(createAndShowPopup);
+       var kendoWindowAssign = $("#windowForAssign");
+       var title = "Sample title";
+      var url = "https://localhost:44386/Consultation/Slots/104";
+
+       function createAndShowPopup(){
+         kendoWindowAssign.kendoWindow({
+           width: "650px",
+           modal: true,
+           height: '120px',
+           iframe: true,
+           resizable: false,
+           title: title,
+           content: url,
+           visible: false
+         });
+
+         var popup = $("#windowForAssign").data('kendoWindow');
+         popup.open();
+         popup.center();
+       }
+</script>

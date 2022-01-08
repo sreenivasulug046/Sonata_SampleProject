@@ -133,9 +133,11 @@
     </Compile>
     <Compile Include="Models\BookedModel.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\CheckSlot.cs" />
     <Compile Include="Models\DoctorLogin.cs" />
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\DoctorRegistration.cs" />
+    <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegistration.cs" />
@@ -2868,6 +2870,8 @@
     <Content Include="Views\Consultation\UploadPrescription.cshtml" />
     <Content Include="Views\Consultation\Booking.cshtml" />
     <Content Include="Views\Consultation\Search.cshtml" />
+    <Content Include="Views\Consultation\BookedApointments.cshtml" />
+    <Content Include="Views\Consultation\Slots.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

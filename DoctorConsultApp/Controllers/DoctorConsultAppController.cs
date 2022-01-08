@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace DoctorConsultApp.Controllers
@@ -34,14 +35,10 @@ namespace DoctorConsultApp.Controllers
             else
             {
                 var log = _dbContext.Doctors.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
-
+                login.DoctorId = login.DoctorId;
                 if (log != null)
                 {
-                    return Ok(new
-                    {
-                        StatusCode = "200",
-                        message = "Login succesfull"
-                    });
+                    return Ok(login.DoctorId);
 
                 }
                 else
@@ -74,12 +71,7 @@ namespace DoctorConsultApp.Controllers
                 if (log!= null)
 
                 {
-                    return Ok(new
-                    {
-                        StatusCode = "200",
-                        message = "Login succesfull"
-
-                    });
+                    return Ok(login);
                 }
                 else
                     return NotFound(new
@@ -160,13 +152,14 @@ namespace DoctorConsultApp.Controllers
         [Route("Booking")]
         public IActionResult AddBooking(BookingModel booking)
         {
+            
             _database.AddBooking(booking);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-            
+
             return Ok(booking);
 
 
@@ -284,5 +277,7 @@ namespace DoctorConsultApp.Controllers
             return Ok(pastconsult);
 
         }
+
+       
     }
 }

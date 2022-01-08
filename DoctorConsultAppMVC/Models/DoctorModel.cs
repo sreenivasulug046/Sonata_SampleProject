@@ -9,7 +9,10 @@ namespace DoctorConsultAppMVC.Models
     {
         public int DoctorId { get; set; }
         public string DoctorName { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
+        public string PhNo { get; set; }
         public string Specilization { get; set; }
+
     }
 }

@@ -16,11 +16,11 @@
                              .Name("grid")
                              .Columns(column=>
                              {
-                             column.Bound(p => p.DoctorId);
-                             column.Bound(p => p.DoctorName);
-                             column.Bound(p => p.Email);
-                             column.Bound(p => p.Specilization);
-                             column.Template(@<text>@Html.ActionLink(@item.DoctorName, "DoctorDetails", "Consultation", new { @item.DoctorId }, null)</text>);
+                                 column.Bound(p => p.DoctorName);
+                                 column.Bound(p => p.Specilization);
+                                 column.Bound(c => c.DoctorId).Title("Details").ClientTemplate(
+                                                         @Html.ActionLink("Details", "Search", "Consultation", new { id = "#=DoctorId#" }, htmlAttributes: null).ToHtmlString()
+                                  );
 
                              })
                              .Pageable()
