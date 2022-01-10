@@ -30,30 +30,24 @@ namespace DoctorConsultApp.Controllers
             if (login == null)
             {
                 return BadRequest();
-
             }
             else
             {
                 var log = _dbContext.Doctors.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
-                login.DoctorId = login.DoctorId;
                 if (log != null)
                 {
-                    return Ok(login.DoctorId);
-
+                    return Ok(login);
                 }
                 else
                     return NotFound(new
                     {
-                        StatusCode = "200",
-                        message = "Login succesfull"
-
+                        StatusCode = "404",
+                        message = "Login Failed"
                     }); 
-
-            }
-            
+            }            
         }
         /// <summary>
-        /// To UserLogin
+        ///  UserLogin
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
@@ -69,37 +63,28 @@ namespace DoctorConsultApp.Controllers
             {
                 var log = _dbContext.Users.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
                 if (log!= null)
-
                 {
                     return Ok(login);
                 }
                 else
                     return NotFound(new
                     {
-                        StatusCode = "200",
-                        message = "Login succesfull"
-
+                        StatusCode = "404",
+                        message = "Login Failed"
                     });
-            }
-            
-
-            
-            
+            }           
         }
-
         //API for List of Doctors With Specilization
-
-
         [HttpGet]
         [Route("ListOfDoctors")]
         public IActionResult GetAllDoctorsList()
         {
             var doctors = _database.GetAll();
-            if (doctors.Count == 0)
+            if (doctors.Count != 0)
             {
-                return NotFound();
+                return Ok(doctors);                
             }
-            return Ok(doctors);
+            return NotFound();
         }
         //API for Getting All Details of pertcular doctor
         [HttpGet]
@@ -107,11 +92,11 @@ namespace DoctorConsultApp.Controllers
         public IActionResult GetDoctorDetails(int id)
         {
             var doctor = _database.GetDoctor(id);
-            if (doctor == null)
+            if (doctor != null)
             {
-                return NotFound();
+                return Ok(doctor);
             }
-            return Ok(doctor);
+            return NotFound();            
         }
         //API for Register a doctor
         [HttpPost]
@@ -122,14 +107,12 @@ namespace DoctorConsultApp.Controllers
             {
                 return BadRequest("Invalid data");
             }
-
-
             var item = _database.AddDoctor(doctor);
-            if (item == null)
-                return NoContent();
-
-            return Ok(doctor);
-
+            if (item != null)
+            {
+                return Ok(doctor);
+            }
+            return NoContent();           
         }
         //API for Register user
         [HttpPost]
@@ -140,29 +123,29 @@ namespace DoctorConsultApp.Controllers
             {
                 return BadRequest("Invalid data");
             }
-
-
-            _database.AddUser(user);
-
-            return Ok(user);
-
+            var data=_database.AddUser(user);
+            if (data != null)
+            {
+                return Ok(user);
+            }
+            return NoContent();
         }
         //API for booking a doctor
         [HttpPost]
         [Route("Booking")]
         public IActionResult AddBooking(BookingModel booking)
-        {
-            
-            _database.AddBooking(booking);
+        {          
 
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-
-            return Ok(booking);
-
-
+            var data=_database.AddBooking(booking);
+            if (data != null)
+            {
+                return Ok(booking);
+            }
+            return NoContent();
         }
         //API for Adding Time slot for Doctor
         [HttpPost]
@@ -173,12 +156,12 @@ namespace DoctorConsultApp.Controllers
             {
                 return BadRequest("Invalid data");
             }
-
-
-            _database.AddTimeSlots(slot);
-
-            return Ok(slot);
-
+           var data= _database.AddTimeSlots(slot);
+            if (data != null)
+            {
+                return Ok(slot);
+            }
+            return NoContent();
         }
 
         //API for Doctors adds a prescription for patient
@@ -190,40 +173,37 @@ namespace DoctorConsultApp.Controllers
             {
                 return BadRequest("Invalid data");
             }
-
-
-            _database.AddPrescription(prescription);
-
-            return Ok(prescription);
-
+            var data=_database.AddPrescription(prescription);
+            if (data != null)
+            {
+                return Ok(prescription);
+            }
+            return NoContent();
         }
-
-
         //API for Geting Time slot Avilability in Doctor details
         [HttpGet]
         [Route("Slot Availability")]
         public IActionResult GetSlotAvalability(int id)
         {
             var timeslot = _database.GetTimeSlot(id);
-            if (timeslot == null)
+            if (timeslot != null)
             {
-                return NotFound();
+                return Ok(timeslot);
+                
             }
-            return Ok(timeslot);
+            return NotFound();
         }
-
-
         //API for getting perticular booked detailes
         [HttpGet]
         [Route("Booked Details")]
         public IActionResult GetBookedDetails(int id)
         {
             var bookeddetails = _database.GetBookedPatientDetails(id);
-            if (bookeddetails == null)
+            if (bookeddetails != null)
             {
-                return NotFound();
+                return Ok(bookeddetails);          
             }
-            return Ok(bookeddetails);
+            return NotFound();
         }
         // API for Getting the patient prescription by Booking Id 
         [HttpGet]
@@ -231,11 +211,11 @@ namespace DoctorConsultApp.Controllers
         public IActionResult GetPrescription(int id)
         {
             var prescrition = _database.GetPrescription(id);
-            if (prescrition == null)
+            if (prescrition != null)
             {
-                return NotFound();
+                return Ok(prescrition);              
             }
-            return Ok(prescrition);
+            return NotFound();
         }
 
         //API for Getting List Of Booked Patients by Today Date
@@ -244,40 +224,36 @@ namespace DoctorConsultApp.Controllers
         public IActionResult GetBookedPatientList(int id)
         {
             var results = _database.GetBookedPatientList(id);
-            if (results == null)
+            if (results != null)
             {
-                return NoContent();
+                return Ok(results);                
             }
-            return Ok(results);
+            return NoContent();
         }
-
         //API for Getting List of Past consultations by UserId
         [HttpGet]
         [Route("List of Past Consults")]
         public IActionResult GetPastConsultations(int id)
         {
             var pastconsults = _database.GetPatientPastConsults(id);
-            if (pastconsults == null)
+            if (pastconsults != null)
             {
-                return NoContent();
+                return Ok(pastconsults);              
             }
-            return Ok(pastconsults);
+            return NoContent();
         }
-
         //API for Getting Perticulat Consultation by Booking Id
         [HttpGet]
         [Route("Past Consultation")]
         public IActionResult GetPastConsultation(int id)
         {
             var pastconsult = _database.PatientPastConsultation(id);
-            if (pastconsult == null)
+            if (pastconsult != null)
             {
-                return NoContent();
+                return Ok(pastconsult);               
             }
-            return Ok(pastconsult);
-
+            return NoContent();
         }
-
        
     }
 }

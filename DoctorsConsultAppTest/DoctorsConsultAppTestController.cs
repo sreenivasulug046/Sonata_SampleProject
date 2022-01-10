@@ -17,13 +17,13 @@ namespace DoctorsConsultAppTest
     {
 
         private readonly IDoctorConsultAppServices _services;
-        private readonly DoctorConsultationAppDBContext dbcntext;
+        private readonly DoctorConsultationAppDBContext dbcontext;
         private readonly DoctorConsultAppController controller;
 
         public DoctorsConsultAppTestController()
         {
             _services = A.Fake<IDoctorConsultAppServices>();
-            controller = new DoctorConsultAppController(_services , dbcntext);
+            controller = new DoctorConsultAppController(_services, dbcontext);
         }
         //[Fact]
         //public  void GetDoctors_Returns_the_Correct_number_of_Doctors()
@@ -58,7 +58,7 @@ namespace DoctorsConsultAppTest
             // Act
             OkObjectResult okResult = controller.GetAllDoctorsList() as OkObjectResult;
             // Assert
-            var items = Assert.IsType<List<DoctorModel>>(okResult.Value);
+            var items = Assert.IsType<List<DoctorModel>>(okResult);
             Assert.Equal(5, items.Count);
         }
 
@@ -76,10 +76,29 @@ namespace DoctorsConsultAppTest
         public void GetById_Passed_ReturnsNotFoundResult()
         {
             // Act
-            IActionResult notFoundResult = controller.GetDoctorDetails(109);
+            IActionResult notFoundResult = controller.GetDoctorDetails(1001);
             // Assert
             Assert.IsType<NotFoundResult>(notFoundResult);
         }
+        //[Fact]
+        //public void GetDoctorById_DoctorObject_DoctorwithSpecificeIdExists()
+        //{
+        //    //arrange
+        //    var employees = GetSampleEmployee();
+        //    var firstEmployee = employees[0];
+        //    service.Setup(x => x.GetById((long)1))
+        //        .Returns(firstEmployee);
+        //    var controller = new EmployeeController(service.Object);
+
+        //    //act
+        //    var actionResult = controller.GetEmployeeById((long)1);
+        //    var result = actionResult.Result as OkObjectResult;
+
+        //    //Assert
+        //    Assert.IsType<OkObjectResult>(result);
+
+        //    result.Value.Should().BeEquivalentTo(firstEmployee);
+        //}
         [Fact]
         public void GetById_ExistingIdPassed_ReturnsRightItem()
         {
