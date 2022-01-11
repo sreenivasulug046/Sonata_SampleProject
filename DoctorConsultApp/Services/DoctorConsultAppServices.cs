@@ -84,6 +84,30 @@ namespace DoctorConsultApp.Services
                 return result;
             }                
         }
+        public DoctorDetailsModel GetDoctorbyEmail(string Email)
+        {
+            DoctorDetailsModel result = new DoctorDetailsModel();
+            try
+            {
+                result = _DbContext.GetDoctor()
+                .Where(f => f.Email == Email)
+                .Select(f => new DoctorDetailsModel
+                {
+                    DoctorId = f.DoctorId,
+                    DoctorName = f.DoctorName,
+                    Gender = f.Gender,
+                    Specilization = f.Specilization,
+                    PhNo = f.PhNo,
+                    Email = f.Email
+                }).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"There was an {ex.Message}");
+                return result;
+            }
+        }
         public DoctorAddModel AddDoctor(DoctorAddModel doctor)
         {
             try

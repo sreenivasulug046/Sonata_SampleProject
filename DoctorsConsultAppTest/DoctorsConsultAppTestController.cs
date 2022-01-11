@@ -2,6 +2,7 @@ using DoctorConsultApp.Controllers;
 using DoctorConsultApp.Models;
 using DoctorConsultApp.Services;
 using DoctorConsultDBContext.Models;
+using DoctorsConsultAppTest.Services;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,38 +18,63 @@ namespace DoctorsConsultAppTest
     {
 
         private readonly IDoctorConsultAppServices _services;
+        private readonly IDoctorConsultAppServices _service;
         private readonly DoctorConsultationAppDBContext dbcontext;
         private readonly DoctorConsultAppController controller;
+        private readonly DoctorConsultAppController _controller;
 
         public DoctorsConsultAppTestController()
         {
+            _service = new ConsultationServicesFake();
             _services = A.Fake<IDoctorConsultAppServices>();
             controller = new DoctorConsultAppController(_services, dbcontext);
+            _controller = new DoctorConsultAppController(_service, dbcontext);
         }
-        //[Fact]
-        //public  void GetDoctors_Returns_the_Correct_number_of_Doctors()
-        //{
-        //    //Arrange
-        //    int count = 5;
-        //    var FakeDoctors = A.CollectionOfDummy<DoctorModel>(count).AsEnumerable();
-        //    var datasource = A.Fake<IDoctorConsultAppServices>();
-        //    A.CallTo(() =>datasource.GetAll(count)).Returns(Task.FromResult(FakeDoctors));
-        //    var Controller = new DoctorConsultAppController(datasource);
-        //    //Act
-        //    var ActionResult= Controller.GetAllDoctorsList();
-        //    //Assert
-        //    var Result=ActionResult.Result as OkObjectResult;
-        //    var ReturnDoctors = Result.Value as IEquatable<DoctorModel>;
-        //    Assert.Equal(count, ReturnDoctors.count());
 
-        //}
+        [Fact]
+        public void AddNewDoctor_ShouldReturnSuccess()
+        {
+            //Arrange
+            DoctorAddModel testItem = new DoctorAddModel()
+            {
+                DoctorName = "Raju",
+                Gender = "Male",
+                PhNo = "9515881237",
+                Email = "raju@gmail.com",
+                Specilization = "doctor",
+                Password = "raju123"
+            };
+            // Act
+            IActionResult createdResponse = controller.AddDoctor(testItem);
+            // Assert
+            Assert.IsType<OkObjectResult>(createdResponse as OkObjectResult);
+        }
+        [Fact]
+        public void Add_ValidObjectPassed_ReturnedResponseHasCreated()
+        {
+            // Arrange
+            var testItem = new DoctorAddModel()
+            {
+                DoctorName = "Raju",
+                Gender = "Male",
+                PhNo = "9515881237",
+                Email = "raju@gmail.com",
+                Specilization = "doctor",
+                Password = "raju123"
+            };
+            // Act
+            OkObjectResult createdResponse = controller.AddDoctor(testItem) as OkObjectResult;
+            DoctorAddModel item = createdResponse.Value as DoctorAddModel;
+            // Assert
+            Assert.IsType<DoctorAddModel>(item);
+            Assert.Equal("Raju", item.DoctorName);
+        }
 
-        //Get All Doctor List
         [Fact]
         public void GetAllDoctorsList_WhenCalled_ReturnsOkResult()
         {
             // Act
-            IActionResult okResult = controller.GetAllDoctorsList();
+            IActionResult okResult = _controller.GetAllDoctorsList();
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
@@ -56,10 +82,10 @@ namespace DoctorsConsultAppTest
         public void Get_WhenCalled_ReturnsAllItems()
         {
             // Act
-            OkObjectResult okResult = controller.GetAllDoctorsList() as OkObjectResult;
+            OkObjectResult okResult = _controller.GetAllDoctorsList() as OkObjectResult;
             // Assert
-            var items = Assert.IsType<List<DoctorModel>>(okResult);
-            Assert.Equal(5, items.Count);
+            var items = Assert.IsType<List<DoctorModel>>(okResult.Value);
+            Assert.Equal(3, items.Count);
         }
 
         //Get Doctordetails
@@ -72,40 +98,14 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-        [Fact]
-        public void GetById_Passed_ReturnsNotFoundResult()
-        {
-            // Act
-            IActionResult notFoundResult = controller.GetDoctorDetails(1001);
-            // Assert
-            Assert.IsType<NotFoundResult>(notFoundResult);
-        }
-        //[Fact]
-        //public void GetDoctorById_DoctorObject_DoctorwithSpecificeIdExists()
-        //{
-        //    //arrange
-        //    var employees = GetSampleEmployee();
-        //    var firstEmployee = employees[0];
-        //    service.Setup(x => x.GetById((long)1))
-        //        .Returns(firstEmployee);
-        //    var controller = new EmployeeController(service.Object);
-
-        //    //act
-        //    var actionResult = controller.GetEmployeeById((long)1);
-        //    var result = actionResult.Result as OkObjectResult;
-
-        //    //Assert
-        //    Assert.IsType<OkObjectResult>(result);
-
-        //    result.Value.Should().BeEquivalentTo(firstEmployee);
-        //}
+       
         [Fact]
         public void GetById_ExistingIdPassed_ReturnsRightItem()
         {
             // Arrange
-            int testid = 101;
+            int testid = 1;
             // Act
-            OkObjectResult okResult = controller.GetDoctorDetails(testid) as OkObjectResult;
+            OkObjectResult okResult = _controller.GetDoctorDetails(testid) as OkObjectResult;
             // Assert
             Assert.IsType<DoctorDetailsModel>(okResult.Value);
             Assert.Equal(testid, (okResult.Value as DoctorDetailsModel).DoctorId);
@@ -121,14 +121,6 @@ namespace DoctorsConsultAppTest
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
 
-        [Fact]
-        public void Getslot_Passed_ReturnsNotFoundResult()
-        {
-            // Act
-            IActionResult notFoundResult = controller.GetSlotAvalability(106);
-            // Assert
-            Assert.IsType<NotFoundResult>(notFoundResult);
-        }
         //Get Booked Patient List
         [Fact]
         public void GetBookedPatientList_WhenCalled_ReturnsOkResult()
@@ -180,49 +172,52 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-        //Add
+
 
         [Fact]
-        public void Add_ValidObjectPassed_ReturnsCreatedResponse()
+        public void AddNewbooking_ShouldReturnSuccess()
         {
-            // Arrange
-            DoctorAddModel testItem = new DoctorAddModel()
+            //Arrange
+            BookingModel testItem = new BookingModel()
             {
-                DoctorName = "Ravi",
-                Gender="male",
-                Specilization="cardialagist",
-                PhNo="9009887881",
-                Email="ravi@gmail.com",
-                Password="ravi123"
-
+               DoctorId=1,
+               UserId=1,
+               PName="Ravi",
+               Gender="Male",
+               Problem="Feaver",
+               Age="25",
+               BookingDate="11/01/2022",
+               StartTime="08:00AM",
+               EndTime="09:00AM"
             };
             // Act
-            IActionResult createdResponse = controller.AddDoctor(testItem);
+            IActionResult createdResponse = controller.AddBooking(testItem);
             // Assert
-            Assert.IsType<CreatedAtActionResult>(createdResponse);
+            Assert.IsType<OkObjectResult>(createdResponse as OkObjectResult);
         }
-
         [Fact]
-        public void Add_ValidObjectPassed_ReturnedResponseHasCreatedItem()
+        public void AddBooking_ValidObjectPassed_ReturnedResponseHasCreated()
         {
             // Arrange
-            var testItem = new DoctorAddModel()
+            var testItem = new BookingModel()
             {
-                DoctorName = "Ravi",
-                Gender = "male",
-                Specilization = "cardialagist",
-                PhNo = "9009887881",
-                Email = "ravi@gmail.com",
-                Password = "ravi123"
+                DoctorId = 1,
+                UserId = 1,
+                PName = "Ravi",
+                Gender = "Male",
+                Problem = "Feaver",
+                Age = "25",
+                BookingDate = "11/01/2022",
+                StartTime = "08:00AM",
+                EndTime = "09:00AM"
             };
             // Act
-            CreatedAtActionResult createdResponse = controller.AddDoctor(testItem) as CreatedAtActionResult;
-            DoctorAddModel item = createdResponse.Value as DoctorAddModel;
+            OkObjectResult createdResponse = controller.AddBooking(testItem) as OkObjectResult;
+            BookingModel item = createdResponse.Value as BookingModel;
             // Assert
-            Assert.IsType<DoctorAddModel>(item);
-            Assert.Equal("Ravi", item.DoctorName);
+            Assert.IsType<BookingModel>(item);
+            Assert.Equal("Ravi", item.PName);
         }
-
 
     }
 }

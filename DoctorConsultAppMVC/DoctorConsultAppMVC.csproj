@@ -2872,6 +2872,7 @@
     <Content Include="Views\Consultation\Search.cshtml" />
     <Content Include="Views\Consultation\BookedApointments.cshtml" />
     <Content Include="Views\Consultation\Slots.cshtml" />
+    <Content Include="Views\Consultation\ApointmentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

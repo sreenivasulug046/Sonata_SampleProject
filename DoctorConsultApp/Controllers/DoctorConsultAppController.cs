@@ -98,6 +98,17 @@ namespace DoctorConsultApp.Controllers
             }
             return NotFound();            
         }
+        [HttpGet]
+        [Route("DoctorDetailsbyEmail")]
+        public IActionResult GetDoctorDetails(string Email)
+        {
+            var doctor = _database.GetDoctorbyEmail(Email);
+            if (doctor != null)
+            {
+                return Ok(doctor);
+            }
+            return NotFound();
+        }
         //API for Register a doctor
         [HttpPost]
         [Route("RegisterDoctor")]

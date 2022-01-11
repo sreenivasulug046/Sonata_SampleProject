@@ -6,7 +6,50 @@
 
 <h2>BookedApointments</h2>
 
-<p>
+
+<div class="row">
+    <div class="col-12">
+
+        @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.BookedModel>(Model)
+                             .Name("grid")
+                             .Columns(column=>
+                             {
+                                 column.Bound(p => p.BookingId);
+                                 column.Bound(p => p.DoctorId);
+                                 column.Bound(p => p.UserId);
+                                 column.Bound(p => p.PName);
+                                 column.Bound(p => p.BookingDate);
+                                 column.Bound(p => p.StartTime);
+                                 column.Bound(p => p.EndTime);
+                                 column.Bound(c => c.BookingId).Title("Details").ClientTemplate(
+                                                         @Html.ActionLink("Details", "ApointmentDetails", "Consultation", new { id = "#=BookingId#" }, htmlAttributes: null).ToHtmlString()
+                                  );
+
+                             })
+                             .Pageable()
+                             .Sortable()
+                             .Navigatable()
+                             .Resizable(r => r.Columns(true))
+                             .Filterable()
+                             .Scrollable()
+                             .DataSource(dataSource => dataSource
+                                      .Ajax()
+                                      .PageSize(20)
+                                      .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
+
+                   )
+
+    </div>
+
+</div>
+<div>
+    <div>
+        <button class="k-button">
+            @Html.ActionLink("Book an Appointment", "Booking"@*, new { id = Model.DoctorId }*@)
+        </button>
+    </div>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -35,35 +78,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DoctorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "ApointmentDetails", new { id = item.BookingId }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
-</table>
+</table>*@

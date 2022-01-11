@@ -34,15 +34,11 @@ namespace DoctorConsultAppMVC.Controllers
         {
             var log = new DoctorLogin();
             HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/DoctorLogin", login).Result;
-            HttpResponseMessage response1 = client.GetAsync("DoctorConsultApp/DoctorLogin").Result;
-
-
             if (response.IsSuccessStatusCode)
             {
                 Session["Doctor"] = login.Email.ToString();
-                //var data = response1.Content.ReadAsStringAsync().Result;
-                //var log = JsonConvert.DeserializeObject<DoctorLogin>(data);
-                Session["DoctorId"] = login.DoctorId;
+                var data = DoctorbyEmail();
+                Session["DoctorId"] = data.DoctorId;
                 return RedirectToAction("BookedApointments");
 
             }
@@ -70,9 +66,28 @@ namespace DoctorConsultAppMVC.Controllers
             }
             else
             {
-                return RedirectToAction("UserLogin");
+                return RedirectToAction("DoctorLogin");
             }
 
+        }
+
+        public ActionResult ApointmentDetails(int bookingid)
+        {
+            if (Session["Doctor"] != null)
+            {
+                var apointment = new Booking();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Booked Details?id=" + bookingid).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    apointment = JsonConvert.DeserializeObject<Booking>(data);
+                }
+                return View(apointment);
+            }
+            else
+            {
+                return RedirectToAction("DoctorLogin");
+            }
         }
 
 
@@ -173,10 +188,8 @@ namespace DoctorConsultAppMVC.Controllers
                 HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetails?id=" + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
-
                     var data = response.Content.ReadAsStringAsync().Result;
                     doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
-
                 }
                 return View(doctorlst);
             }
@@ -184,6 +197,20 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
+
+        }
+
+        public DoctorModel DoctorbyEmail()
+        {
+                var doctorlst = new DoctorModel();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetailsbyEmail?Email=" + Session["Doctor"]).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
+                }
+                return doctorlst;
+            
 
         }
 
@@ -247,9 +274,6 @@ namespace DoctorConsultAppMVC.Controllers
             return View(slots);
 
         }
-
-
-
 
         // Action Method for booking Appointment
         public ActionResult Booking()
@@ -349,13 +373,6 @@ namespace DoctorConsultAppMVC.Controllers
             //    return false;
             //}
 
-        }
-
-        public List<Genders> Gender()
-        {
-            List<Genders> data = new List<Genders>() { new Genders{ Id=1,Gender="Male"},
-            new Genders { Id = 2, Gender = "female" } };
-            return data;
         }
 
         
