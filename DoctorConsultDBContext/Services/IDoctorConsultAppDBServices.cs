@@ -13,6 +13,7 @@ namespace DoctorConsultDBContext.Services
         public List<Doctor> GetDoctor();
         public Doctor AddDoctor(Doctor doctor);
         public User AddUser(User user);
+        public List<User> GetUser();
         public Booking AddBooking(Booking booking);
         public Slot AddTimeSlots(Slot slot);
         public List<Slot> GetTimeSlot();

@@ -34,8 +34,19 @@
                 <ul class="nav navbar-nav">
 
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (Session["User"] != null)
+                    {
+                        <li>@Html.ActionLink("Profile", "UserProfile", "Consultation")</li>
+
+                    }
+                    @if (Session["Doctor"] != null)
+                    {
+                        <li>@Html.ActionLink("Profile", "DoctorProfile", "Consultation")</li>
+
+                    }
+
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                  
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("LogOut", "LogOut", "Consultation")</li>
 
 

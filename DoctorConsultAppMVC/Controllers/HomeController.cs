@@ -12,6 +12,10 @@ namespace DoctorConsultAppMVC.Controllers
         {
             return View();
         }
+        public ActionResult UserHome()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

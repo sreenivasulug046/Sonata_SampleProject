@@ -74,6 +74,30 @@ namespace DoctorConsultApp.Controllers
                     });
             }           
         }
+        //API for UserProfile
+        [HttpGet]
+        [Route("UserProfile")]
+        public IActionResult UserProfile(int Userid)
+        {
+            var user = _database.UserProfile(Userid);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
+        //
+        [HttpGet]
+        [Route("UserProfilebyEmail")]
+        public IActionResult UserProfilebyEmail(string Email)
+        {
+            var user = _database.UserProfilebyEmail(Email);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
         //API for List of Doctors With Specilization
         [HttpGet]
         [Route("ListOfDoctors")]
@@ -174,7 +198,6 @@ namespace DoctorConsultApp.Controllers
             }
             return NoContent();
         }
-
         //API for Doctors adds a prescription for patient
         [HttpPost]
         [Route("AddPrescripion")]
@@ -228,7 +251,6 @@ namespace DoctorConsultApp.Controllers
             }
             return NotFound();
         }
-
         //API for Getting List Of Booked Patients by Today Date
         [HttpGet]
         [Route("List of Booked patients")]

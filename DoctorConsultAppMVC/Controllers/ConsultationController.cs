@@ -49,6 +49,26 @@ namespace DoctorConsultAppMVC.Controllers
             return View();
 
         }
+
+        public ActionResult DoctorProfile()
+        {
+            if (Session["Doctor"] != null)
+            {
+                var doctorlst = new DoctorModel();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetails?id=" + Session["DoctorId"]).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
+                }
+                return View(doctorlst);
+            }
+            else
+            {
+                return RedirectToAction("DoctorLogin");
+            }
+
+        }
         public ActionResult BookedApointments()
         {
             if (Session["Doctor"] != null)
@@ -123,10 +143,12 @@ namespace DoctorConsultAppMVC.Controllers
             if (response.IsSuccessStatusCode)
             {
                 Session["User"] = login.Email;
+                var user = UserbyEmail();
+                Session["UserId"] = user.UserId;
                var data= response.Content.ReadAsStringAsync().Result;
                
 
-                return RedirectToAction("GetdoctorList");
+                return RedirectToAction("UserHome","Home");
             }
             else
             {
@@ -155,6 +177,28 @@ namespace DoctorConsultAppMVC.Controllers
             return View();
 
         }
+
+        public ActionResult UserProfile()
+        {
+            if (Session["User"] != null)
+            {
+                var user = new UserProfile();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/UserProfile?Userid=" + Session["UserId"]).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    user = JsonConvert.DeserializeObject<UserProfile>(data);
+                }
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+        }
+
+
 
 
 
@@ -210,8 +254,6 @@ namespace DoctorConsultAppMVC.Controllers
                     doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
                 }
                 return doctorlst;
-            
-
         }
 
 
@@ -375,7 +417,22 @@ namespace DoctorConsultAppMVC.Controllers
 
         }
 
-        
+        //method for getting UserId
+        public UserProfile UserbyEmail()
+        {
+            var doctorlst = new UserProfile();
+            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/UserProfilebyEmail?Email=" + Session["User"]).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                doctorlst = JsonConvert.DeserializeObject<UserProfile>(data);
+            }
+            return doctorlst;
+
+
+        }
+
+
 
 
 

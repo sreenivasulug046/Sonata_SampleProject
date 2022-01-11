@@ -79,6 +79,22 @@ namespace DoctorConsultDBContext.Services
 
             return result;
         }
+        // Service for getting User details
+        public List<User> GetUser()
+        {
+
+            var result = _DbContext.Users
+                 .Select(f => new User
+                 {
+                     UserId = f.UserId,
+                     UserName = f.UserName,
+                     PhNo = f.PhNo,
+                     Email = f.Email
+
+                 }).ToList();
+
+            return result;
+        }
 
         public Doctor AddDoctor(Doctor doctor)
         {

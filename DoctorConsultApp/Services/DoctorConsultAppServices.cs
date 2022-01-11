@@ -370,5 +370,50 @@ namespace DoctorConsultApp.Services
                 return result;
             }
         }
+
+        public UserProfile UserProfile(int UserId)
+        {
+            UserProfile result = new UserProfile();
+            try
+            {
+                result = _DbContext.GetUser()
+                .Where(f => f.UserId == UserId)
+                .Select(f => new UserProfile
+                {
+                    UserId = f.UserId,
+                    UserName = f.UserName,
+                    PhNo = f.PhNo,
+                    Email = f.Email
+                }).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"There was an {ex.Message}");
+                return result;
+            }
+        }
+        public UserProfile UserProfilebyEmail(string Email)
+        {
+            UserProfile result = new UserProfile();
+            try
+            {
+                result = _DbContext.GetUser()
+                .Where(f => f.Email == Email)
+                .Select(f => new UserProfile
+                {
+                    UserId = f.UserId,
+                    UserName = f.UserName,
+                    PhNo = f.PhNo,
+                    Email = f.Email
+                }).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"There was an {ex.Message}");
+                return result;
+            }
+        }
     }
 }

@@ -140,6 +140,7 @@
     <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2873,6 +2874,9 @@
     <Content Include="Views\Consultation\BookedApointments.cshtml" />
     <Content Include="Views\Consultation\Slots.cshtml" />
     <Content Include="Views\Consultation\ApointmentDetails.cshtml" />
+    <Content Include="Views\Consultation\UserProfile.cshtml" />
+    <Content Include="Views\Consultation\DoctorProfile.cshtml" />
+    <Content Include="Views\Home\UserHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
