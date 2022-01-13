@@ -15,7 +15,7 @@
 
         <dd>
 
-            @Html.Kendo().MaskedTextBoxFor(model => model.DoctorId)
+            @Html.DisplayFor(model => model.DoctorId)
         </dd>
 
         <dt>
@@ -62,27 +62,27 @@
     @(Html.Kendo().Button()
         .Name("primaryTextButton")
         .HtmlAttributes(new { type = "button", @class = "k-primary" })
-        .Content("Primary Button")
+        .Content("Check SlotAvailabilty")
         )
-    <button class="k-button">
+   
         @Html.ActionLink("Book an Appointment", "Booking", new {  id = Model.DoctorId })
-    </button>
+   
 </div>
 
-<p>
+@*<p>
     @Html.ActionLink("Book an Appointment", "Booking", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to  Doctors List", "GetdoctorList")
 
     @Html.ActionLink("Checkslots", "Slots", new {  id = Model.DoctorId })
-</p>
+</p>*@
 
-<button>Create and open popup</button>
+
 <div id="windowForAssign"></div>
 <script>
        $('button').click(createAndShowPopup);
        var kendoWindowAssign = $("#windowForAssign");
        var title = "Sample title";
-      var url = "https://localhost:44386/Consultation/Slots/104";
+    var url = "http://localhost:4919/api/DoctorConsultApp/Slot Availability?id=101";
 
        function createAndShowPopup(){
          kendoWindowAssign.kendoWindow({

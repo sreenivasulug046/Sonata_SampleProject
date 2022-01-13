@@ -308,6 +308,7 @@ namespace DoctorConsultApp.Services
                        DoctorId = f.DoctorId,
                        UserId = f.UserId,
                        BookingId = f.BookingId,
+                       BookingDate=f.BookingDate,
                        PName = f.PName,
                        StartTime = f.StartTime,
                        EndTime = f.EndTime

@@ -4,10 +4,14 @@
     ViewBag.Title = "UserProfile";
 }
 
-<h2>UserProfile</h2>
-
-<div>
-    <h4>UserProfile</h4>
+<div class="k-form-horizontal">
+    <div class="k-fab-dark" style="color:blue; text-align:center;">
+        <h4>Profile</h4>
+        <div>
+            <img src="~/images/user.png" alt="Smiley face" width="45" height="45" style="border:1px solid black; border-radius: 8px;" />
+        </div>
+        <br />
+    </div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,7 +48,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

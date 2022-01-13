@@ -3,55 +3,39 @@
 @{
     ViewBag.Title = "PastConsultList";
 }
+    <div class="k-fab-dark" style="color:blue; text-align:center;">
+        <h4>Past ConsultationList</h4>
+    </div>
 
-<h2>PastConsultList</h2>
+        <div class="row">
+            <div class="col-12">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PatientName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingDate)
-        </th>
-        <th></th>
-    </tr>
+                @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.PastConsultList>(Model)
+                             .Name("grid")
+                             .Columns(column=>
+                             {
+                                 column.Bound(p => p.BookingId);
+                                 column.Bound(p => p.DoctorId);
+                                 column.Bound(p => p.PatientName);
+                                 column.Bound(p => p.BookingDate);
+                                 column.Bound(c => c.BookingId).Title("Details").ClientTemplate(
+                                                         @Html.ActionLink("Details", "PastConsultationDetails", "Consultation", new { id = "#=BookingId#" }, htmlAttributes: null).ToHtmlString()
+                                  );
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DoctorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PatientName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "PastConsultationDetails", new { id=item.BookingId }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+                             })
+                             .Pageable()
+                             .Sortable()
+                             .Navigatable()
+                             .Resizable(r => r.Columns(true))
+                             .Filterable()
+                             .Scrollable()
+                             .DataSource(dataSource => dataSource
+                                      .Ajax()
+                                      .PageSize(20)
+                                      .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
 
-</table>
+                   )
+
+            </div>
+
+        </div>

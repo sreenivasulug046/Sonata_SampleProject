@@ -5,60 +5,70 @@
 }
 
 <div>
-    <h4>PastConsultationDetails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BookingId)
-        </dt>
+    <div>
+        <div class="k-fab-dark" style="color:blue; text-align:center;">
+            <h4>Past Consultation Details</h4>
+        </div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BookingId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookingId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BookingId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DoctorId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DoctorId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PatientName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PatientName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PatientName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BookingDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookingDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BookingDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
 
-    </dl>
+        </dl>
+        <div>
+            <div>
+                <button class="k-button">
+                    @Html.ActionLink("Back to List", "PastConsultList"@*, new { id = Model.DoctorId }*@)
+                </button>
+                <button class="k-button">
+                    @Html.ActionLink("Download Prescription", "PastConsultationDetails"@*, new { id = Model.DoctorId }*@)
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

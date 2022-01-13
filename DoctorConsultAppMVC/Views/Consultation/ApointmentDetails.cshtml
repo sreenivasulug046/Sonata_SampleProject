@@ -4,86 +4,90 @@
     ViewBag.Title = "ApointmentDetails";
 }
 
-<h2>ApointmentDetails</h2>
 
-<div>
-    <h4>ApointmentDetails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+<div class="k-form-horizontal">
+    <div class="k-form-horizontal">
+        <div class="k-fab-dark" style="color:blue; text-align:center;">
+            <h4>Apointment Details</h4>
+        </div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DoctorId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PatientName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PatientName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PatientName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Problem)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Problem)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Problem)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Problem)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BookingDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BookingDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookingDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+        <div>
+            <div>
+                <button class="k-button">
+                    @Html.ActionLink("Back to List", "BookedApointments"@*, new { id = Model.DoctorId }*@)
+                </button>
+                <button class="k-button">
+                    @Html.ActionLink("Add Prescription", "UploadPrescription"@*, new { id = Model.DoctorId }*@)
+                </button>
+            </div>
+        </div>
+    </div>
+ </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

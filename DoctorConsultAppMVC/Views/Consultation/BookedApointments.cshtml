@@ -4,7 +4,7 @@
     ViewBag.Title = "BookedApointments";
 }
 
-<h2>BookedApointments</h2>
+<h2>Booked Apointments</h2>
 
 
 <div class="row">
@@ -14,8 +14,6 @@
                              .Name("grid")
                              .Columns(column=>
                              {
-                                 
-                                 column.Bound(p => p.DoctorId);
                                  column.Bound(p => p.UserId);
                                  column.Bound(p => p.PName);
                                  column.Bound(p => p.BookingDate);
@@ -42,72 +40,3 @@
     </div>
 
 </div>
-<div>
-    <div>
-        <button class="k-button">
-            @Html.ActionLink("Book an Appointment", "Booking"@*, new { id = Model.DoctorId }*@)
-        </button>
-    </div>
-</div>
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "ApointmentDetails", new { id = item.BookingId }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
-
-</table>*@
