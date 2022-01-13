@@ -91,16 +91,16 @@ namespace DoctorConsultAppMVC.Controllers
 
         }
 
-        public ActionResult ApointmentDetails(int bookingid)
+        public ActionResult ApointmentDetails(int id)
         {
             if (Session["Doctor"] != null)
             {
-                var apointment = new Booking();
-                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Booked Details?id=" + bookingid).Result;
+                var apointment = new ApointmentDetails();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/BookedDetails?id=" + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var data = response.Content.ReadAsStringAsync().Result;
-                    apointment = JsonConvert.DeserializeObject<Booking>(data);
+                    apointment = JsonConvert.DeserializeObject<ApointmentDetails>(data);
                 }
                 return View(apointment);
             }
@@ -197,11 +197,6 @@ namespace DoctorConsultAppMVC.Controllers
             }
 
         }
-
-
-
-
-
         public ActionResult GetdoctorList()
         {
             if (Session["User"] != null)
@@ -215,7 +210,6 @@ namespace DoctorConsultAppMVC.Controllers
 
                 }
                 return View(doctorlst);
-
             }
             else
             {
@@ -236,6 +230,45 @@ namespace DoctorConsultAppMVC.Controllers
                     doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
                 }
                 return View(doctorlst);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+        }
+        public ActionResult PastConsultList()
+        {
+            if (Session["User"] != null)
+            {
+                var pastconsults = new List<PastConsultList>();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/ListofPastConsults?id=" + Session["UserId"]).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    pastconsults = JsonConvert.DeserializeObject<List<PastConsultList>>(data);
+                }
+                return View(pastconsults);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+
+        }
+
+        public ActionResult PastConsultationDetails(int id)
+        {
+            if (Session["User"] != null)
+            {
+                var pastconsult = new PastConsultationDetails();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/PastConsultation?id=" + id).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    pastconsult = JsonConvert.DeserializeObject<PastConsultationDetails>(data);
+                }
+                return View(pastconsult);
             }
             else
             {
@@ -265,7 +298,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 string data = response.Content.ReadAsStringAsync().Result;
                 doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
-
             }
             return View(doctorlst);
         }

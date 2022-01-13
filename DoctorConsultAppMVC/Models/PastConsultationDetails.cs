@@ -1,12 +1,11 @@
-﻿using DoctorConsultDBContext.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace DoctorConsultApp.Models
+namespace DoctorConsultAppMVC.Models
 {
-    public class PatientPastConsulationModel
+    public class PastConsultationDetails
     {
         public int BookingId { get; set; }
         public int DoctorId { get; set; }
@@ -14,9 +13,5 @@ namespace DoctorConsultApp.Models
         public string BookingDate { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
-        //public virtual Doctor Doctor { get; set; }
-
-
-
     }
 }

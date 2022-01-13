@@ -235,6 +235,7 @@ namespace DoctorConsultApp.Services
                      DoctorId = f.DoctorId,
                      PatientName = f.PName,
                      Gender = f.Gender,
+                     Age=f.Age,
                      Problem = f.Problem,
                      BookingDate = f.BookingDate,
                      StartTime = f.StartTime,
@@ -356,6 +357,7 @@ namespace DoctorConsultApp.Services
                   .Select(f => new PatientPastConsulationModel
                   {
                       BookingId = f.BookingId,
+                      DoctorId=f.DoctorId,
                       PatientName = f.PName,
                       BookingDate = f.BookingDate,
                       StartTime = f.StartTime,

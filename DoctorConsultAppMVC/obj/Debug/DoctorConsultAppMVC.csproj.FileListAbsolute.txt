@@ -1,3 +1,4 @@
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\DoctorConsultAppMVC.dll.config
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\DoctorConsultAppMVC.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\DoctorConsultAppMVC.pdb
@@ -8,7 +9,6 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\csi
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\csi.exe.config
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\csi.rsp
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
@@ -98,7 +98,6 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\sv-SE\Kend
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\tr-TR\Kendo.Mvc.resources.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\bin\zh-CN\Kendo.Mvc.resources.dll
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csprojAssemblyReference.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csproj.CoreCompileInputs.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.csproj.CopyComplete
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultAppMVC\obj\Debug\DoctorConsultAppMVC.dll

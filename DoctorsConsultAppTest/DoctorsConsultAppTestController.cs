@@ -30,7 +30,7 @@ namespace DoctorsConsultAppTest
             controller = new DoctorConsultAppController(_services, dbcontext);
             _controller = new DoctorConsultAppController(_service, dbcontext);
         }
-
+        //For Doctors
         [Fact]
         public void AddNewDoctor_ShouldReturnSuccess()
         {
@@ -69,7 +69,6 @@ namespace DoctorsConsultAppTest
             Assert.IsType<DoctorAddModel>(item);
             Assert.Equal("Raju", item.DoctorName);
         }
-
         [Fact]
         public void GetAllDoctorsList_WhenCalled_ReturnsOkResult()
         {
@@ -87,9 +86,7 @@ namespace DoctorsConsultAppTest
             var items = Assert.IsType<List<DoctorModel>>(okResult.Value);
             Assert.Equal(3, items.Count);
         }
-
         //Get Doctordetails
-
         [Fact]
         public void Get_WhenCalled_ReturnsOkResult()
         {
@@ -97,8 +94,7 @@ namespace DoctorsConsultAppTest
             IActionResult okResult = controller.GetDoctorDetails(101);
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
-        }
-       
+        }       
         [Fact]
         public void GetById_ExistingIdPassed_ReturnsRightItem()
         {
@@ -110,7 +106,6 @@ namespace DoctorsConsultAppTest
             Assert.IsType<DoctorDetailsModel>(okResult.Value);
             Assert.Equal(testid, (okResult.Value as DoctorDetailsModel).DoctorId);
         }
-
         //Get Slot
         [Fact]
         public void GetSlot_WhenCalled_ReturnsOkResult()
@@ -120,7 +115,6 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-
         //Get Booked Patient List
         [Fact]
         public void GetBookedPatientList_WhenCalled_ReturnsOkResult()
@@ -130,9 +124,7 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-
         //Get Booked Patient
-
         [Fact]
         public void GetBookedPatient_WhenCalled_ReturnsOkResult()
         {
@@ -141,9 +133,7 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-
         //Get Prescription
-
         [Fact]
         public void GetPrescription_WhenCalled_ReturnsOkResult()
         {
@@ -152,7 +142,6 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-
         //Get Past Consultations
         [Fact]
         public void GetPastConsults_WhenCalled_ReturnsOkResult()
@@ -163,7 +152,6 @@ namespace DoctorsConsultAppTest
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
         //Get Past Consultation
-
         [Fact]
         public void GetPastConsultation_WhenCalled_ReturnsOkResult()
         {
@@ -172,8 +160,7 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
         }
-
-
+        //For Booking
         [Fact]
         public void AddNewbooking_ShouldReturnSuccess()
         {
@@ -217,6 +204,26 @@ namespace DoctorsConsultAppTest
             // Assert
             Assert.IsType<BookingModel>(item);
             Assert.Equal("Ravi", item.PName);
+        }
+        // For UserProfle
+        [Fact]
+        public void GetUser_WhenCalled_ReturnsOkResult()
+        {
+            // Act
+            IActionResult okResult = _controller.UserProfile(1);
+            // Assert
+            Assert.IsType<OkObjectResult>(okResult as OkObjectResult);
+        }    
+        [Fact]
+        public void GetUserbyId_ExistingIdPassed_ReturnsRightItem()
+        {
+            // Arrange
+            int testid = 1;
+            // Act
+            OkObjectResult okResult = _controller.UserProfile(testid) as OkObjectResult;
+            // Assert
+            Assert.IsType<UserProfile>(okResult.Value);
+            Assert.Equal(testid, (okResult.Value as UserProfile).UserId);
         }
 
     }

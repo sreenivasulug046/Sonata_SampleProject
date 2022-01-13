@@ -14,8 +14,10 @@ namespace DoctorsConsultAppTest.Services
         private readonly List<DoctorModel> _getdoctor;
         private readonly DoctorDetailsModel _getdoctorbid;
         private readonly IList<DoctorAddModel> _doctor;
+        private readonly UserProfile _userprofile;
         public ConsultationServicesFake()
         {
+            _booking = new List<BookingModel>();
             _getdoctor = new List<DoctorModel>()
             {
                 new DoctorModel(){DoctorName="Raju",Email="raju@gmail.com",Specilization="doctor",Password="raju123"},
@@ -23,6 +25,7 @@ namespace DoctorsConsultAppTest.Services
                 new DoctorModel(){DoctorName="Ramesh",Email="ramesh@gmail.com",Specilization="doctor",Password="ramesh123"}
             };
             _getdoctorbid = new DoctorDetailsModel() { DoctorId = 1, DoctorName = "Raju", Email = "raju@gmail.com", Specilization = "doctor" };
+            _userprofile = new UserProfile() { UserId = 1, UserName = "Ravi", Email = "ravi@mail.com", PhNo = "9652729580" };
         }
 
         public BookingModel AddBooking(BookingModel booking)
@@ -93,6 +96,16 @@ namespace DoctorsConsultAppTest.Services
         }
 
         public PatientPastConsulationModel PatientPastConsultation(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserProfile UserProfile(int UserId)
+        {
+            return _userprofile;
+        }
+
+        public UserProfile UserProfilebyEmail(string Email)
         {
             throw new NotImplementedException();
         }

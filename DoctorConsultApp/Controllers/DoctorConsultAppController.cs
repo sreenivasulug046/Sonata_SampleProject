@@ -182,22 +182,21 @@ namespace DoctorConsultApp.Controllers
             }
             return NoContent();
         }
-        //API for Adding Time slot for Doctor
-        [HttpPost]
-        [Route("Add TimeSlots")]
-        public IActionResult AddTimeSlot(TimeSlotAddModel slot)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid data");
-            }
-           var data= _database.AddTimeSlots(slot);
-            if (data != null)
-            {
-                return Ok(slot);
-            }
-            return NoContent();
-        }
+        //[HttpPost]
+        //[Route("Add TimeSlots")]
+        //public IActionResult AddTimeSlot(TimeSlotAddModel slot)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest("Invalid data");
+        //    }
+        //   var data= _database.AddTimeSlots(slot);
+        //    if (data != null)
+        //    {
+        //        return Ok(slot);
+        //    }
+        //    return NoContent();
+        //}
         //API for Doctors adds a prescription for patient
         [HttpPost]
         [Route("AddPrescripion")]
@@ -229,7 +228,7 @@ namespace DoctorConsultApp.Controllers
         }
         //API for getting perticular booked detailes
         [HttpGet]
-        [Route("Booked Details")]
+        [Route("BookedDetails")]
         public IActionResult GetBookedDetails(int id)
         {
             var bookeddetails = _database.GetBookedPatientDetails(id);
@@ -261,11 +260,11 @@ namespace DoctorConsultApp.Controllers
             {
                 return Ok(results);                
             }
-            return NoContent();
+            return NotFound();
         }
         //API for Getting List of Past consultations by UserId
         [HttpGet]
-        [Route("List of Past Consults")]
+        [Route("ListofPastConsults")]
         public IActionResult GetPastConsultations(int id)
         {
             var pastconsults = _database.GetPatientPastConsults(id);
@@ -273,11 +272,11 @@ namespace DoctorConsultApp.Controllers
             {
                 return Ok(pastconsults);              
             }
-            return NoContent();
+            return NotFound();
         }
         //API for Getting Perticulat Consultation by Booking Id
         [HttpGet]
-        [Route("Past Consultation")]
+        [Route("PastConsultation")]
         public IActionResult GetPastConsultation(int id)
         {
             var pastconsult = _database.PatientPastConsultation(id);
@@ -285,8 +284,7 @@ namespace DoctorConsultApp.Controllers
             {
                 return Ok(pastconsult);               
             }
-            return NoContent();
-        }
-       
+            return NotFound();
+        }      
     }
 }
