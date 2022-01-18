@@ -3,70 +3,85 @@
 @{
     ViewBag.Title = "Search";
 }
+<br />
 
-<div>
-    <h4>Doctor Details</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
+<div  style="text-align:; background-color:aliceblue; border:groove;border-radius: 8px; margin:0 40 0 70px" >
+    <div>
+        <div style="text-align:center;">
 
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </dt>
+            <h4>Doctor Details</h4>
+          
+            <img src="~/images/male-doctor.jpg" alt="Smiley face" width="55" height="55" style="border:1px solid black; border-radius: 8px;"  />
+        </div>
+        
+        <hr />
+        <dl class="dl-horizontal" style="margin:0 0 0 150px">
+            <dt>
+                @Html.Label("Doctor ID :")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DoctorId)
+            </dd>
+            <br />
 
-        <dd>
+            <dt>
+                @Html.Label("Doctor Name :")
+            </dt>
 
-            @Html.DisplayFor(model => model.DoctorId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DoctorName)
+            </dd>
+            <br />
+            <dt>
+                @Html.Label("Gender :")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.DoctorName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+            <dt>
+                @Html.Label("Email :")
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <br />
+            <dt>
+                @Html.Label("Phone :")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhNo)
+            </dd>
+            <br />
+            <dt>
+                @Html.Label("Specilization :")
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhNo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Specilization)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhNo)
-        </dd>
+        </dl>
+    </div>
+    <br />
+    <div style="margin:0 0 0 150px">
+        @*@(Html.Kendo().Button()
+            .Name("primaryTextButton")
+            .HtmlAttributes(new { type = "button", @class = "k-primary" })
+            .Content("Check SlotAvailabilty")
+            )*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Specilization)
-        </dt>
+        <button class="btn">@Html.ActionLink("Book an Appointment", "Booking", new { id = Model.DoctorId })</button>
 
-        <dd>
-            @Html.DisplayFor(model => model.Specilization)
-        </dd>
+        <button class="btn ">@Html.ActionLink("Check SlotAvailabilty", "Slots", new { id = Model.DoctorId })</button>
+        
 
-    </dl>
-</div>
-<div>
-    @(Html.Kendo().Button()
-        .Name("primaryTextButton")
-        .HtmlAttributes(new { type = "button", @class = "k-primary" })
-        .Content("Check SlotAvailabilty")
-        )
-   
-        @Html.ActionLink("Book an Appointment", "Booking", new {  id = Model.DoctorId })
-   
+    </div>
+    <br />
 </div>
 
 @*<p>
@@ -77,12 +92,12 @@
 </p>*@
 
 
-<div id="windowForAssign"></div>
+@*<div id="windowForAssign"></div>
 <script>
        $('button').click(createAndShowPopup);
        var kendoWindowAssign = $("#windowForAssign");
        var title = "Sample title";
-    var url = "http://localhost:4919/api/DoctorConsultApp/Slot Availability?id=101";
+    var url = "@Html.ActionLink("Check SlotAvailabilty", "Slots", new { id = Model.DoctorId })";
 
        function createAndShowPopup(){
          kendoWindowAssign.kendoWindow({
@@ -100,4 +115,4 @@
          popup.open();
          popup.center();
        }
-</script>
+</script>*@

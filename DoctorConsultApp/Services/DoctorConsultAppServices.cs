@@ -260,7 +260,7 @@ namespace DoctorConsultApp.Services
                     PrescriptionId = prescription.PrescriptionId,
                     DoctorId = prescription.DoctorId,
                     UserId = prescription.UserId,
-                    PrescriptionImage = prescription.PrescriptionImage,
+                    prescription = prescription.prescription,
                     AdditionalSuggestion = prescription.AdditionalSuggestion
                 });
                 return prescription;
@@ -283,7 +283,7 @@ namespace DoctorConsultApp.Services
                  {
                      BookingId = f.BookingId,
                      PrescriptionId = f.PrescriptionId,
-                     PrescriptionImage = f.PrescriptionImage,
+                     prescription = f.prescription,
                      AdditionalSuggestion = f.AdditionalSuggestion
 
                  }).FirstOrDefault();

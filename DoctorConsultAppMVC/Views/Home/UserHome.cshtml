@@ -1,17 +1,36 @@
 ﻿@{
     ViewBag.Title = "UserHome";
 }
+<br />
 
-<h2>UserHome</h2>
-<div class="k-group-horizontal">
-    <div>
-        
-        @Html.ActionLink("Book Apointment", "GetdoctorList", "Consultation")
+<div>
+    <div class="k-animation-container" style="text-align:center; background-color:#E5E7E9 ;color:F8FAFB; border:groove">
+        <div class="k-pivotgrid-row">
+            <div class="k-col-end-2" style="font-size:xx-large;">
+                <div>
+                    <br />
+                    @Html.ActionLink("Book Apointment", "GetdoctorList", "Consultation")
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.ActionLink("Preview Past Consultations", "PastConsultList", "Consultation")
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
     </div>
-    <hr />
-    <div>
-        
-        @Html.ActionLink("Priview Past Consultations", "PastConsultList", "Consultation")
+    <div class="" style="text-align:center; background-color:EDD6F5 ;color:F8FAFB; border:groove">
+        <div style="background-color: EDD6F5; background-image: url('~/images/doctor.jpg')">
+            <br />
+            <h1 style="font-size:30px; margin:0 0 0 50px; color:E7C1F3;">
+                Welcome..! to Doctor Consutation Application
+            </h1>
+            <br />
+            <h2 style="font-size:30px; margin:0 50px 0 0; text-align:right; color:#73e600;">
+                Stay Home..  Stay Safe.!
+            </h2>
+            <img src="~/images/doctor.jpg" />
+
+        </div>
     </div>
 </div>
 

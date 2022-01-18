@@ -6,52 +6,39 @@
 
 <h2>Slots</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SlotId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DoctorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Availability)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-12">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SlotId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DoctorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Availability)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+        @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.CheckSlot>(Model)
+                             .Name("grid")
+                             .Columns(column=>
+                             {
+                                 column.Bound(p => p.SlotId);
+                                 column.Bound(p => p.StartTime);
+                                 column.Bound(p => p.EndTime);
+                                 column.Bound(p => p.Availability);
+                                 column.Bound(c => c.DoctorId).Title("").ClientTemplate(
+                                                         @Html.ActionLink("Book an Appointment", "Booking", "Consultation", new { id = "#=SlotId#" }, htmlAttributes: null).ToHtmlString()
+                                  );
 
-</table>
+                             })
+                             .Pageable()
+                             .Sortable()
+                             .Navigatable()
+                             .Resizable(r => r.Columns(true))
+                             .Filterable()
+                             .Scrollable()
+                             .DataSource(dataSource => dataSource
+                                      .Ajax()
+                                      .PageSize(20)
+                                      .Read(read => read.Action("Slots", "DoctorConsultAppController")))
+
+                   )
+
+    </div>
+    @*<div>
+        <button class="btn">@Html.ActionLink("Book an Appointment", "Booking")</button>
+    </div>*@
+    
+</div>
+

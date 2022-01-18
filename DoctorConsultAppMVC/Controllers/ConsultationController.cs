@@ -22,7 +22,6 @@ namespace DoctorConsultAppMVC.Controllers
         {
             client = new HttpClient();
             client.BaseAddress = baseadress;
-
         }
         // GET: Consultation
         public ActionResult DoctorLogin()
@@ -40,16 +39,13 @@ namespace DoctorConsultAppMVC.Controllers
                 var data = DoctorbyEmail();
                 Session["DoctorId"] = data.DoctorId;
                 return RedirectToAction("BookedApointments");
-
             }
             else
             {
                 ViewData["Message"] = "Invalid Credentials.. Login Failed";
             }
             return View();
-
         }
-
         public ActionResult DoctorProfile()
         {
             if (Session["Doctor"] != null)
@@ -67,7 +63,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("DoctorLogin");
             }
-
         }
         public ActionResult BookedApointments()
         {
@@ -90,7 +85,6 @@ namespace DoctorConsultAppMVC.Controllers
             }
 
         }
-
         public ActionResult ApointmentDetails(int id)
         {
             if (Session["Doctor"] != null)
@@ -109,13 +103,10 @@ namespace DoctorConsultAppMVC.Controllers
                 return RedirectToAction("DoctorLogin");
             }
         }
-
-
         public ActionResult RegisterDoctor()
         {
             return View(new DoctorRegistration());
         }
-
         [HttpPost]
         public ActionResult RegisterDoctor(DoctorRegistration doctor)
         {
@@ -125,12 +116,8 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("DoctorLogin");
             }
-
             return View();
-
         }
-
-
         public ActionResult UserLogin()
         {
             return View();
@@ -146,24 +133,18 @@ namespace DoctorConsultAppMVC.Controllers
                 var user = UserbyEmail();
                 Session["UserId"] = user.UserId;
                var data= response.Content.ReadAsStringAsync().Result;
-               
-
                 return RedirectToAction("UserHome","Home");
             }
             else
             {
                 ViewData["Message"] = "Invalid Credentials.. Login Failed";
             }
-
             return View();
-
         }
-
         public ActionResult RegisterUser()
         {
             return View(new UserRegistration());
         }
-
         [HttpPost]
         public ActionResult RegisterUser(UserRegistration doctor)
         {
@@ -173,11 +154,8 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
-
             return View();
-
         }
-
         public ActionResult UserProfile()
         {
             if (Session["User"] != null)
@@ -195,7 +173,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
-
         }
         public ActionResult GetdoctorList()
         {
@@ -216,7 +193,6 @@ namespace DoctorConsultAppMVC.Controllers
                 return RedirectToAction("UserLogin");
             }          
         }
-
         //Get doctor detailes by id
         public ActionResult Search(int id)
         {
@@ -235,7 +211,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
-
         }
         public ActionResult PastConsultList()
         {
@@ -256,7 +231,6 @@ namespace DoctorConsultAppMVC.Controllers
             }
 
         }
-
         public ActionResult PastConsultationDetails(int id)
         {
             if (Session["User"] != null)
@@ -274,9 +248,7 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
-
         }
-
         public DoctorModel DoctorbyEmail()
         {
                 var doctorlst = new DoctorModel();
@@ -288,8 +260,6 @@ namespace DoctorConsultAppMVC.Controllers
                 }
                 return doctorlst;
         }
-
-
         public ActionResult GetBookedPatient()
         {
             List<BookedModel> doctorlst = new List<BookedModel>();
@@ -301,26 +271,23 @@ namespace DoctorConsultAppMVC.Controllers
             }
             return View(doctorlst);
         }
-
         //To get Prescription(Not yet Completed)
-        public ActionResult GetPrescription()
+        public ActionResult GetPrescription(int id)
         {
-            List<BookedModel> doctorlst = new List<BookedModel>();
-            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Booked Details").Result;
+            DownloadPrescription prescription = new DownloadPrescription();
+            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/PatientPrescriptions?id=" + id).Result;
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
-
+                prescription = JsonConvert.DeserializeObject<DownloadPrescription>(data);
+                return View(prescription);
             }
-            return View(doctorlst);
+            return RedirectToAction("PastConsultationDetails");
         }
-
         public ActionResult UploadPrescription()
         {
             return View(new UploadPrescription());
         }
-
         [HttpPost]
         public ActionResult UploadPrescription(UploadPrescription prescription)
         {
@@ -328,11 +295,9 @@ namespace DoctorConsultAppMVC.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("UserLogin");
+                return RedirectToAction("GetBookedPatient");
             }
-
-            return View();
-        
+            return View();      
         }
         public ActionResult Slots(int id)
         {
@@ -343,18 +308,14 @@ namespace DoctorConsultAppMVC.Controllers
 
                 var data = response.Content.ReadAsStringAsync().Result;
                 slots = JsonConvert.DeserializeObject<List<CheckSlot>>(data);
-
             }
             return View(slots);
-
         }
-
         // Action Method for booking Appointment
         public ActionResult Booking()
         {
             return View(new Booking());
         }
-
         [HttpPost]
         public ActionResult Booking(Booking bookig)
         {
@@ -373,9 +334,7 @@ namespace DoctorConsultAppMVC.Controllers
 
                 return RedirectToAction("GetdoctorList");
             }
-
             return View();
-
         }
         public ActionResult LogOut()
         {
@@ -399,56 +358,22 @@ namespace DoctorConsultAppMVC.Controllers
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
-                        smtp.Credentials = new NetworkCredential("gounolla.s0205@gmail.com", "Sseenu143@");
+                        smtp.Credentials = new NetworkCredential("gounolla.s0205@gmail.com", "Gowthu123@");
                         smtp.UseDefaultCredentials = true;
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
 
                         return true;
-                    }
-                    
+                    }                    
                 }
-
             }
             catch(Exception ex)
             {
                 var msg=ex.Message;
                 return false;
-
             }
-            
-
-
-
-
-
-            //try
-            //{
-            //    string senderEmail = System.Configuration.ConfigurationManager.AppSettings["senderEmail"].ToString();
-            //    string senderPassword = System.Configuration.ConfigurationManager.AppSettings["senderPassword"].ToString();
-            //    //MailMessage mail = new MailMessage();
-            //    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-            //    SmtpServer.EnableSsl = true;
-            //    SmtpServer.Timeout = 20000;
-            //    SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //    SmtpServer.UseDefaultCredentials = false;
-            //    SmtpServer.Credentials = new NetworkCredential(senderEmail, senderPassword);
-
-            //    MailMessage mail = new MailMessage(senderEmail, toAddress, subject, mailBody);
-            //    mail.IsBodyHtml = true;
-            //    mail.BodyEncoding = UTF8Encoding.UTF8;
-            //    SmtpServer.Send(mail);
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    //_logger.LogError($"There was an {ex.Message}");
-            //    return false;
-            //}
-
         }
-
         //method for getting UserId
         public UserProfile UserbyEmail()
         {
@@ -460,16 +385,6 @@ namespace DoctorConsultAppMVC.Controllers
                 doctorlst = JsonConvert.DeserializeObject<UserProfile>(data);
             }
             return doctorlst;
-
-
         }
-
-
-
-
-
-
-
-
     }
 }

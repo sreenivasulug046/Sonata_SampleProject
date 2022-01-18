@@ -5,13 +5,10 @@ using System.Web;
 
 namespace DoctorConsultAppMVC.Models
 {
-    public class UploadPrescription
+    public class DownloadPrescription
     {
         public int BookingId { get; set; }
-        public int DoctorId { get; set; }
-        public int UserId { get; set; }
         public string Prescription { get; set; }
         public string AdditionalSuggestion { get; set; }
-
     }
 }

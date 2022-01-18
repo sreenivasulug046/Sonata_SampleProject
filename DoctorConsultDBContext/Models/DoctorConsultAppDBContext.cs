@@ -124,7 +124,7 @@ namespace DoctorConsultDBContext.Models
 
                 
 
-                entity.Property(e => e.PrescriptionImage).HasColumnName("Prescription_Image");
+                entity.Property(e => e.prescription).HasColumnName("Prescription");
 
                 //entity.HasOne(d => d.Booking)
                 //      .WithMany()

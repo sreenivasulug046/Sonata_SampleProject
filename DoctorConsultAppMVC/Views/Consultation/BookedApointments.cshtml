@@ -9,7 +9,6 @@
 
 <div class="row">
     <div class="col-12">
-
         @(Html.Kendo().Grid<DoctorConsultAppMVC.Models.BookedModel>(Model)
                              .Name("grid")
                              .Columns(column=>
@@ -34,9 +33,6 @@
                                       .Ajax()
                                       .PageSize(20)
                                       .Read(read => read.Action("GetdoctorList", "DoctorConsultAppController")))
-
                    )
-
     </div>
-
 </div>

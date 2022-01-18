@@ -266,7 +266,7 @@ namespace DoctorConsultDBContext.Services
                     DoctorId = prescription.DoctorId,
                     BookingId = prescription.BookingId,
                     UserId = prescription.UserId,
-                    PrescriptionImage = prescription.PrescriptionImage,
+                    prescription = prescription.prescription,
                     AdditionalSuggestion = prescription.AdditionalSuggestion
                 });
                 _DbContext.SaveChanges();
@@ -291,7 +291,7 @@ namespace DoctorConsultDBContext.Services
                      PrescriptionId = f.PrescriptionId,
                      DoctorId = f.DoctorId,
                      UserId = f.UserId,
-                     PrescriptionImage = f.PrescriptionImage,
+                     prescription = f.prescription,
                      AdditionalSuggestion = f.AdditionalSuggestion
 
                  }).ToList();

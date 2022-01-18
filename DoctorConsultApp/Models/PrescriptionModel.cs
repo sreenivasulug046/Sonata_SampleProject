@@ -9,7 +9,7 @@ namespace DoctorConsultApp.Models
     {
         public int PrescriptionId { get; set; }
         public int BookingId { get; set; }
-        public byte[] PrescriptionImage { get; set; }
+        public string prescription { get; set; }
         public string AdditionalSuggestion { get; set; }
     }
 }

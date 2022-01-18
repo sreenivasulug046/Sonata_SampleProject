@@ -138,6 +138,7 @@
     <Compile Include="Models\DoctorLogin.cs" />
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\DoctorRegistration.cs" />
+    <Compile Include="Models\DownloadPrescription.cs" />
     <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\PastConsultationDetails.cs" />
     <Compile Include="Models\PastConsultList.cs" />
@@ -1630,7 +1631,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\basic-rgb-145615384.jpg" />
+    <Content Include="images\doctor.jpg" />
     <Content Include="images\doctor.png" />
+    <Content Include="images\male-doctor.jpg" />
     <Content Include="images\mobile-doctor.jpg" />
     <Content Include="images\user.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2851,6 +2854,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Consultation\WhatsApp Image 2022-01-17 at 2.54.34 PM.jpeg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2871,7 +2875,6 @@
     <Content Include="Views\Consultation\UserLogin.cshtml" />
     <Content Include="Views\Consultation\RegisterDoctor.cshtml" />
     <Content Include="Views\Consultation\RegisterUser.cshtml" />
-    <Content Include="Views\Consultation\UploadPrescription.cshtml" />
     <Content Include="Views\Consultation\Booking.cshtml" />
     <Content Include="Views\Consultation\Search.cshtml" />
     <Content Include="Views\Consultation\BookedApointments.cshtml" />
@@ -2882,6 +2885,8 @@
     <Content Include="Views\Home\UserHome.cshtml" />
     <Content Include="Views\Consultation\PastConsultList.cshtml" />
     <Content Include="Views\Consultation\PastConsultationDetails.cshtml" />
+    <Content Include="Views\Consultation\UploadPrescription.cshtml" />
+    <Content Include="Views\Consultation\GetPrescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

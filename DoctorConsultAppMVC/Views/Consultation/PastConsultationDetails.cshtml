@@ -66,7 +66,7 @@
                     @Html.ActionLink("Back to List", "PastConsultList"@*, new { id = Model.DoctorId }*@)
                 </button>
                 <button class="k-button">
-                    @Html.ActionLink("Download Prescription", "PastConsultationDetails"@*, new { id = Model.DoctorId }*@)
+                    @Html.ActionLink("Download Prescription", "GetPrescription", new { id = Model.BookingId })
                 </button>
             </div>
         </div>

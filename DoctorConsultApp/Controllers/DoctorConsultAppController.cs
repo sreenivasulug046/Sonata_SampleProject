@@ -240,7 +240,7 @@ namespace DoctorConsultApp.Controllers
         }
         // API for Getting the patient prescription by Booking Id 
         [HttpGet]
-        [Route("Patient Prescriptions")]
+        [Route("PatientPrescriptions")]
         public IActionResult GetPrescription(int id)
         {
             var prescrition = _database.GetPrescription(id);
