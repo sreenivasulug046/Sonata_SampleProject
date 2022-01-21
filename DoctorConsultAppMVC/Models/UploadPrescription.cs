@@ -10,7 +10,7 @@ namespace DoctorConsultAppMVC.Models
         public int BookingId { get; set; }
         public int DoctorId { get; set; }
         public int UserId { get; set; }
-        public string Prescription { get; set; }
+        public string prescription { get; set; }
         public string AdditionalSuggestion { get; set; }
 
     }

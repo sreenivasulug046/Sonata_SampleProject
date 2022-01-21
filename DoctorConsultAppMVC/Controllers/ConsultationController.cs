@@ -1,5 +1,7 @@
 ﻿using DoctorConsultAppMVC.Models;
 using Kendo.Mvc.Extensions;
+using Microsoft.Build.Framework;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,15 +13,14 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-
 namespace DoctorConsultAppMVC.Controllers
 {
     public class ConsultationController : Controller
     {
         Uri baseadress = new Uri("http://localhost:4919/api/");
-        HttpClient client;
+        HttpClient client;       
         public ConsultationController()
-        {
+        {          
             client = new HttpClient();
             client.BaseAddress = baseadress;
         }
@@ -30,21 +31,21 @@ namespace DoctorConsultAppMVC.Controllers
         }
         [HttpPost]
         public ActionResult DoctorLogin(DoctorLogin login)
-        {
-            var log = new DoctorLogin();
-            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/DoctorLogin", login).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                Session["Doctor"] = login.Email.ToString();
-                var data = DoctorbyEmail();
-                Session["DoctorId"] = data.DoctorId;
-                return RedirectToAction("BookedApointments");
-            }
-            else
-            {
-                ViewData["Message"] = "Invalid Credentials.. Login Failed";
-            }
-            return View();
+        {         
+                var log = new DoctorLogin();
+                HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/DoctorLogin", login).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Session["Doctor"] = login.Email.ToString();
+                    var data = DoctorbyEmail();
+                    Session["DoctorId"] = data.DoctorId;
+                    return RedirectToAction("BookedApointments");
+                }
+                else
+                {
+                    ViewData["Message"] = "Invalid Credentials.. Login Failed";
+                }
+                return View();         
         }
         public ActionResult DoctorProfile()
         {
@@ -72,10 +73,8 @@ namespace DoctorConsultAppMVC.Controllers
                 HttpResponseMessage response = client.GetAsync("DoctorConsultApp/List of Booked patients?id=" + Session["DoctorId"]).Result;
                 if (response.IsSuccessStatusCode)
                 {
-
                     var data = response.Content.ReadAsStringAsync().Result;
                     doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
-
                 }
                 return View(doctorlst);
             }
@@ -83,7 +82,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("DoctorLogin");
             }
-
         }
         public ActionResult ApointmentDetails(int id)
         {
@@ -95,6 +93,8 @@ namespace DoctorConsultAppMVC.Controllers
                 {
                     var data = response.Content.ReadAsStringAsync().Result;
                     apointment = JsonConvert.DeserializeObject<ApointmentDetails>(data);
+                    Session["UserID"] = apointment.UserId;
+                    Session["BookingID"]=apointment.BookingId;                   
                 }
                 return View(apointment);
             }
@@ -132,8 +132,9 @@ namespace DoctorConsultAppMVC.Controllers
                 Session["User"] = login.Email;
                 var user = UserbyEmail();
                 Session["UserId"] = user.UserId;
-               var data= response.Content.ReadAsStringAsync().Result;
-                return RedirectToAction("UserHome","Home");
+                Session["UserName"] = user.UserName;
+                var data = response.Content.ReadAsStringAsync().Result;
+                return RedirectToAction("UserHome", "Home");
             }
             else
             {
@@ -149,9 +150,9 @@ namespace DoctorConsultAppMVC.Controllers
         public ActionResult RegisterUser(UserRegistration doctor)
         {
             HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/RegisterUser", doctor).Result;
-
             if (response.IsSuccessStatusCode)
             {
+
                 return RedirectToAction("UserLogin");
             }
             return View();
@@ -191,7 +192,7 @@ namespace DoctorConsultAppMVC.Controllers
             else
             {
                 return RedirectToAction("UserLogin");
-            }          
+            }
         }
         //Get doctor detailes by id
         public ActionResult Search(int id)
@@ -229,7 +230,6 @@ namespace DoctorConsultAppMVC.Controllers
             {
                 return RedirectToAction("UserLogin");
             }
-
         }
         public ActionResult PastConsultationDetails(int id)
         {
@@ -251,98 +251,152 @@ namespace DoctorConsultAppMVC.Controllers
         }
         public DoctorModel DoctorbyEmail()
         {
-                var doctorlst = new DoctorModel();
-                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetailsbyEmail?Email=" + Session["Doctor"]).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var data = response.Content.ReadAsStringAsync().Result;
-                    doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
-                }
-                return doctorlst;
+            var doctorlst = new DoctorModel();
+            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/DoctorDetailsbyEmail?Email=" + Session["Doctor"]).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                doctorlst = JsonConvert.DeserializeObject<DoctorModel>(data);
+            }
+            return doctorlst;
         }
         public ActionResult GetBookedPatient()
         {
-            List<BookedModel> doctorlst = new List<BookedModel>();
-            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Booked Details").Result;
-            if (response.IsSuccessStatusCode)
+            if (Session["Doctor"] != null)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
+                List<BookedModel> doctorlst = new List<BookedModel>();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Booked Details").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    doctorlst = JsonConvert.DeserializeObject<List<BookedModel>>(data);
+                }
+                return View(doctorlst);
             }
-            return View(doctorlst);
+            else
+            {
+                return RedirectToAction("DoctorLogin");
+            }          
         }
         //To get Prescription(Not yet Completed)
         public ActionResult GetPrescription(int id)
         {
-            DownloadPrescription prescription = new DownloadPrescription();
-            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/PatientPrescriptions?id=" + id).Result;
-            if (response.IsSuccessStatusCode)
+            if (Session["User"] != null)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                prescription = JsonConvert.DeserializeObject<DownloadPrescription>(data);
-                return View(prescription);
+                DownloadPrescription prescription = new DownloadPrescription();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/PatientPrescriptions?id=" + id).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    prescription = JsonConvert.DeserializeObject<DownloadPrescription>(data);
+                    return View(prescription);
+                }
+                return View();
             }
-            return RedirectToAction("PastConsultationDetails");
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }         
         }
         public ActionResult UploadPrescription()
         {
-            return View(new UploadPrescription());
+            if (Session["Doctor"] != null)
+            {
+                return View(new UploadPrescription());
+            }
+            else
+            {
+                return RedirectToAction("DoctorLogin");
+            }
+           
         }
         [HttpPost]
-        public ActionResult UploadPrescription(UploadPrescription prescription)
+        public ActionResult UploadPrescription(UploadPrescription model)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/AddPrescripion", prescription).Result;
-
-            if (response.IsSuccessStatusCode)
+            if (Session["Doctor"] != null)
             {
-                return RedirectToAction("GetBookedPatient");
+                model.UserId = (int)Session["UserID"];
+                model.BookingId = (int)Session["BookingID"];
+                model.DoctorId = (int)Session["DoctorId"];
+                HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/AddPrescription", model).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("GetBookedPatient");
+                }
+                return View();
             }
-            return View();      
+            else
+            {
+                return RedirectToAction("DoctorLogin");
+            }
+           
         }
         public ActionResult Slots(int id)
         {
-            List<CheckSlot> slots = new List<CheckSlot>();
-            HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Slot Availability?id=" + id).Result;
-            if (response.IsSuccessStatusCode)
+            if (Session["User"] != null)
             {
-
-                var data = response.Content.ReadAsStringAsync().Result;
-                slots = JsonConvert.DeserializeObject<List<CheckSlot>>(data);
+                List<CheckSlot> slots = new List<CheckSlot>();
+                HttpResponseMessage response = client.GetAsync("DoctorConsultApp/Slot Availability?id=" + id).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    slots = JsonConvert.DeserializeObject<List<CheckSlot>>(data);
+                }
+                return View(slots);
             }
-            return View(slots);
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
         }
         // Action Method for booking Appointment
         public ActionResult Booking()
         {
-            return View(new Booking());
+            if (Session["User"] != null)
+            {
+                return View(new Booking());
+            }
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
         }
         [HttpPost]
         public ActionResult Booking(Booking bookig)
         {
-            bool isMailSent = false;
-            HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/Booking", bookig).Result;
-
-            if (response.IsSuccessStatusCode)
+            if (Session["User"] != null)
             {
-                var DoctorName = bookig.DoctorId;
-                var starttime = bookig.StartTime;
-                var Endtime = bookig.EndTime;
-                string message = "Your Appointment has been confirmed. Please see below." + Environment.NewLine;
-                message = message + "DoctorId :" + DoctorName + Environment.NewLine;
-                message = message + "Start time :" + starttime.ToString() + "End time :" + Endtime.ToString() + Environment.NewLine;
-                isMailSent = SendEMail("sreenivasulu.g046@gmail.com", "Hello User",message);
+                bool isMailSent = false;
+                HttpResponseMessage response = client.PostAsJsonAsync("DoctorConsultApp/Booking", bookig).Result;
 
-                return RedirectToAction("GetdoctorList");
+                if (response.IsSuccessStatusCode)
+                {
+                    var DoctorName = bookig.DoctorId;
+                    var starttime = bookig.StartTime;
+                    var Endtime = bookig.EndTime;
+                    string message = "Your Appointment has been confirmed. Please see below." + Environment.NewLine;
+                    message = message + "DoctorId :" + DoctorName + Environment.NewLine;
+                    message = message + "Start time :" + starttime.ToString() + "End time :" + Endtime.ToString() + Environment.NewLine;
+                    isMailSent = SendEMail("sreenivasulu.g046@gmail.com", "Hello User", message);
+
+                    return RedirectToAction("GetdoctorList");
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("UserLogin");
+            }
+           
         }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-        public bool SendEMail(string toAddress,string subject, string mailBody)
+        public bool SendEMail(string toAddress, string subject, string mailBody)
         {
             // string senderEmail = System.Configuration.ConfigurationManager.AppSettings["senderEmail"].ToString();
             //string senderPassword = System.Configuration.ConfigurationManager.AppSettings["senderPassword"].ToString();
@@ -355,7 +409,6 @@ namespace DoctorConsultAppMVC.Controllers
                     mail.Subject = subject;
                     mail.Body = mailBody;
                     mail.IsBodyHtml = true;
-
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
                         smtp.Credentials = new NetworkCredential("gounolla.s0205@gmail.com", "Gowthu123@");
@@ -365,12 +418,12 @@ namespace DoctorConsultAppMVC.Controllers
                         smtp.Send(mail);
 
                         return true;
-                    }                    
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                var msg=ex.Message;
+                var msg = ex.Message;
                 return false;
             }
         }

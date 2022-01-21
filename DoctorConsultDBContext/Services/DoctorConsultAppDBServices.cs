@@ -295,7 +295,6 @@ namespace DoctorConsultDBContext.Services
                      AdditionalSuggestion = f.AdditionalSuggestion
 
                  }).ToList();
-
                 return result;
             }
             catch (Exception ex)

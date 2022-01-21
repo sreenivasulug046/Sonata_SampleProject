@@ -258,6 +258,7 @@ namespace DoctorConsultApp.Services
                 _DbContext.AddPrescription(new Prescription()
                 {
                     PrescriptionId = prescription.PrescriptionId,
+                    BookingId=prescription.BookingId,
                     DoctorId = prescription.DoctorId,
                     UserId = prescription.UserId,
                     prescription = prescription.prescription,
@@ -322,7 +323,6 @@ namespace DoctorConsultApp.Services
                 return result;
             }            
         }
-
         //Service List of Past Consultations
         public List<PatientPastConsultList> GetPatientPastConsults(int id)
         {
@@ -373,7 +373,6 @@ namespace DoctorConsultApp.Services
                 return result;
             }
         }
-
         public UserProfile UserProfile(int UserId)
         {
             UserProfile result = new UserProfile();

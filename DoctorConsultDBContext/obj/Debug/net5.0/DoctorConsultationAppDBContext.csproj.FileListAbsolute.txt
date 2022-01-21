@@ -1,3 +1,5 @@
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\appsettings.json
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\DoctorConsultationAppDBContext.exe
@@ -30,7 +32,6 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\n
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\System.Runtime.Caching.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
@@ -53,7 +54,6 @@ C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\n
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\scopedcss\bundle\DoctorConsultationAppDBContext.styles.css
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.RazorTargetAssemblyInfo.cache
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.csproj.CopyComplete
-C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\ref\DoctorConsultationAppDBContext.dll
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.pdb
 C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.genruntimeconfig.cache

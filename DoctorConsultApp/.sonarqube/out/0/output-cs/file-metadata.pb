@@ -1,0 +1,14 @@
+_
+VC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\Booking.csutf-8^
+UC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\Doctor.csutf-8q
+hC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\DoctorConsultAppDBContext.csutf-8d
+[C:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\Prescription.csutf-8\
+SC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\Slot.csutf-8\
+SC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Models\User.csutf-8X
+OC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Program.csutf-8t
+kC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Services\DoctorConsultAppDBServices.csutf-8u
+lC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Services\IDoctorConsultAppDBServices.csutf-8X
+OC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\Startup.csutf-8ê
+ÑC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.csutf-8ê
+ÑC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.AssemblyInfo.csutf-8£
+óC:\Users\admin\Documents\Sonata_SampleProject\DoctorConsultDBContext\obj\Debug\net5.0\DoctorConsultationAppDBContext.MvcApplicationPartsAssemblyInfo.csutf-8

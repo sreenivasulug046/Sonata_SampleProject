@@ -14,20 +14,23 @@ namespace DoctorConsultAppMVC.Controllers
         }
         public ActionResult UserHome()
         {
-            return View();
+            if (Session["User"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UserLogin", "Consultation");
+            }         
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -199,7 +199,7 @@ namespace DoctorConsultApp.Controllers
         //}
         //API for Doctors adds a prescription for patient
         [HttpPost]
-        [Route("AddPrescripion")]
+        [Route("AddPrescription")]
         public IActionResult AddPrescription(PrescriptionAddModel prescription)
         {
             if (!ModelState.IsValid)

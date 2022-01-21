@@ -3,56 +3,56 @@
 @{
     ViewBag.Title = "PastConsultationDetails";
 }
-
-<div>
-    <div>
+<br />
+<div style="background-color:#d9ffb3;border:groove;border-radius: 10px;">
+    <div class="k-form-horizontal">
         <div class="k-fab-dark" style="color:blue; text-align:center;">
             <h4>Past Consultation Details</h4>
         </div>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.BookingId)
+                @Html.Label("Booking ID : ")
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.BookingId)
             </dd>
-
+            <br />
             <dt>
-                @Html.DisplayNameFor(model => model.DoctorId)
+                @Html.Label("Doctor ID : ")
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.DoctorId)
             </dd>
-
+            <br />
             <dt>
-                @Html.DisplayNameFor(model => model.PatientName)
+                @Html.Label("Doctor Name : ")
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.PatientName)
             </dd>
-
+            <br />
             <dt>
-                @Html.DisplayNameFor(model => model.BookingDate)
+                @Html.Label("Booking Date : ")
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.BookingDate)
             </dd>
-
+            <br />
             <dt>
-                @Html.DisplayNameFor(model => model.StartTime)
+                @Html.Label("Start Time : ")
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.StartTime)
             </dd>
-
+            <br />
             <dt>
-                @Html.DisplayNameFor(model => model.EndTime)
+                @Html.Label("End Time : ")
             </dt>
 
             <dd>
@@ -61,7 +61,7 @@
 
         </dl>
         <div>
-            <div>
+            <div style="margin:0 0 0 110px">
                 <button class="k-button">
                     @Html.ActionLink("Back to List", "PastConsultList"@*, new { id = Model.DoctorId }*@)
                 </button>
@@ -71,4 +71,5 @@
             </div>
         </div>
     </div>
+    <br />
 </div>
