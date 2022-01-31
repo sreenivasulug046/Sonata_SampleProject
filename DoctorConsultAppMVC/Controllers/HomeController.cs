@@ -33,5 +33,10 @@ namespace DoctorConsultAppMVC.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+        public ActionResult NoContent()
+        {
+            return View();
+        }
+
     }
 }

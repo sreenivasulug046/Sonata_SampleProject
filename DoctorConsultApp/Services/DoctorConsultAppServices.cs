@@ -220,6 +220,30 @@ namespace DoctorConsultApp.Services
                 return result;
             }               
         }
+        public SlotGetModel GetTimeSlotbySlotid(int slotid)
+        {
+            SlotGetModel result = new SlotGetModel();
+            try
+            {
+                result = _DbContext.GetTimeSlot()
+                 .Where(f => f.SlotId == slotid)
+                 .Select(f => new SlotGetModel
+                 {
+                     SlotId = f.SlotId,
+                     DoctorId = f.DoctorId,
+                     SDate = f.SDate,
+                     StartTime = f.StartTime,
+                     EndTime = f.EndTime,
+                     Availability = f.Availability
+                 }).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"There was an {ex.Message}");
+                return result;
+            }
+        }
         //for getting perticular user booking details to doctor
         public BookedPatientDetails GetBookedPatientDetails(int id)
         {
@@ -241,7 +265,6 @@ namespace DoctorConsultApp.Services
                      StartTime = f.StartTime,
                      EndTime = f.EndTime
                  }).FirstOrDefault();
-
                 return result;
             }
             catch (Exception ex)
@@ -288,7 +311,6 @@ namespace DoctorConsultApp.Services
                      AdditionalSuggestion = f.AdditionalSuggestion
 
                  }).FirstOrDefault();
-
                 return result;
             }
             catch (Exception ex)

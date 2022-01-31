@@ -160,6 +160,7 @@
     <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\PastConsultationDetails.cs" />
     <Compile Include="Models\PastConsultList.cs" />
+    <Compile Include="Models\PrescriptionAdd.cs" />
     <Compile Include="Models\UploadPrescription.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserProfile.cs" />
@@ -1653,6 +1654,7 @@
     <Content Include="images\doctor.png" />
     <Content Include="images\male-doctor.jpg" />
     <Content Include="images\mobile-doctor.jpg" />
+    <Content Include="images\seenusri.jpeg" />
     <Content Include="images\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2905,6 +2907,7 @@
     <Content Include="Views\Consultation\PastConsultationDetails.cshtml" />
     <Content Include="Views\Consultation\GetPrescription.cshtml" />
     <Content Include="Views\Consultation\UploadPrescription.cshtml" />
+    <Content Include="Views\Home\NoContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

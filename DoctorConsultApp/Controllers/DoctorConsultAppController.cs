@@ -226,6 +226,30 @@ namespace DoctorConsultApp.Controllers
             }
             return NotFound();
         }
+        [HttpGet]
+        [Route("SlotDetails")]
+        public IActionResult GetSlotDetails(int slotid)
+        {
+            var timeslot = _database.GetTimeSlotbySlotid(slotid);
+            if (timeslot != null)
+            {
+                return Ok(timeslot);
+
+            }
+            return NotFound();
+        }
+        [HttpPut]
+        [Route("SlotBooked")]
+        public IActionResult UpdateSlot(int slotid)
+        {
+            var timeslot = _database.GetTimeSlotbySlotid(slotid);
+            if (timeslot != null)
+            {
+                timeslot.Availability = "No";
+                return Ok(timeslot);
+            }
+            return NotFound();
+        }
         //API for getting perticular booked detailes
         [HttpGet]
         [Route("BookedDetails")]

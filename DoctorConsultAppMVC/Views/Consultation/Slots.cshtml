@@ -18,7 +18,7 @@
                                  column.Bound(p => p.EndTime);
                                  column.Bound(p => p.Availability);
                                  column.Bound(c => c.DoctorId).Title("").ClientTemplate(
-                                                         @Html.ActionLink("Book an Appointment", "Booking", "Consultation", new { id = "#=SlotId#" }, htmlAttributes: null).ToHtmlString()
+                                                         @Html.ActionLink("Book an Appointment", "SlotDetails", "Consultation", new { id = "#=SlotId#" }, htmlAttributes: null).ToHtmlString()
                                   );
 
                              })

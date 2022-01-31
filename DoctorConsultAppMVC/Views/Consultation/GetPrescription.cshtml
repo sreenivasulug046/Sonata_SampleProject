@@ -1,9 +1,7 @@
 ﻿@model DoctorConsultAppMVC.Models.DownloadPrescription
-
 @{
     ViewBag.Title = "GetPrescription";
 }
-
 <br />
 <div class="k-form-horizontal">
     <div style="text-align:; background-color:aliceblue; border:groove;border-radius: 8px;">
@@ -13,29 +11,24 @@
             <dt>
                 @Html.Label("Prescription :")
             </dt>
-
             <dd>
-                @Html.DisplayFor(model => model.Prescription)
+                <img src="@Url.Content(Model.Prescription)" width="250" height="250" />
             </dd>
             <br />
             <dt>
                 @Html.Label("Additinal Comments :")
             </dt>
-
-            <dd>
+            <dd>              
                 @Html.DisplayFor(model => model.AdditionalSuggestion)
             </dd>
-
         </dl>
         <br />
         <dl>
             <dt>
                 <div style=" margin: 0 0 0 80px">
-                    <button> @Html.ActionLink("Back to List", "Index")</button>
-                </div>
-               
+                    <button> @Html.ActionLink("Back to Home", "UserHome","Home")</button>
+                </div>              
             </dt>      
-
         </dl>
     </div>
 </div>

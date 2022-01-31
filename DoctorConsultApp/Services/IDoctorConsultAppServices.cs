@@ -26,5 +26,6 @@ namespace DoctorConsultApp.Services
         public List<PatientPastConsultList> GetPatientPastConsults(int id);
         public PatientPastConsulationModel PatientPastConsultation(int id);
         public DoctorDetailsModel GetDoctorbyEmail(string Email);
+        public SlotGetModel GetTimeSlotbySlotid(int slotid);
     }
 }
